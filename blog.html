@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — The Optimistic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* === BLOG PAGE === */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.blog-card{background:var(--cream);border-radius:16px;padding:32px;border:1px solid var(--border-light);text-decoration:none;display:block;transition:transform .25s,box-shadow .25s;position:relative;}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(20,18,16,.07);}
+.bc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;opacity:.7;display:flex;align-items:center;gap:8px;}
+.bc-tag::before{content:'';display:block;width:16px;height:1px;background:var(--orange);opacity:.5;}
+.bc-title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,2vw,24px);line-height:1.3;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px;}
+.bc-body{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:20px;}
+.bc-read{font-size:13px;color:var(--orange);font-weight:500;display:flex;align-items:center;gap:6px;transition:gap .2s;}
+.blog-card:hover .bc-read{gap:10px;}
+.bc-status{position:absolute;top:20px;right:20px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:rgba(20,18,16,.06);border:1px solid var(--border-light);border-radius:100px;padding:3px 8px;color:var(--muted);}
+.bc-status.live{background:rgba(74,158,111,.1);border-color:rgba(74,158,111,.2);color:#4A9E6F;}
+/* Featured */
+.blog-featured{grid-column:span 2;background:var(--ink);color:#FAFAF7;position:relative;overflow:hidden;}
+.blog-featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 40%,rgba(232,93,38,.12) 0%,transparent 60%);pointer-events:none;}
+.blog-featured .bc-tag{color:rgba(232,93,38,.7);}
+.blog-featured .bc-tag::before{background:var(--orange);}
+.blog-featured .bc-title{font-size:clamp(22px,2.8vw,34px);color:#FAFAF7;}
+.blog-featured .bc-body{color:rgba(250,250,247,.55);}
+.blog-featured .bc-status{background:rgba(232,93,38,.1);border-color:rgba(232,93,38,.2);color:var(--orange);}
+/* Topics */
+.topics-section{padding:80px 80px;background:var(--cream);}
+.topics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:36px;}
+.topic-pill{background:var(--white);border:1px solid var(--border-light);border-radius:10px;padding:16px 18px;transition:border-color .2s,background .2s;cursor:default;}
+.topic-pill:hover{border-color:var(--orange);background:rgba(232,93,38,.04);}
+.topic-icon{font-size:20px;display:block;margin-bottom:8px;}
+.topic-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.topic-count{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);}
+@media(max-width:900px){.blog-grid{grid-template-columns:1fr;}.blog-featured{grid-column:span 1;}.topics-grid{grid-template-columns:repeat(2,1fr);}.topics-section{padding-left:24px;padding-right:24px;}}
+@media(max-width:600px){.topics-grid{grid-template-columns:1fr 1fr;}}
+
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-mark">S</div>
+    <div class="nav-name">The <span>Optimistic</span> Designer</div>
+  </a>
+  <div class="nav-links">
+    <a href="work.html">Work</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html" class="active">Writing</a>
+    <a href="contact.html" class="nav-cta">Let's talk</a>
+  </div>
+</nav>
+
+<div id="page-blog">
+<section class="page-hero" style="min-height:44vh;padding-bottom:0;">
+  <div class="eyebrow reveal">Writing · Design leadership · Thinking out loud</div>
+  <div class="display reveal d1">Things I think about<br>at 11pm when I should<br>be <em>sleeping.</em></div>
+  <p class="lead reveal d2">On design organisations, AI-augmented workflows, behavioural design, and what it actually means to lead a creative team inside a business that needs to grow.</p>
+</section>
+
+<section class="pad" style="background:var(--white);">
+  <div class="section-label reveal">Articles</div>
+  <div class="blog-grid">
+
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card blog-featured reveal">
+      <div style="position:relative;z-index:1;">
+        <div class="bc-tag">Leadership · Org building</div>
+        <span class="bc-status">Coming soon</span>
+        <div class="bc-title">How I built a 20-person design org inside a $140M fintech — and what I'd do differently</div>
+        <p class="bc-body">The hiring decisions, the systems, the culture rituals, the two things I'd undo, and the one thing that made all the difference. A full account of building from 2 to 20 at Yubi.</p>
+        <div class="bc-read">Read on Medium →</div>
+      </div>
+    </a>
+
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d1">
+      <div class="bc-tag">AI · Design systems</div>
+      <span class="bc-status">Coming soon</span>
+      <div class="bc-title">Why AI won't replace designers — it'll replace design teams that don't use AI</div>
+      <p class="bc-body">What we learned building AI-assisted workflows at Yubi before most teams were even talking about it. Practical, not theoretical.</p>
+      <div class="bc-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d1">
+      <div class="bc-tag">Psychology · UX</div>
+      <span class="bc-status live">Published</span>
+      <div class="bc-title">Reward by Design: How visual feedback turns effort into emotion</div>
+      <p class="bc-body">On dopamine, completion bias, and why the best interfaces feel like a small celebration every time you use them. With the Khatabook KYU story.</p>
+      <div class="bc-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d2">
+      <div class="bc-tag">Business · Design strategy</div>
+      <span class="bc-status">Coming soon</span>
+      <div class="bc-title">The design metrics that actually matter to a CFO — and how to calculate them</div>
+      <p class="bc-body">Revenue-linked design is the only kind worth talking about in a board meeting. Here's how to build the business case — with real numbers from real projects.</p>
+      <div class="bc-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d2">
+      <div class="bc-tag">DesignOps · Leadership</div>
+      <span class="bc-status">Coming soon</span>
+      <div class="bc-title">DesignOps is not a department. It's a mindset.</div>
+      <p class="bc-body">Most teams treat DesignOps as admin. The teams that do it well treat it as a product. Here's the difference — and why it matters for velocity, culture, and retention.</p>
+      <div class="bc-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d3">
+      <div class="bc-tag">Fintech · UX</div>
+      <span class="bc-status">Coming soon</span>
+      <div class="bc-title">Trust is a design problem. Here's how we solved it for 20,000 retail investors.</div>
+      <p class="bc-body">The Aspero story from the inside — the research insights, the design decisions, the moments of doubt, and the day the numbers proved that trust can be designed.</p>
+      <div class="bc-read">Read on Medium →</div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="topics-section reveal">
+  <div class="section-label">Topics I write about</div>
+  <div class="section-title d1">The things I <em>can't</em><br>stop thinking about.</div>
+  <div class="topics-grid">
+    <div class="topic-pill"><span class="topic-icon">🏗️</span><div class="topic-name">Design org building</div><div class="topic-count">Hiring · Culture · Career ladders</div></div>
+    <div class="topic-pill"><span class="topic-icon">🤖</span><div class="topic-name">AI & design systems</div><div class="topic-count">Workflows · Automation · Velocity</div></div>
+    <div class="topic-pill"><span class="topic-icon">🧠</span><div class="topic-name">Behavioural design</div><div class="topic-count">Psychology · Delight · Trust UX</div></div>
+    <div class="topic-pill"><span class="topic-icon">📊</span><div class="topic-name">Design & business</div><div class="topic-count">Metrics · ROI · Board-level design</div></div>
+    <div class="topic-pill"><span class="topic-icon">🏦</span><div class="topic-name">Fintech UX</div><div class="topic-count">Trust · Complexity · Financial inclusion</div></div>
+    <div class="topic-pill"><span class="topic-icon">🌱</span><div class="topic-name">Design culture</div><div class="topic-count">Psychological safety · Mentorship</div></div>
+    <div class="topic-pill"><span class="topic-icon">⚙️</span><div class="topic-name">DesignOps</div><div class="topic-count">Process · Governance · Efficiency</div></div>
+    <div class="topic-pill"><span class="topic-icon">🔭</span><div class="topic-name">Future of design</div><div class="topic-count">Leadership · AI · What comes next</div></div>
+  </div>
+</section>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('.page-hero .reveal').forEach(el=>el.classList.add('vis')),200);
+</script>
+</body>
+</html>

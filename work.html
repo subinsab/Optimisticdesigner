@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — The Optimistic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px;}
+.filter-btn{font-size:13px;padding:7px 18px;border-radius:100px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Cabinet Grotesk',sans-serif;}
+.filter-btn:hover{border-color:var(--ink);color:var(--ink);}
+.filter-btn.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.cases-section{padding:40px 80px 100px;}
+.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.case-card{background:var(--cream);border-radius:16px;overflow:hidden;text-decoration:none;display:block;border:1px solid var(--border-light);transition:transform .3s,box-shadow .3s;position:relative;}
+.case-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(20,18,16,.08);}
+.case-inner{padding:36px;}
+.case-co{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;opacity:.6;}
+.case-title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,2.5vw,32px);line-height:1.15;letter-spacing:-.02em;color:var(--ink);margin-bottom:12px;}
+.case-title em{font-style:italic}
+.case-body{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;font-weight:300;}
+.case-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;}
+.meta-tag{font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(20,18,16,.05);border:1px solid var(--border-light);color:var(--muted);}
+.case-stat{display:flex;align-items:baseline;gap:8px;}
+.cs-big{font-family:'Fraunces',serif;font-weight:700;font-size:36px;letter-spacing:-.02em;line-height:1;}
+.cs-label{font-size:13px;color:var(--muted);font-weight:300;}
+.case-arrow{position:absolute;top:32px;right:32px;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--muted);transition:all .2s;}
+.case-card:hover .case-arrow{background:var(--orange);border-color:var(--orange);color:var(--white);}
+/* Accent */
+.c-aspero .case-co{color:#C8955A}.c-aspero .cs-big{color:#C8955A}
+.c-yds .case-co{color:#5B8DB8}.c-yds .cs-big{color:#5B8DB8}
+.c-unify .case-co{color:#4A9E6F}.c-unify .cs-big{color:#4A9E6F}
+.c-reward .case-co{color:#9B6BB5}.c-reward .cs-big{color:#9B6BB5}
+.c-khata .case-co{color:#D4822A}.c-khata .cs-big{color:#D4822A}
+.c-solv .case-co{color:#2A7DD4}.c-solv .cs-big{color:#2A7DD4}
+/* Coming soon card */
+.cs-soon{background:rgba(20,18,16,.03);border:1.5px dashed var(--border-light);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px;text-align:center;gap:8px;}
+.cs-soon .soon-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.cs-soon .soon-title{font-family:'Fraunces',serif;font-size:18px;color:var(--muted);font-style:italic;}
+/* hidden for filter */
+.case-item{transition:opacity .3s,transform .3s;}
+.case-item.hidden{opacity:0;pointer-events:none;position:absolute;}
+@media(max-width:768px){.cases-section{padding:32px 24px 80px;}.cases-grid{grid-template-columns:1fr;}.filter-bar{gap:6px;}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand"><div class="nav-mark">S</div><div class="nav-name">The <span>Optimistic</span> Designer</div></a>
+  <div class="nav-links">
+    <a href="work.html" class="active">Work</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html" class="nav-cta">Let's talk</a>
+  </div>
+</nav>
+
+<section class="page-hero" style="min-height:42vh;padding-bottom:0;">
+  <div class="eyebrow reveal">Selected work · 9 case studies</div>
+  <div class="display reveal d1">Work that <em>moved</em><br>the numbers.</div>
+  <p class="lead reveal d2">Every case study here starts with a business problem — not a design brief. The screens come later. The impact is what matters.</p>
+</section>
+
+<section class="cases-section">
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">All work</button>
+    <button class="filter-btn" data-filter="yubi">Yubi</button>
+    <button class="filter-btn" data-filter="khatabook">Khatabook</button>
+    <button class="filter-btn" data-filter="solv">Solv</button>
+    <button class="filter-btn" data-filter="systems">Design systems</button>
+    <button class="filter-btn" data-filter="org">Org building</button>
+  </div>
+
+  <div class="cases-grid" id="casesGrid">
+
+    <a href="aspero.html" class="case-card c-aspero reveal case-item" data-tags="yubi">
+      <div class="case-inner">
+        <div class="case-co">Aspero · Yubi · 2022–24</div>
+        <div class="case-title">The ₹860M <em>turnaround</em></div>
+        <p class="case-body">A retail bond platform with ₹18Cr in losses, under 300 customers, and broken trust. Design rebuilt the business in 18 months.</p>
+        <div class="case-meta"><span class="meta-tag">Business transformation</span><span class="meta-tag">Trust UX</span><span class="meta-tag">0-to-1 redesign</span></div>
+        <div class="case-stat"><span class="cs-big">₹860M</span><span class="cs-label">revenue · 32% of Yubi</span></div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a href="yds.html" class="case-card c-yds reveal d1 case-item" data-tags="yubi systems">
+      <div class="case-inner">
+        <div class="case-co">YDS · Yubi · 2022–25</div>
+        <div class="case-title">One system.<br><em>₹136Cr saved.</em></div>
+        <p class="case-body">44 designers, 13 products, zero common language. The Yubi Design System changed all of that — and the engineering budget with it.</p>
+        <div class="case-meta"><span class="meta-tag">Design systems</span><span class="meta-tag">DesignOps</span><span class="meta-tag">AI workflows</span></div>
+        <div class="case-stat"><span class="cs-big">85%</span><span class="cs-label">adoption · 139→4 bugs</span></div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a href="unify.html" class="case-card c-unify reveal d2 case-item" data-tags="yubi">
+      <div class="case-inner">
+        <div class="case-co">UNIFY · Yubi · 2023–25</div>
+        <div class="case-title">NPS 1.7 → <em>8.23</em></div>
+        <p class="case-body">Project Sherlock diagnosed 500+ screens. UNIFY fixed what it found — unifying 92% of Yubi's product experience in two years.</p>
+        <div class="case-meta"><span class="meta-tag">UX strategy</span><span class="meta-tag">Data-driven audit</span><span class="meta-tag">Standardisation</span></div>
+        <div class="case-stat"><span class="cs-big">92%</span><span class="cs-label">experience unified</span></div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a href="reward.html" class="case-card c-reward reveal d3 case-item" data-tags="khatabook">
+      <div class="case-inner">
+        <div class="case-co">Reward by Design · Khatabook · 2021</div>
+        <div class="case-title">Turning data entry into <em>storytelling</em></div>
+        <p class="case-body">A KYC form for 10M merchants became an animated store-building experience. On the psychology of delight and why good design rewards rather than manipulates.</p>
+        <div class="case-meta"><span class="meta-tag">Behavioural design</span><span class="meta-tag">UX psychology</span><span class="meta-tag">10M+ users</span></div>
+        <div class="case-stat"><span class="cs-big">+22%</span><span class="cs-label">activation rate</span></div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <div class="case-card c-khata reveal case-item" data-tags="khatabook" style="cursor:default;">
+      <div class="case-inner">
+        <div class="case-co">Khatabook · 2021–22</div>
+        <div class="case-title">Super App <em>architecture</em></div>
+        <p class="case-body">Took a single-product bookkeeping app used by 10M businesses and architected a unified experience framework connecting 4 product domains. The foundational strategy for Khatabook's next growth phase.</p>
+        <div class="case-meta"><span class="meta-tag">Super App</span><span class="meta-tag">IA</span><span class="meta-tag">Product strategy</span><span class="meta-tag">8 languages</span></div>
+        <div class="case-stat"><span class="cs-big">10M+</span><span class="cs-label">users · 4 product domains</span></div>
+      </div>
+      <div class="case-arrow" style="opacity:.3;">↗</div>
+    </div>
+
+    <div class="case-card c-khata reveal d1 case-item" data-tags="khatabook" style="cursor:default;">
+      <div class="case-inner">
+        <div class="case-co">Khatabook Loans · 2021</div>
+        <div class="case-title">Credit product,<br><em>zero to one</em></div>
+        <p class="case-body">Designed and launched the end-to-end credit product — from discovery to GA. The first financial product many of these merchants ever used. Reached 2M+ merchants in 6 months.</p>
+        <div class="case-meta"><span class="meta-tag">0-to-1 product</span><span class="meta-tag">Fintech</span><span class="meta-tag">Financial inclusion</span><span class="meta-tag">Trust UX</span></div>
+        <div class="case-stat"><span class="cs-big">2M+</span><span class="cs-label">merchants · 6 months to GA</span></div>
+      </div>
+      <div class="case-arrow" style="opacity:.3;">↗</div>
+    </div>
+
+    <div class="case-card c-solv reveal d2 case-item" data-tags="solv" style="cursor:default;">
+      <div class="case-inner">
+        <div class="case-co">Solv · Standard Chartered · 2019–21</div>
+        <div class="case-title">B2B commerce <em>platform</em></div>
+        <p class="case-body">End-to-end UX for Solv's trade and working capital product. Buyer-supplier flows, credit applications, and onboarding designed for SMEs across India, Singapore, and Africa.</p>
+        <div class="case-meta"><span class="meta-tag">B2B trade</span><span class="meta-tag">Credit UX</span><span class="meta-tag">SME-first</span><span class="meta-tag">Global distributed</span></div>
+        <div class="case-stat"><span class="cs-big">3</span><span class="cs-label">markets · India · SG · Africa</span></div>
+      </div>
+      <div class="case-arrow" style="opacity:.3;">↗</div>
+    </div>
+
+    <div class="case-card c-solv reveal d3 case-item" data-tags="solv" style="cursor:default;">
+      <div class="case-inner">
+        <div class="case-co">Solv Seller Portal · 2020</div>
+        <div class="case-title">Supplier-side <em>experience</em></div>
+        <p class="case-body">Redesigned the supplier-facing portal for trade finance flows. Aligned with Standard Chartered's enterprise design standards while preserving SME-first usability.</p>
+        <div class="case-meta"><span class="meta-tag">B2B portal</span><span class="meta-tag">Trade finance</span><span class="meta-tag">Enterprise standards</span></div>
+        <div class="case-stat"><span class="cs-big">SC</span><span class="cs-label">Standard Chartered design standards</span></div>
+      </div>
+      <div class="case-arrow" style="opacity:.3;">↗</div>
+    </div>
+
+    <div class="case-card cs-soon case-item reveal" data-tags="all">
+      <span class="soon-label">More case studies</span>
+      <span class="soon-title">Coming soon</span>
+      <span style="font-size:13px;color:var(--muted);font-weight:300;max-width:200px;text-align:center;margin-top:4px;">Yubi 2.0, HashedIn client work, and more in progress.</span>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="foot-brand">The Optimistic Designer</div>
+  <div class="foot-right">
+    <div class="foot-links">
+      <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+    </div>
+    <div class="foot-copy">Subin Sundaresan · 2026</div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('.page-hero .reveal').forEach(el=>el.classList.add('vis')),200);
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.case-item').forEach(card=>{
+      const tags=(card.dataset.tags||'');
+      const show=f==='all'||tags.includes(f);
+      card.style.display=show?'block':'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

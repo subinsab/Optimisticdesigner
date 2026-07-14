@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reward by Design · The Optimistic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.cs-hero{padding:140px 80px 80px;background:#180D1A;min-height:68vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+.cs-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 70% 40%,rgba(155,107,181,.18) 0%,transparent 60%);}
+.cs-hero-inner{position:relative;z-index:1;}
+.cs-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(155,107,181,.7);margin-bottom:16px;}
+.cs-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(44px,7.5vw,100px);line-height:.92;letter-spacing:-.04em;color:#FAFAF7;margin-bottom:24px;}
+.cs-title em{color:#C07AE0;font-style:italic}
+.cs-tagline{font-size:18px;color:rgba(250,250,247,.5);max-width:560px;line-height:1.75;font-weight:300;}
+.cs-meta-bar{display:flex;gap:48px;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid rgba(250,250,247,.07);}
+.mi-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(155,107,181,.6);display:block;margin-bottom:4px;}
+.mi-val{font-size:14px;font-weight:500;color:rgba(250,250,247,.8);}
+.cs-body{padding:80px 80px;}
+.cs-section{margin-bottom:72px;}
+.cs-sl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9B6BB5;margin-bottom:16px;opacity:.7;}
+.cs-h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:20px;}
+.cs-h2 em{color:#9B6BB5;font-style:italic}
+.cs-text{font-size:16px;color:var(--mid);line-height:1.9;font-weight:300;max-width:640px;}
+.cs-text p{margin-bottom:20px}.cs-text p:last-child{margin-bottom:0}
+.cs-text strong{color:var(--ink);font-weight:500}
+.cs-pull{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2.2vw,26px);line-height:1.4;color:var(--ink);border-left:2px solid #9B6BB5;padding:10px 24px;margin:36px 0;max-width:600px;}
+.principles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:28px 0;max-width:680px;}
+.pr-card{background:var(--cream);border-radius:12px;padding:22px;border:1px solid var(--border-light);}
+.pr-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:6px;}
+.pr-body{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300;}
+.visual-placeholder{background:var(--cream);border:1.5px dashed var(--border);border-radius:16px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);margin:28px 0;}
+.vp-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;}
+.outcomes-row{display:flex;gap:28px;flex-wrap:wrap;margin:28px 0;}
+.oc-chip{background:rgba(155,107,181,.1);border:1px solid rgba(155,107,181,.2);border-radius:10px;padding:14px 20px;text-align:center;}
+.oc-icon{font-size:20px;display:block;margin-bottom:6px;}
+.oc-label{font-size:12px;color:var(--mid);font-weight:400;}
+.nav-case{display:flex;justify-content:space-between;align-items:center;padding:40px 80px;border-top:1px solid var(--border-light);background:var(--cream);}
+.nc-link{font-size:14px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+.nc-link:hover{color:var(--orange)}.nc-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
+@media(max-width:768px){.cs-hero,.cs-body,.nav-case{padding-left:24px;padding-right:24px;}.principles-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand"><div class="nav-mark">S</div><div class="nav-name">The <span>Optimistic</span> Designer</div></a>
+  <div class="nav-links"><a href="work.html" class="active">Work</a><a href="journey.html">Journey</a><a href="blog.html">Writing</a><a href="contact.html" class="nav-cta">Let's talk</a></div>
+</nav>
+
+<section class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-label">Reward by Design · Khatabook · 2021 · Behavioural UX</div>
+    <div class="cs-title">Turning data entry<br>into <em>storytelling.</em></div>
+    <p class="cs-tagline">How a boring KYC form for 10 million merchants became an animated, emotional experience — and what that taught me about how design should work.</p>
+    <div class="cs-meta-bar">
+      <div><span class="mi-label">Company</span><span class="mi-val">Khatabook</span></div>
+      <div><span class="mi-label">My role</span><span class="mi-val">Lead Designer</span></div>
+      <div><span class="mi-label">Users</span><span class="mi-val">10M+ merchants across India</span></div>
+      <div><span class="mi-label">Scope</span><span class="mi-val">Onboarding UX · Behavioural design · Motion</span></div>
+      <div><span class="mi-label">Outcome</span><span class="mi-val">+22% activation · Increased completion</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="cs-section reveal">
+    <div class="cs-sl">The brief</div>
+    <div class="cs-h2">A form that 10 million<br>merchants had to <em>fill in.</em></div>
+    <div class="cs-text">
+      <p>The KYC (Know Your User) flow was one of the most important screens in Khatabook — and one of the most ignored. It collected essential business information: store name, address, staff size, business type. Standard stuff. Boring stuff.</p>
+      <p>Completion rates were low. Drop-offs were high. The analytics told us users were stopping at fields they didn't feel like filling in — not because the form was hard, but because it felt like paperwork. There was nothing in it for them. No acknowledgement that this information was going to mean something.</p>
+      <p><strong>The brief was to improve completion. The question I asked first was: why would a merchant care about filling this in?</strong></p>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-sl">The insight</div>
+    <div class="cs-h2">We didn't gamify.<br>We <em>acknowledged effort.</em></div>
+    <div class="cs-text">
+      <p>The temptation was to add gamification — points, progress bars, badges. We didn't. Gamification treats users like they need to be tricked into completing something. That's manipulation, not design.</p>
+      <p>The real insight was simpler: small business owners in India are proud of their businesses. Their shop is their identity. If we could make the product reflect that — show them their shop taking shape as they entered their details — the form wouldn't feel like paperwork. It would feel like building something.</p>
+    </div>
+    <div class="cs-pull">"We turned data entry into storytelling. The merchant wasn't filling in a form — they were opening their shop."</div>
+    <div class="visual-placeholder"><div class="vp-label">📎 Add: KYU animated store screenshots</div><span style="font-size:13px;font-weight:300;">Replace with Figma export or app screenshot</span></div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-sl">The psychology</div>
+    <div class="cs-h2">Why it <em>worked.</em></div>
+    <div class="cs-text" style="margin-bottom:24px;"><p>The design was grounded in four behavioural principles that explain why people engage with — or abandon — digital experiences.</p></div>
+    <div class="principles-grid">
+      <div class="pr-card"><div class="pr-title">Dopamine Response</div><div class="pr-body">Reward anticipation triggers motivation. Seeing the shop build up as you fill in details creates a sense of progress and ownership.</div></div>
+      <div class="pr-card"><div class="pr-title">Cognitive Ease</div><div class="pr-body">Our brain rewards clarity. Design that's easy to process feels right. The visual representation removed cognitive load from the task.</div></div>
+      <div class="pr-card"><div class="pr-title">Completion Bias</div><div class="pr-body">Progress visuals release satisfaction signals. Seeing something half-built creates a drive to finish it.</div></div>
+      <div class="pr-card"><div class="pr-title">Micro-feedback</div><div class="pr-body">Even subtle motion says "you did it." Each completed field triggered a small animation — not a celebration, just an acknowledgement.</div></div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-sl">The outcomes</div>
+    <div class="cs-h2">What <em>changed.</em></div>
+    <div class="outcomes-row">
+      <div class="oc-chip"><span class="oc-icon">📈</span><span class="oc-label">Increased completion rates</span></div>
+      <div class="oc-chip"><span class="oc-icon">😊</span><span class="oc-label">Emotional connection</span></div>
+      <div class="oc-chip"><span class="oc-icon">🪞</span><span class="oc-label">Users saw themselves in the product</span></div>
+      <div class="oc-chip"><span class="oc-icon">+22%</span><span class="oc-label">Activation rate improvement</span></div>
+    </div>
+    <div class="cs-text"><p>The bigger lesson from this project wasn't the activation number — it was a principle I've carried into every piece of work since: <strong>design should reward behaviour, not manipulate it.</strong> The difference between the two is respect. Gamification asks "how do we get users to do what we want?" Good design asks "how do we make doing the right thing feel good?"</p></div>
+  </div>
+</section>
+
+<div class="nav-case">
+  <a href="unify.html" class="nc-link">← UNIFY</a>
+  <a href="work.html" class="nc-link"><div style="text-align:right;"><span class="nc-label">Back to</span>All work</div> →</a>
+</div>
+
+<footer class="site-footer">
+  <div class="foot-brand">The Optimistic Designer</div>
+  <div class="foot-right"><div class="foot-links"><a href="mailto:subintheuxdesigner@gmail.com">Email</a><a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a></div><div class="foot-copy">Subin Sundaresan · 2026</div></div>
+</footer>
+<script>
+const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body></html>

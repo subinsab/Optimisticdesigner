@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Journey — The Optimistic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* JOURNEY PAGE SPECIFIC */
+.story-section{padding:80px 80px;background:var(--white);}
+.story-chapter{max-width:680px;margin-bottom:80px;}
+.ch-kicker{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;opacity:.7;}
+.ch-big{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,4.5vw,58px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:28px;}
+.ch-big em{color:var(--orange);font-style:italic}
+.ch-body{font-size:16px;color:var(--mid);line-height:1.9;font-weight:300;}
+.ch-body p{margin-bottom:20px}.ch-body p:last-child{margin-bottom:0}
+.ch-body strong{color:var(--ink);font-weight:500}
+.ch-body em{font-style:italic;color:var(--muted)}
+.solo{font-size:18px;font-weight:500;color:var(--ink);margin:24px 0;display:block;}
+.pull{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:clamp(20px,2.5vw,30px);line-height:1.4;letter-spacing:-.01em;color:var(--ink);border-left:2px solid var(--orange);padding:10px 24px;margin:36px 0;}
+.ch-stats{display:flex;gap:40px;flex-wrap:wrap;margin:32px 0;}
+.ch-stat .sn{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.02em;color:var(--orange);display:block;margin-bottom:4px;}
+.ch-stat .sl{font-size:13px;color:var(--muted);line-height:1.4;}
+/* TIMELINE */
+.timeline-section{padding:80px 80px;background:var(--cream);}
+.timeline{display:flex;flex-direction:column;gap:0;max-width:760px;margin-top:48px;}
+.tl-row{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--border-light);}
+.tl-row:last-child{border-bottom:none}
+.tl-left{}
+.tl-year{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--orange);display:block;margin-bottom:6px;font-weight:500;}
+.tl-period{font-size:12px;color:var(--muted);font-weight:300;}
+.tl-right{}
+.tl-co{font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px;}
+.tl-role{font-size:14px;font-weight:500;color:var(--mid);margin-bottom:8px;}
+.tl-note{font-size:14px;color:var(--muted);line-height:1.65;font-weight:300;}
+.tl-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.tl-tag{font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(20,18,16,.05);border:1px solid var(--border-light);color:var(--muted);}
+/* AWARDS */
+.awards-section{padding:80px 80px;background:var(--white);}
+.awards-era{margin-bottom:56px;}
+.era-title{font-family:'Fraunces',serif;font-weight:600;font-size:24px;letter-spacing:-.01em;color:var(--ink);margin-bottom:8px;}
+.era-note{font-size:14px;color:var(--muted);font-weight:300;margin-bottom:28px;}
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.award-card{background:var(--cream);border:1px solid var(--border-light);border-radius:12px;padding:20px 22px;transition:border-color .2s,background .2s;}
+.award-card:hover{border-color:var(--orange);background:var(--orange-faint);}
+.award-card.personal{border-color:rgba(232,93,38,.3);background:var(--orange-faint);}
+.award-yr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;opacity:.7;}
+.award-nm{font-size:14px;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:4px;}
+.award-org{font-size:12px;color:var(--muted);font-weight:300;}
+/* PHOTO PLACEHOLDER */
+.photo-area{background:var(--cream);border:1.5px dashed var(--border);border-radius:16px;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);}
+.photo-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;}
+@media(max-width:768px){
+  .story-section,.timeline-section,.awards-section{padding-left:24px;padding-right:24px;}
+  .tl-row{grid-template-columns:1fr;gap:8px;}
+  .awards-grid{grid-template-columns:1fr 1fr;}
+  .ch-stats{gap:24px;}
+}
+@media(max-width:480px){.awards-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-mark">S</div>
+    <div class="nav-name">The <span>Optimistic</span> Designer</div>
+  </a>
+  <div class="nav-links">
+    <a href="work.html">Work</a>
+    <a href="journey.html" class="active">Journey</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html" class="nav-cta">Let's talk</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero" style="background:var(--ink);min-height:55vh;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(232,93,38,.1) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="eyebrow reveal" style="color:rgba(232,93,38,.7);">My journey · 14 years · 4 companies</div>
+    <div class="display reveal d1" style="color:#FAFAF7;">14 years.<br>Two orgs built<br>from <em>scratch.</em></div>
+    <p class="lead reveal d2" style="color:rgba(250,250,247,.55);">From writing code at NIC to directing design across a $140M fintech ecosystem. The full story — including the failures, the one-meeting wins, and the moment a product nobody believed in became the most important one in the portfolio.</p>
+  </div>
+</section>
+
+<!-- THE STORY -->
+<section class="story-section">
+
+  <div class="story-chapter reveal">
+    <div class="ch-kicker">Chapter I · Where it started</div>
+    <div class="ch-big">I started as a developer.<br>I was <em>good at it.</em></div>
+    <div class="ch-body">
+      <p>But I kept asking a question that wasn't in any brief I was given — <em>does this feel right to the person using it?</em></p>
+      <span class="solo">That question cost me a perfectly fine engineering career. Worth it.</span>
+      <p>In 2010 I walked into ICAT School of Design. Not because design was a better career move. Because I finally admitted that it was the thing I'd been trying to do with code all along.</p>
+      <p>The craft took years. The conviction took one afternoon at a keyboard.</p>
+    </div>
+  </div>
+
+  <div class="story-chapter reveal">
+    <div class="ch-kicker">Chapter II · The first build</div>
+    <div class="ch-big">One designer. Five hundred engineers.<br><em>No brief.</em></div>
+    <div class="ch-body">
+      <p>In 2015 I joined HashedIn as their first designer. Nobody believed design mattered — not yet. But the founders trusted me before I trusted myself, and that's a particular kind of pressure. The kind that makes you build something real or break trying.</p>
+      <span class="solo">I didn't break.</span>
+      <p>Four years later, HashedIn had a 32-person design practice — its own vertical, its own standards, its own identity inside the company. When Deloitte acquired HashedIn in 2021, that practice went with it.</p>
+    </div>
+    <div class="pull">"You can change what a company believes about design, but only if you're willing to go first."</div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span class="sn">1 → 32</span><span class="sl">Designers built</span></div>
+      <div class="ch-stat"><span class="sn">4 yrs</span><span class="sl">To acquisition</span></div>
+      <div class="ch-stat"><span class="sn">Deloitte</span><span class="sl">Acquired HashedIn</span></div>
+    </div>
+  </div>
+
+  <div class="story-chapter reveal">
+    <div class="ch-kicker">Chapter III · The second build — bigger stakes</div>
+    <div class="ch-big">Five products. No system.<br><em>Beautiful, expensive chaos.</em></div>
+    <div class="ch-body">
+      <p>Yubi in 2022 was a different kind of challenge. Not one company finding design — five product brands losing their way without it. A $140 million ecosystem. Twenty designers who were talented and exhausted. No shared language. No north star.</p>
+      <p>Maybe you know this feeling. You've built something real — users, revenue, a team — and somewhere in the speed of it, design became a function that ships things rather than shapes them. That's not a design problem. That's a leadership problem.</p>
+      <span class="solo">It's the problem I was hired to fix.</span>
+    </div>
+  </div>
+
+  <div class="story-chapter reveal">
+    <div class="ch-kicker">Chapter IV · The turnaround</div>
+    <div class="ch-big">₹18 crore in losses.<br>Under 300 customers.<br><em>Broken trust.</em></div>
+    <div class="ch-body">
+      <p>The first product I touched at Yubi was Aspero. A retail bond investment platform that had every reason to work and somehow didn't. Under 300 active investors. ₹18 crore in losses. A brand that communicated complexity when it needed to communicate calm.</p>
+      <p>Nobody at Yubi believed Aspero could be saved. That made it easier, in a way. When the expectations are low enough, you're free to be honest about what's actually broken.</p>
+      <p>We didn't redesign it. We reimagined what it was trying to do — and for whom. The onboarding became a guided story. The product started performing trust instead of performing complexity.</p>
+      <p>Eighteen months later: 20,000 active investors. ₹860 million in revenue. 32% of Yubi's total.</p>
+    </div>
+    <div class="pull">"It's not about making things beautiful. It's about making people believe something is possible before they have proof that it is."</div>
+  </div>
+
+  <div class="story-chapter reveal">
+    <div class="ch-kicker">Chapter V · The system</div>
+    <div class="ch-big">44 designers. 13 products.<br><em>Zero common language.</em></div>
+    <div class="ch-body">
+      <p>Every inconsistency was a conversation that hadn't happened. Every rework was a cost nobody had calculated. So I calculated it. ₹136 crore — the cost of design fragmentation in engineering rework over three years.</p>
+      <span class="solo">I didn't ask for a design system budget. I showed the CPTO the invoice.</span>
+      <span class="solo" style="font-size:16px;font-weight:400;color:var(--mid);">That conversation happened once.</span>
+      <p>Bugs dropped from 139 to 4. Adoption went from 30% to 85%. The engineering team went from 68 front-end engineers to 12. The NPS went from 1.7 to 8.23. <strong>For the first time, Yubi felt like it was made by one team.</strong></p>
+    </div>
+    <div class="ch-stats">
+      <div class="ch-stat"><span class="sn">₹136Cr</span><span class="sl">Engineering saved</span></div>
+      <div class="ch-stat"><span class="sn">139→4</span><span class="sl">Bugs/quarter</span></div>
+      <div class="ch-stat"><span class="sn">1.7→8.23</span><span class="sl">NPS</span></div>
+      <div class="ch-stat"><span class="sn">85%</span><span class="sl">YDS adoption</span></div>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="section-label reveal">Career timeline</div>
+  <div class="section-title reveal d1">Every stop.<br><em>Every build.</em></div>
+  <div class="timeline">
+    <div class="tl-row reveal">
+      <div class="tl-left"><span class="tl-year">2010</span><span class="tl-period">The switch</span></div>
+      <div class="tl-right">
+        <div class="tl-co">ICAT School of Design</div>
+        <div class="tl-role">Web & Graphic Design</div>
+        <div class="tl-note">Left code. Chose craft. The confession, not a career move.</div>
+      </div>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-left"><span class="tl-year">2011–14</span><span class="tl-period">The craft years</span></div>
+      <div class="tl-right">
+        <div class="tl-co">Institex · Brainistic · Echidna</div>
+        <div class="tl-role">UI/UX Designer → Product Designer</div>
+        <div class="tl-note">Building the skills. Figuring out what good design actually means when real users touch it.</div>
+        <div class="tl-tags"><span class="tl-tag">UI/UX</span><span class="tl-tag">Product design</span><span class="tl-tag">Web development</span></div>
+      </div>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-left"><span class="tl-year">2015–19</span><span class="tl-period">The first build</span></div>
+      <div class="tl-right">
+        <div class="tl-co">HashedIn by Deloitte</div>
+        <div class="tl-role">Design Lead → Head of Design</div>
+        <div class="tl-note">Joined as the only designer. Built a 32-person practice — HUX — from scratch. Promoted to Head of Design within 12 months. Deloitte acquired HashedIn in 2021.</div>
+        <div class="tl-tags"><span class="tl-tag">1→32 designers</span><span class="tl-tag">Practice founder</span><span class="tl-tag">US/UK/India clients</span><span class="tl-tag">Deloitte acquisition</span></div>
+      </div>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-left"><span class="tl-year">2019–21</span><span class="tl-period">Global stage</span></div>
+      <div class="tl-right">
+        <div class="tl-co">Solv · Standard Chartered</div>
+        <div class="tl-role">Lead Product Designer</div>
+        <div class="tl-note">B2B trade and credit platform for SMEs. Globally distributed team — Singapore, India, Africa. End-to-end UX for buyer-supplier trade flows and onboarding.</div>
+        <div class="tl-tags"><span class="tl-tag">B2B fintech</span><span class="tl-tag">Distributed team</span><span class="tl-tag">SME-first UX</span><span class="tl-tag">iOS + Android + Web</span></div>
+      </div>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-left"><span class="tl-year">2021–22</span><span class="tl-period">Super app</span></div>
+      <div class="tl-right">
+        <div class="tl-co">Khatabook</div>
+        <div class="tl-role">Lead Designer</div>
+        <div class="tl-note">10M+ registered businesses. Architected the unified experience framework for the Super App — connecting bookkeeping, invoicing, payments, and lending. Launched Khatabook Loans 0→1 in 6 months, reaching 2M+ merchants.</div>
+        <div class="tl-tags"><span class="tl-tag">Super App</span><span class="tl-tag">10M+ users</span><span class="tl-tag">0→1 credit product</span><span class="tl-tag">8 regional languages</span></div>
+      </div>
+    </div>
+    <div class="tl-row reveal">
+      <div class="tl-left"><span class="tl-year">2022–25</span><span class="tl-period">The transformation</span></div>
+      <div class="tl-right">
+        <div class="tl-co">Yubi (CredAvenue)</div>
+        <div class="tl-role">Director of Design</div>
+        <div class="tl-note">$140M+ ecosystem. 5 product brands. Built 2→20 design org. Launched YDS (₹136Cr saved). Turned Aspero from ₹18Cr loss to ₹860M revenue. UNIFY project: NPS 1.7→8.23. Yubi Inspirer Award recipient.</div>
+        <div class="tl-tags"><span class="tl-tag">Director of Design</span><span class="tl-tag">2→20 designers</span><span class="tl-tag">₹860M impact</span><span class="tl-tag">Yubi Inspirer Award</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AWARDS -->
+<section class="awards-section">
+  <div class="section-label reveal">Recognition</div>
+  <div class="section-title reveal d1">Companies I shaped.<br><em>Awards they won.</em></div>
+  <p style="font-size:15px;color:var(--muted);font-weight:300;max-width:480px;margin:12px 0 56px;" class="reveal d2">These are company awards earned during my tenure — recognition that design was making a difference at the business level, not just the product level.</p>
+
+  <!-- PERSONAL -->
+  <div class="awards-era reveal">
+    <div class="era-title">Personal recognition</div>
+    <div class="awards-grid" style="grid-template-columns:repeat(2,1fr);">
+      <div class="award-card personal">
+        <div class="award-yr">Personal · 2024</div>
+        <div class="award-nm">Yubi Inspirer Award</div>
+        <div class="award-org">Design transformation leadership — the highest internal recognition at Yubi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YUBI -->
+  <div class="awards-era reveal">
+    <div class="era-title">Yubi era · 2022–2025</div>
+    <div class="era-note">Awards won by Yubi while leading the design function</div>
+    <div class="awards-grid">
+      <div class="award-card"><div class="award-yr">2025</div><div class="award-nm">Fintech Startup of the Year</div><div class="award-org">Global Fintech Fest (GFF)</div></div>
+      <div class="award-card"><div class="award-yr">2025</div><div class="award-nm">Best Lending Fintech of the Year</div><div class="award-org">Bharat Fintech Summit</div></div>
+      <div class="award-card"><div class="award-yr">2025</div><div class="award-nm">Best Use of Technology in Credit Risk</div><div class="award-org">Accumn · India Credit Risk Summit</div></div>
+      <div class="award-card"><div class="award-yr">2024</div><div class="award-nm">Best Innovation in Digital Lending</div><div class="award-org">9th Annual India Fintech Awards (IFTA)</div></div>
+      <div class="award-card"><div class="award-yr">2024</div><div class="award-nm">Best Fintech in Banking</div><div class="award-org">ICC Emerging Asia Banking Conclave</div></div>
+      <div class="award-card"><div class="award-yr">2024</div><div class="award-nm">Tamil Nadu Disruptors Award</div><div class="award-org">YourStory Tamil Nadu Story 2024</div></div>
+      <div class="award-card"><div class="award-yr">2023</div><div class="award-nm">DivHERsity Award</div><div class="award-org">JobsForHer · Workforce Diversity</div></div>
+      <div class="award-card"><div class="award-yr">2022</div><div class="award-nm">Rising Star Partner</div><div class="award-org">Infosys Finacle Partner Excellence Awards</div></div>
+      <div class="award-card"><div class="award-yr">2022</div><div class="award-nm">Startup of the Year</div><div class="award-org">Franchise India Small Business Awards</div></div>
+      <div class="award-card"><div class="award-yr">2022</div><div class="award-nm">Excellence in Ecosystem Enhancement</div><div class="award-org">ASSOCHAM · India International Fintech Festival</div></div>
+      <div class="award-card"><div class="award-yr">2022</div><div class="award-nm">Best Digital Channel/Platform Implementation</div><div class="award-org">IBS Intelligence Global FinTech Innovation Awards</div></div>
+    </div>
+  </div>
+
+  <!-- HASHEDIN -->
+  <div class="awards-era reveal">
+    <div class="era-title">HashedIn era · 2015–2019</div>
+    <div class="era-note">Awards won by HashedIn while building the design practice</div>
+    <div class="awards-grid">
+      <div class="award-card"><div class="award-yr">2019</div><div class="award-nm">APAC Insider Business Award</div><div class="award-org">Innovation & Enterprise Product Development</div></div>
+      <div class="award-card"><div class="award-yr">2019</div><div class="award-nm">Great Place to Work</div><div class="award-org">India · Second consecutive year</div></div>
+      <div class="award-card"><div class="award-yr">2019</div><div class="award-nm">Content Creator Award</div><div class="award-org">Corporate Vision · Digital Strategy & Communication</div></div>
+      <div class="award-card"><div class="award-yr">2018</div><div class="award-nm">Technology Innovator Award</div><div class="award-org">Corporate Vision · Best Global Software Engineering Company in India</div></div>
+      <div class="award-card"><div class="award-yr">2018</div><div class="award-nm">Great Place to Work</div><div class="award-org">India · Culture & employee well-being</div></div>
+      <div class="award-card"><div class="award-yr">Era</div><div class="award-nm">Top 25 Android Development Companies</div><div class="award-org">Industry recognition</div></div>
+      <div class="award-card"><div class="award-yr">Era</div><div class="award-nm">Top 50 Promising Indian Startups</div><div class="award-org">Industry recognition</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="foot-brand">The Optimistic Designer</div>
+  <div class="foot-right">
+    <div class="foot-links">
+      <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+      <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
+    </div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
+  </div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('.page-hero .reveal').forEach(el=>el.classList.add('vis')),200);
+</script>
+</body>
+</html>

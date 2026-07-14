@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Optimistic Designer — Subin Sundaresan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* === HOME PAGE === */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#FAFAF7;
+  --ink:#141210;
+  --orange:#E85D26;
+  --orange-light:#F07040;
+  --orange-faint:rgba(232,93,38,0.08);
+  --orange-faint2:rgba(232,93,38,0.14);
+  --mid:#4A3F36;
+  --muted:#8C7E74;
+  --border:rgba(20,18,16,0.1);
+  --border-light:rgba(20,18,16,0.06);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 48px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(250,250,247,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-light);
+  transition:box-shadow .3s;
+}
+nav.shadow{box-shadow:0 1px 24px rgba(20,18,16,0.06)}
+.nav-brand{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.nav-mark{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:700;font-size:15px;
+  color:var(--white);letter-spacing:-.02em;
+  flex-shrink:0;
+}
+.nav-name{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:15px;letter-spacing:-.02em;color:var(--ink);
+}
+.nav-name span{color:var(--orange)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  font-size:14px;font-weight:400;color:var(--muted);
+  text-decoration:none;letter-spacing:.01em;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  background:var(--ink)!important;color:var(--white)!important;
+  padding:9px 22px!important;border-radius:100px!important;
+  font-weight:500!important;font-size:13px!important;
+  letter-spacing:.02em!important;transition:background .2s!important;
+}
+.nav-cta:hover{background:var(--orange)!important;color:var(--white)!important}
+
+/* ── HERO ── */
+.hero{
+  padding:0 80px;
+  position:relative;overflow:hidden;
+  min-height:100vh;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+  min-height:100vh;
+  padding:120px 0 80px;
+}
+.hero-left{
+  display:flex;flex-direction:column;
+  justify-content:center;
+  position:relative;z-index:2;
+}
+.hero-right{
+  display:flex;align-items:center;
+  justify-content:center;
+  position:relative;z-index:2;
+}
+/* ── PHOTO WRAP ── */
+.hero-photo-wrap{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  cursor:none;
+}
+.hero-photo-glow{
+  position:absolute;
+  inset:-20px;
+  background:radial-gradient(ellipse 80% 80% at 50% 60%,
+    rgba(232,93,38,.18) 0%,
+    transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{opacity:.6;transform:scale(1);}
+  50%{opacity:1;transform:scale(1.05);}
+}
+.hero-photo{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:4px;
+  filter:contrast(1.05);
+  transition:filter .4s ease, transform .1s ease;
+  will-change:transform;
+  position:relative;z-index:1;
+}
+.hero-photo-wrap:hover .hero-photo{
+  filter:contrast(1.1);
+}
+/* ── FLOATING STATS ── */
+.hero-photo-stat{
+  position:absolute;
+  background:rgba(250,250,247,.96);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(20,18,16,.08);
+  border-radius:10px;
+  padding:10px 16px;
+  z-index:3;
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+.hero-stat-1{
+  top:16%;
+  left:-28px;
+  animation:floatStat1 6s ease-in-out infinite;
+}
+.hero-stat-2{
+  bottom:20%;
+  right:-20px;
+  animation:floatStat2 7s ease-in-out 1s infinite;
+}
+@keyframes floatStat1{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+@keyframes floatStat2{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(6px);}
+}
+.hps-num{
+  font-family:'Fraunces',serif;
+  font-weight:700;font-size:20px;
+  letter-spacing:-.02em;color:var(--orange);
+  display:block;line-height:1;margin-bottom:3px;
+}
+.hps-label{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  display:block;
+}
+/* ── AVAILABILITY CHIP ── */
+.hero-photo-overlay{
+  position:absolute;
+  top:-14px;right:20px;
+  z-index:4;
+}
+.hpo-chip{
+  background:var(--ink);
+  color:var(--white);
+  font-size:11px;font-weight:500;
+  padding:7px 14px;border-radius:100px;
+  display:flex;align-items:center;gap:7px;
+  letter-spacing:.02em;
+  box-shadow:0 4px 16px rgba(20,18,16,.15);
+}
+.hpo-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#4ADE80;
+  box-shadow:0 0 0 2px rgba(74,222,128,.3);
+  animation:dotPulse 2s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 0 0 2px rgba(74,222,128,.3);}
+  50%{box-shadow:0 0 0 5px rgba(74,222,128,.15);}
+}
+/* ── CUSTOM CURSOR ── */
+.hero-cursor{
+  position:fixed;
+  width:36px;height:36px;
+  border-radius:50%;
+  border:2px solid var(--orange);
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:opacity .2s,width .2s,height .2s;
+  opacity:0;
+}
+.hero-cursor.active{opacity:1;}
+.hero-cursor-dot{
+  position:fixed;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--orange);
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  opacity:0;transition:opacity .2s;
+}
+.hero-cursor-dot.active{opacity:1;}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:28px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{
+  content:'';display:block;
+  width:28px;height:1px;background:var(--orange);
+}
+.hero-eyebrow.vis{opacity:1;transform:none}
+.hero-headline{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(56px,9vw,132px);
+  line-height:.92;letter-spacing:-.04em;
+  color:var(--ink);max-width:1000px;
+  margin-bottom:40px;
+}
+.hero-headline.vis{opacity:1;transform:none}
+.hero-headline em{color:var(--orange);font-style:italic}
+.hero-headline .line2{
+  display:block;color:var(--muted);
+  font-weight:300;font-style:italic;
+}
+.hero-sub{
+  font-size:18px;color:var(--mid);
+  max-width:520px;line-height:1.75;
+  margin-bottom:52px;font-weight:300;
+}
+.hero-sub.vis{opacity:1;transform:none}
+.hero-actions{
+  display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+}
+.hero-actions.vis{opacity:1}
+.btn-primary{
+  background:var(--orange);color:var(--white);
+  border:none;border-radius:100px;
+  padding:14px 32px;font-size:15px;font-weight:500;
+  text-decoration:none;letter-spacing:.01em;
+  transition:background .2s,transform .15s;
+  display:inline-block;cursor:pointer;
+  font-family:'Cabinet Grotesk',sans-serif;
+}
+.btn-primary:hover{background:var(--orange-light);transform:translateY(-1px)}
+.btn-secondary{
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--border);
+  border-radius:100px;padding:14px 32px;
+  font-size:15px;text-decoration:none;
+  letter-spacing:.01em;transition:border-color .2s,transform .15s;
+  display:inline-block;font-family:'Cabinet Grotesk',sans-serif;
+}
+.btn-secondary:hover{border-color:var(--ink);transform:translateY(-1px)}
+.hero-companies{
+  margin-top:72px;
+}
+.hero-companies.vis{opacity:1}
+.companies-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:16px;
+}
+.companies-row{
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.co-pill{
+  font-size:13px;font-weight:500;
+  background:rgba(20,18,16,0.05);
+  border:1px solid var(--border);
+  border-radius:100px;padding:6px 16px;
+  color:var(--mid);transition:border-color .2s,color .2s;
+}
+.co-pill:hover{border-color:var(--orange);color:var(--orange)}
+/* Hero decorative blob */
+.hero-blob{
+  position:absolute;right:-120px;top:60px;
+  width:500px;height:500px;
+  background:radial-gradient(ellipse,rgba(232,93,38,.08) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+  animation:float 8s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.hero-blob2{
+  position:absolute;right:100px;bottom:-60px;
+  width:300px;height:300px;
+  background:radial-gradient(ellipse,rgba(232,93,38,.05) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+  animation:float 10s ease-in-out 2s infinite;
+}
+
+/* ── VALUE PROPS ── */
+.section{padding:100px 80px}
+.section-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:20px;opacity:.8;
+}
+.section-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(36px,5vw,64px);
+  line-height:1.05;letter-spacing:-.03em;
+  color:var(--ink);margin-bottom:16px;
+}
+.section-title em{color:var(--orange);font-style:italic}
+.section-sub{
+  font-size:17px;color:var(--muted);
+  max-width:480px;line-height:1.75;
+  margin-bottom:64px;font-weight:300;
+}
+.props-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--border-light);
+  border:1px solid var(--border-light);
+}
+.prop-item{
+  background:var(--white);padding:44px 40px;
+  transition:background .2s;cursor:default;
+}
+.prop-item:hover{background:var(--orange-faint)}
+.prop-num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.14em;color:var(--orange);
+  margin-bottom:20px;opacity:.6;
+}
+.prop-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(22px,2.8vw,32px);
+  line-height:1.15;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:14px;
+}
+.prop-title em{color:var(--orange);font-style:italic}
+.prop-body{
+  font-size:15px;color:var(--muted);
+  line-height:1.75;margin-bottom:20px;
+  font-weight:300;
+}
+.prop-proof{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--orange);
+  letter-spacing:.04em;
+}
+
+/* ── METRICS ── */
+.metrics-section{
+  padding:100px 80px;
+  background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.metrics-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 50%,
+    rgba(232,93,38,.12) 0%,transparent 60%);
+}
+.metrics-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(232,93,38,.7);margin-bottom:60px;
+  position:relative;z-index:1;
+}
+.metrics-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;position:relative;z-index:1;
+}
+.metric-item{
+  padding:40px 36px;
+  border-right:1px solid rgba(250,250,247,.06);
+  border-bottom:1px solid rgba(250,250,247,.06);
+  transition:background .2s;
+}
+.metric-item:hover{background:rgba(232,93,38,.06)}
+.metric-item:nth-child(3n){border-right:none}
+.metric-item:nth-last-child(-n+3){border-bottom:none}
+.metric-num{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(36px,5vw,60px);
+  line-height:1;letter-spacing:-.03em;
+  color:var(--orange);margin-bottom:10px;
+}
+.metric-label{
+  font-size:14px;color:rgba(250,250,247,.65);
+  line-height:1.5;
+}
+.metric-sub{
+  font-size:11px;color:rgba(250,250,247,.3);
+  margin-top:4px;font-weight:300;
+}
+
+/* ── PHILOSOPHY ── */
+.philosophy-section{
+  padding:120px 80px;
+  background:var(--white);
+}
+.phil-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.phil-left{}
+.phil-quote{
+  font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+  font-size:clamp(28px,4vw,52px);
+  line-height:1.2;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:28px;
+}
+.phil-quote strong{font-weight:700;font-style:normal;color:var(--orange)}
+.phil-attr{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--muted);letter-spacing:.06em;
+}
+.phil-right{}
+.phil-principles{display:flex;flex-direction:column;gap:0}
+.phil-principle{
+  padding:20px 0;
+  border-bottom:1px solid var(--border-light);
+  display:flex;gap:20px;align-items:flex-start;
+}
+.phil-principle:last-child{border-bottom:none}
+.pp-num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--orange);
+  min-width:20px;padding-top:3px;opacity:.6;
+}
+.pp-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.pp-body{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* ── WORK SECTION ── */
+.work-section{
+  padding:100px 80px;
+  background:#F5F3EE;
+}
+.work-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:56px;
+}
+.work-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(36px,5vw,60px);
+  line-height:1.05;letter-spacing:-.03em;color:var(--ink);
+}
+.work-title em{color:var(--orange);font-style:italic}
+.work-link{
+  font-size:14px;color:var(--muted);text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color .2s;white-space:nowrap;
+  font-weight:400;
+}
+.work-link:hover{color:var(--orange)}
+.work-link::after{content:'→';transition:transform .2s}
+.work-link:hover::after{transform:translateX(4px)}
+.cases-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.case-card{
+  background:var(--white);border-radius:16px;
+  overflow:hidden;text-decoration:none;
+  display:block;border:1px solid var(--border-light);
+  transition:transform .3s,box-shadow .3s;
+}
+.case-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(20,18,16,0.08);
+}
+.case-inner{padding:36px}
+.case-co{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:16px;opacity:.6;
+}
+.case-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(22px,2.5vw,32px);
+  line-height:1.15;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:12px;
+}
+.case-title em{font-style:italic}
+.case-body{
+  font-size:14px;color:var(--muted);
+  line-height:1.7;margin-bottom:24px;font-weight:300;
+}
+.case-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.meta-tag{
+  font-size:11px;padding:3px 10px;
+  border-radius:100px;background:rgba(20,18,16,0.05);
+  border:1px solid var(--border-light);color:var(--muted);
+}
+.case-stat{display:flex;align-items:baseline;gap:8px}
+.cs-big{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:36px;letter-spacing:-.02em;line-height:1;
+}
+.cs-label{font-size:13px;color:var(--muted);font-weight:300}
+.case-arrow{
+  position:absolute;top:32px;right:32px;
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--muted);
+  transition:all .2s;
+}
+.case-card:hover .case-arrow{
+  background:var(--orange);border-color:var(--orange);color:var(--white);
+}
+.case-card{position:relative}
+/* Case accent colours */
+.case-aspero .case-co{color:#C8955A}
+.case-aspero .cs-big{color:#C8955A}
+.case-yds .case-co{color:#5B8DB8}
+.case-yds .cs-big{color:#5B8DB8}
+.case-unify .case-co{color:#4A9E6F}
+.case-unify .cs-big{color:#4A9E6F}
+.case-reward .case-co{color:#9B6BB5}
+.case-reward .cs-big{color:#9B6BB5}
+
+/* ── JOURNEY TEASER ── */
+.journey-section{
+  padding:100px 80px;
+  background:var(--ink);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.journey-section::before{
+  content:'';position:absolute;
+  left:-100px;top:-100px;
+  width:400px;height:400px;
+  background:radial-gradient(ellipse,rgba(232,93,38,.1) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.journey-left{position:relative;z-index:1}
+.journey-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(232,93,38,.7);margin-bottom:20px;
+}
+.journey-headline{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(40px,5.5vw,72px);
+  line-height:1.0;letter-spacing:-.03em;
+  color:var(--white);margin-bottom:24px;
+}
+.journey-headline em{color:var(--orange);font-style:italic}
+.journey-body{
+  font-size:16px;color:rgba(250,250,247,.55);
+  line-height:1.8;margin-bottom:36px;font-weight:300;
+}
+.btn-orange-outline{
+  background:transparent;color:var(--orange);
+  border:1.5px solid rgba(232,93,38,.4);
+  border-radius:100px;padding:12px 28px;
+  font-size:14px;text-decoration:none;
+  letter-spacing:.02em;transition:all .2s;display:inline-block;
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:500;
+}
+.btn-orange-outline:hover{background:var(--orange);color:var(--white);border-color:var(--orange)}
+.journey-right{position:relative;z-index:1}
+.timeline-strip{display:flex;flex-direction:column;gap:0}
+.tl-item{
+  display:flex;gap:20px;padding:16px 0;
+  border-bottom:1px solid rgba(250,250,247,.06);
+  align-items:flex-start;
+}
+.tl-item:last-child{border-bottom:none}
+.tl-year{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:rgba(232,93,38,.6);
+  letter-spacing:.08em;min-width:56px;
+  padding-top:2px;
+}
+.tl-content{}
+.tl-co{font-size:14px;font-weight:500;color:rgba(250,250,247,.85)}
+.tl-role{font-size:12px;color:rgba(250,250,247,.35);margin-top:2px;font-weight:300}
+
+/* ── AWARDS ── */
+.awards-section{
+  padding:100px 80px;
+  background:var(--white);
+}
+.awards-scroll{
+  display:flex;gap:10px;
+  overflow-x:auto;padding-bottom:8px;
+  scrollbar-width:none;margin-top:40px;
+}
+.awards-scroll::-webkit-scrollbar{display:none}
+.award-chip{
+  flex-shrink:0;
+  background:rgba(20,18,16,0.04);
+  border:1px solid var(--border-light);
+  border-radius:12px;padding:16px 20px;
+  min-width:200px;max-width:240px;
+  transition:border-color .2s,background .2s;
+  cursor:default;
+}
+.award-chip:hover{border-color:var(--orange);background:var(--orange-faint)}
+.award-chip.personal{
+  border-color:rgba(232,93,38,.3);
+  background:var(--orange-faint);
+}
+.award-yr{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:8px;opacity:.7;
+}
+.award-nm{font-size:13px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:4px}
+.award-org{font-size:11px;color:var(--muted);font-weight:300}
+
+/* ── BLOG ── */
+.blog-section{
+  padding:100px 80px;
+  background:#F5F3EE;
+}
+.blog-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:48px;
+}
+.blog-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:10px;opacity:.8;
+}
+.blog-title-text{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(28px,4vw,48px);
+  letter-spacing:-.03em;color:var(--ink);line-height:1.05;
+}
+.blog-sub{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-weight:300;font-size:16px;color:var(--muted);
+  margin-top:4px;
+}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.blog-card{
+  background:var(--white);border-radius:14px;
+  padding:28px;border:1px solid var(--border-light);
+  text-decoration:none;display:block;
+  transition:transform .25s,box-shadow .25s;
+}
+.blog-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 36px rgba(20,18,16,0.07);
+}
+.blog-tag{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:12px;opacity:.7;
+}
+.blog-card-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:18px;line-height:1.35;letter-spacing:-.01em;
+  color:var(--ink);margin-bottom:12px;
+}
+.blog-card-body{
+  font-size:13px;color:var(--muted);line-height:1.65;
+  font-weight:300;
+}
+.blog-read{
+  font-size:12px;color:var(--orange);margin-top:16px;
+  font-weight:500;display:flex;align-items:center;gap:6px;
+  transition:gap .2s;
+}
+.blog-card:hover .blog-read{gap:10px}
+
+/* ── CTA ── */
+.cta-section{
+  padding:120px 80px;
+  background:var(--orange);
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.cta-section::before{
+  content:'The Optimistic Designer';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Fraunces',serif;font-weight:900;
+  font-size:clamp(80px,16vw,220px);
+  color:rgba(255,255,255,.06);
+  white-space:nowrap;letter-spacing:-.04em;
+  pointer-events:none;line-height:1;
+}
+.cta-inner{position:relative;z-index:1}
+.cta-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(250,250,247,.6);margin-bottom:24px;
+}
+.cta-headline{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(44px,7vw,96px);
+  line-height:.95;letter-spacing:-.04em;
+  color:var(--white);margin-bottom:28px;
+  max-width:800px;margin-left:auto;margin-right:auto;
+}
+.cta-sub{
+  font-size:18px;color:rgba(250,250,247,.7);
+  max-width:480px;margin:0 auto 48px;
+  line-height:1.75;font-weight:300;
+}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{
+  background:var(--white);color:var(--orange);
+  border:none;border-radius:100px;
+  padding:14px 32px;font-size:15px;font-weight:500;
+  text-decoration:none;letter-spacing:.01em;
+  transition:opacity .2s,transform .15s;display:inline-block;
+  font-family:'Cabinet Grotesk',sans-serif;
+}
+.btn-white:hover{opacity:.9;transform:translateY(-1px)}
+.btn-white-outline{
+  background:transparent;color:var(--white);
+  border:1.5px solid rgba(250,250,247,.35);
+  border-radius:100px;padding:14px 32px;
+  font-size:15px;text-decoration:none;
+  letter-spacing:.01em;transition:border-color .2s,transform .15s;
+  display:inline-block;font-family:'Cabinet Grotesk',sans-serif;
+}
+.btn-white-outline:hover{border-color:var(--white);transform:translateY(-1px)}
+.cta-roles{
+  display:flex;gap:8px;justify-content:center;
+  flex-wrap:wrap;margin-top:48px;
+}
+.role-chip-light{
+  font-size:12px;font-weight:400;
+  border:1px solid rgba(250,250,247,.25);
+  color:rgba(250,250,247,.7);border-radius:2px;
+  padding:6px 16px;letter-spacing:.03em;
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:52px 80px;
+  background:var(--ink);
+  display:flex;justify-content:space-between;
+  align-items:flex-end;flex-wrap:wrap;gap:28px;
+}
+.foot-brand{
+  font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+  font-size:clamp(24px,4vw,56px);
+  letter-spacing:-.03em;color:rgba(250,250,247,.08);
+  line-height:1;
+}
+.foot-right{
+  display:flex;flex-direction:column;
+  align-items:flex-end;gap:8px;
+}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+.foot-links a{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(250,250,247,.3);text-decoration:none;transition:color .2s;
+}
+.foot-links a:hover{color:var(--orange)}
+.foot-copy{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:rgba(250,250,247,.15);
+  letter-spacing:.08em;text-transform:uppercase;
+  text-align:right;
+}
+.foot-easter{
+  font-size:11px;color:rgba(250,250,247,.12);
+  font-style:italic;margin-top:4px;text-align:right;
+  font-family:'Fraunces',serif;
+}
+
+/* ── REVEAL ── */
+.reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .85s cubic-bezier(.22,1,.36,1),
+              transform .85s cubic-bezier(.22,1,.36,1);
+}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.d5{transition-delay:.5s}
+
+/* ── DIVIDER ── */
+hr.section-hr{
+  border:none;border-top:1px solid var(--border-light);
+  margin:0 80px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .props-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics-grid .metric-item:nth-child(2n){border-right:none}
+  .phil-grid{grid-template-columns:1fr;gap:48px}
+  .journey-section{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:0 24px}
+  .hero,.section,.metrics-section,.philosophy-section,
+  .work-section,.journey-section,.awards-section,
+  .blog-section,.cta-section,footer{padding-left:24px;padding-right:24px}
+  .cases-grid,.blog-grid{grid-template-columns:1fr}
+  .work-header,.blog-header{flex-direction:column;align-items:flex-start;gap:12px}
+  hr.section-hr{margin:0 24px}
+  .metrics-grid{grid-template-columns:1fr}
+  .metrics-grid .metric-item{border-right:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero-eyebrow,.hero-headline,.hero-sub,.hero-actions,.hero-companies{
+    opacity:1;transform:none;transition:none
+  }
+  .hero-blob,.hero-blob2{animation:none}
+}
+
+/* ── HERO FORCED VISIBLE (JS adds .vis) ── */
+.hero-eyebrow.vis{opacity:1;transform:none}
+.hero-headline.vis{opacity:1;transform:none}
+.hero-sub.vis{opacity:1;transform:none}
+.hero-actions.vis{opacity:1}
+.hero-companies.vis{opacity:1}
+/* Hero elements animate in purely via CSS — no JS dependency */
+#page-home .hero-eyebrow {
+  animation: heroIn 0.8s cubic-bezier(.22,1,.36,1) 0.1s both;
+}
+#page-home .hero-headline {
+  animation: heroIn 0.9s cubic-bezier(.22,1,.36,1) 0.25s both;
+}
+#page-home .hero-sub {
+  animation: heroIn 0.9s cubic-bezier(.22,1,.36,1) 0.45s both;
+}
+#page-home .hero-actions {
+  animation: heroFade 0.9s ease 0.6s both;
+}
+#page-home .hero-companies {
+  animation: heroFade 0.9s ease 0.75s both;
+}
+@keyframes heroIn {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:none; }
+}
+@keyframes heroFade {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-mark">S</div>
+    <div class="nav-name">The <span>Optimistic</span> Designer</div>
+  </a>
+  <div class="nav-links">
+    <a href="work.html">Work</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html" class="nav-cta">Let's talk</a>
+  </div>
+</nav>
+
+<div id="page-home">
+<!-- NAV -->
+
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <!-- TWO-COL GRID -->
+  <div class="hero-grid">
+    <!-- LEFT: text -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">Subin Sundaresan · Director of Design · 14 years</div>
+      <h1 class="hero-headline">
+        Design that makes<br>
+        companies feel <em>inevitable.</em>
+        <span class="line2">User problems turned into<br>business revenue.</span>
+      </h1>
+      <p class="hero-sub">
+        I build design organisations, systems, and strategies that move metrics — across fintech, SaaS, and everything in between. Twice from scratch. Both times it changed what the company could become.
+      </p>
+      <div class="hero-actions">
+        <a href="work.html" class="btn-primary">See my work</a>
+        <a href="journey.html" class="btn-secondary">Read the story</a>
+      </div>
+      <div class="hero-companies">
+        <div class="companies-label">Companies I've shaped</div>
+        <div class="companies-row">
+          <span class="co-pill">Yubi</span>
+          <span class="co-pill">Khatabook</span>
+          <span class="co-pill">Solv · Standard Chartered</span>
+          <span class="co-pill">HashedIn · Deloitte</span>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: photo -->
+    <div class="hero-right">
+      <div class="hero-photo-wrap" id="heroPhotoWrap">
+        <div class="hero-photo-glow"></div>
+        <img
+          src="assets/subin-portrait.png"
+          alt="Subin Sundaresan"
+          class="hero-photo"
+          id="heroPhoto"
+          draggable="false"
+        />
+        <div class="hero-photo-overlay">
+          <div class="hpo-chip">
+            <span class="hpo-dot"></span>
+            Available for new roles
+          </div>
+        </div>
+        <div class="hero-photo-stat hero-stat-1">
+          <span class="hps-num">₹860M</span>
+          <span class="hps-label">Revenue generated</span>
+        </div>
+        <div class="hero-photo-stat hero-stat-2">
+          <span class="hps-num">14 yrs</span>
+          <span class="hps-label">Fintech & SaaS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-hr">
+
+<!-- ── WHAT I DO ── -->
+<section class="section" id="what-i-do">
+  <div class="section-label reveal">What I do</div>
+  <div class="section-title reveal d1">Four things.<br><em>All of them rare.</em></div>
+  <p class="section-sub reveal d2">Most design leaders do one of these well. The interesting ones do all four.</p>
+  <div class="props-grid">
+    <div class="prop-item reveal">
+      <div class="prop-num">01</div>
+      <div class="prop-title">I turn user frustration<br>into <em>revenue.</em></div>
+      <p class="prop-body">Most products lose customers in the moments between intention and action. I find those moments, fix them, and measure the business impact. Aspero went from ₹18Cr in losses to ₹860M in revenue. That's not a design win — that's a business transformation.</p>
+      <div class="prop-proof">₹860M revenue · ₹18Cr loss reversed · 18 months</div>
+    </div>
+    <div class="prop-item reveal d1">
+      <div class="prop-num">02</div>
+      <div class="prop-title">I build organisations,<br>not just <em>products.</em></div>
+      <p class="prop-body">Any designer can improve a screen. Very few can build the team, culture, and systems that improve every screen — consistently, at scale, without them in the room. I've done it twice. HashedIn went from 1 designer to 32. Yubi from 2 to 20. Both practices outlasted me.</p>
+      <div class="prop-proof">1→32 at HashedIn · 2→20 at Yubi · Both acquired or scaled</div>
+    </div>
+    <div class="prop-item reveal d2">
+      <div class="prop-num">03</div>
+      <div class="prop-title">I speak both languages —<br><em>design and business.</em></div>
+      <p class="prop-body">Design budgets don't get approved because they're good ideas. They get approved because someone translated them into a business case. I showed a CPTO a ₹136Cr invoice for design fragmentation. That conversation happened once. The Yubi Design System was built the next quarter.</p>
+      <div class="prop-proof">₹136Cr saved · 44 designers unified · One meeting</div>
+    </div>
+    <div class="prop-item reveal d3">
+      <div class="prop-num">04</div>
+      <div class="prop-title">I make AI work<br><em>for</em> your team.</div>
+      <p class="prop-body">AI-assisted design isn't the future — it's table stakes for 2025. I pioneered Token Studio automation and AI-driven workflows at Yubi because a 20-person team serving 13 products cannot operate on manual handoffs. Bugs dropped from 139 to 4. Adoption hit 85%.</p>
+      <div class="prop-proof">AI workflows · Token Studio · 68→12 FE engineers needed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── METRICS ── -->
+<section class="metrics-section" id="metrics">
+  <div class="metrics-label reveal">Impact — the numbers</div>
+  <div class="metrics-grid">
+    <div class="metric-item reveal">
+      <div class="metric-num" data-count="860" data-prefix="₹" data-suffix="M">₹860M</div>
+      <div class="metric-label">Revenue generated</div>
+      <div class="metric-sub">Aspero · Design as the business lever</div>
+    </div>
+    <div class="metric-item reveal d1">
+      <div class="metric-num" data-count="136" data-prefix="₹" data-suffix="Cr+">₹136Cr+</div>
+      <div class="metric-label">Engineering budget saved</div>
+      <div class="metric-sub">YDS · 3 years · One design system</div>
+    </div>
+    <div class="metric-item reveal d2">
+      <div class="metric-num">1.7 → 8.23</div>
+      <div class="metric-label">NPS improvement</div>
+      <div class="metric-sub">UNIFY · Enterprise scale · 2 years</div>
+    </div>
+    <div class="metric-item reveal d3">
+      <div class="metric-num" data-count="20" data-suffix="+">20+</div>
+      <div class="metric-label">Designers built & led</div>
+      <div class="metric-sub">Yubi · From 2 · 94% retention</div>
+    </div>
+    <div class="metric-item reveal d4">
+      <div class="metric-num" data-count="45" data-suffix="%">45%</div>
+      <div class="metric-label">Ops cost reduction</div>
+      <div class="metric-sub">DesignOps frameworks · Delivery 3 wks faster</div>
+    </div>
+    <div class="metric-item reveal d5">
+      <div class="metric-num">5</div>
+      <div class="metric-label">Product brands unified</div>
+      <div class="metric-sub">$140M+ ecosystem · One design language</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORK ── -->
+<section class="work-section" id="work">
+  <div class="work-header">
+    <div class="section-title reveal">Selected <em>work</em></div>
+    <a href="work.html" class="work-link reveal">View all case studies</a>
+  </div>
+  <div class="cases-grid">
+
+    <a href="aspero.html" class="case-card case-aspero reveal">
+      <div class="case-inner">
+        <div class="case-co">Aspero · Yubi · 2022–24</div>
+        <div class="case-title">The ₹860M <em>turnaround</em></div>
+        <p class="case-body">A retail bond platform with ₹18Cr in losses, under 300 customers, and broken trust. Design was the lever that changed everything in 18 months.</p>
+        <div class="case-meta">
+          <span class="meta-tag">Business transformation</span>
+          <span class="meta-tag">Trust UX</span>
+          <span class="meta-tag">0-to-1 redesign</span>
+        </div>
+        <div class="case-stat">
+          <span class="cs-big">₹860M</span>
+          <span class="cs-label">revenue · 32% of Yubi</span>
+        </div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a href="yds.html" class="case-card case-yds reveal d1">
+      <div class="case-inner">
+        <div class="case-co">YDS · Yubi · 2022–25</div>
+        <div class="case-title">One system.<br><em>₹136Cr saved.</em></div>
+        <p class="case-body">44 designers, 13 products, zero common language. The Yubi Design System changed all of that — and the engineering budget with it.</p>
+        <div class="case-meta">
+          <span class="meta-tag">Design systems</span>
+          <span class="meta-tag">DesignOps</span>
+          <span class="meta-tag">AI workflows</span>
+        </div>
+        <div class="case-stat">
+          <span class="cs-big">85%</span>
+          <span class="cs-label">adoption · 139→4 bugs</span>
+        </div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a href="unify.html" class="case-card case-unify reveal d2">
+      <div class="case-inner">
+        <div class="case-co">UNIFY · Yubi · 2023–25</div>
+        <div class="case-title">NPS 1.7 → <em>8.23</em></div>
+        <p class="case-body">Project Sherlock diagnosed 500+ screens. UNIFY fixed what it found — unifying 92% of Yubi's product experience in two years.</p>
+        <div class="case-meta">
+          <span class="meta-tag">UX strategy</span>
+          <span class="meta-tag">Data-driven audit</span>
+          <span class="meta-tag">Standardisation</span>
+        </div>
+        <div class="case-stat">
+          <span class="cs-big">92%</span>
+          <span class="cs-label">experience unified</span>
+        </div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a href="reward.html" class="case-card case-reward reveal d3">
+      <div class="case-inner">
+        <div class="case-co">Reward by Design · Khatabook · 2021</div>
+        <div class="case-title">Turning data entry into <em>storytelling</em></div>
+        <p class="case-body">A boring KYC form for 10M merchants became an animated store-building experience. On the psychology of delight, and why good design rewards rather than manipulates.</p>
+        <div class="case-meta">
+          <span class="meta-tag">Behavioural design</span>
+          <span class="meta-tag">UX psychology</span>
+          <span class="meta-tag">10M+ users</span>
+        </div>
+        <div class="case-stat">
+          <span class="cs-big">+22%</span>
+          <span class="cs-label">activation rate</span>
+        </div>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── JOURNEY TEASER ── -->
+<section class="journey-section" id="journey">
+  <div class="journey-left">
+    <div class="journey-label reveal">My journey</div>
+    <div class="journey-headline reveal d1">
+      14 years.<br>Two orgs<br>built from <em>scratch.</em>
+    </div>
+    <p class="journey-body reveal d2">
+      From writing code at NIC to directing design across a $140M fintech ecosystem. The full story — including the failures, the one-meeting wins, and the moment a product nobody believed in became the most important one in the portfolio.
+    </p>
+    <a href="#" class="btn-orange-outline reveal d3">Read the full story</a>
+  </div>
+  <div class="journey-right reveal d2">
+    <div class="timeline-strip">
+      <div class="tl-item">
+        <div class="tl-year">2010</div>
+        <div class="tl-content">
+          <div class="tl-co">ICAT School of Design</div>
+          <div class="tl-role">The confession. Switched from code to craft.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2015</div>
+        <div class="tl-content">
+          <div class="tl-co">HashedIn by Deloitte</div>
+          <div class="tl-role">Joined as first designer. Built a 32-person practice. Acquired by Deloitte.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2019</div>
+        <div class="tl-content">
+          <div class="tl-co">Solv · Standard Chartered</div>
+          <div class="tl-role">B2B trade & credit. Singapore–India–Africa distributed team.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2021</div>
+        <div class="tl-content">
+          <div class="tl-co">Khatabook</div>
+          <div class="tl-role">10M+ users. Super App architecture. Loans product 0→1.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2022</div>
+        <div class="tl-content">
+          <div class="tl-co">Yubi (CredAvenue)</div>
+          <div class="tl-role">Director of Design. $140M ecosystem. ₹860M impact. Yubi Inspirer Award.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHILOSOPHY ── -->
+<section class="philosophy-section">
+  <div class="phil-grid">
+    <div class="phil-left">
+      <div class="section-label reveal">Philosophy</div>
+      <div class="phil-quote reveal d1">
+        "Design should reward behaviour,<br>not <strong>manipulate</strong> it.<br>
+        True delight lies in respect,<br>not addiction."
+      </div>
+      <div class="phil-attr reveal d2">— Subin Sundaresan</div>
+    </div>
+    <div class="phil-right reveal d2">
+      <div class="phil-principles">
+        <div class="phil-principle">
+          <div class="pp-num">01</div>
+          <div><div class="pp-title">Creativity needs structure</div><div class="pp-body">Systems are not cages. They're the rails that let creativity move at speed.</div></div>
+        </div>
+        <div class="phil-principle">
+          <div class="pp-num">02</div>
+          <div><div class="pp-title">Design is a business function</div><div class="pp-body">Every decision connects to outcomes. Not a service layer — a growth lever.</div></div>
+        </div>
+        <div class="phil-principle">
+          <div class="pp-num">03</div>
+          <div><div class="pp-title">Culture drives consistency</div><div class="pp-body">People create systems. Systems sustain creativity. Build the environment first.</div></div>
+        </div>
+        <div class="phil-principle">
+          <div class="pp-num">04</div>
+          <div><div class="pp-title">Empathy builds leadership</div><div class="pp-body">Your team's clarity is your clarity. Listen first, always.</div></div>
+        </div>
+        <div class="phil-principle">
+          <div class="pp-num">05</div>
+          <div><div class="pp-title">Profitability enables freedom</div><div class="pp-body">Operational efficiency is creative fuel. You can't experiment on an empty tank.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AWARDS ── -->
+<section class="awards-section">
+  <div class="section-label reveal">Recognition</div>
+  <div class="section-title reveal d1">Companies I shaped.<br><em>Awards they won.</em></div>
+  <div class="awards-scroll reveal d2">
+    <div class="award-chip personal">
+      <div class="award-yr">Personal</div>
+      <div class="award-nm">Yubi Inspirer Award</div>
+      <div class="award-org">Design transformation leadership</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2025</div>
+      <div class="award-nm">Fintech Startup of the Year</div>
+      <div class="award-org">Global Fintech Fest (GFF)</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2025</div>
+      <div class="award-nm">Best Lending Fintech of the Year</div>
+      <div class="award-org">Bharat Fintech Summit</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2024</div>
+      <div class="award-nm">Best Innovation in Digital Lending</div>
+      <div class="award-org">9th Annual India Fintech Awards</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2024</div>
+      <div class="award-nm">Tamil Nadu Disruptors Award</div>
+      <div class="award-org">YourStory Tamil Nadu Story 2024</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2024</div>
+      <div class="award-nm">Best Fintech in Banking</div>
+      <div class="award-org">ICC Emerging Asia Banking Conclave</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2023</div>
+      <div class="award-nm">DivHERsity Award</div>
+      <div class="award-org">JobsForHer · Workforce Diversity</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2022</div>
+      <div class="award-nm">Rising Star Partner</div>
+      <div class="award-org">Infosys Finacle Partner Excellence</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2022</div>
+      <div class="award-nm">Best Digital Channel Implementation</div>
+      <div class="award-org">IBS Intelligence Global FinTech Innovation</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2019</div>
+      <div class="award-nm">APAC Insider Business Award</div>
+      <div class="award-org">Innovation & Enterprise Product Dev</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2018</div>
+      <div class="award-nm">Technology Innovator Award</div>
+      <div class="award-org">Corporate Vision · Best Software Co. India</div>
+    </div>
+    <div class="award-chip">
+      <div class="award-yr">2018/19</div>
+      <div class="award-nm">Great Place to Work</div>
+      <div class="award-org">India · Two consecutive years</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG ── -->
+<section class="blog-section" id="blog">
+  <div class="blog-header">
+    <div>
+      <div class="blog-eyebrow reveal">Writing</div>
+      <div class="blog-title-text reveal d1">Thinking out loud</div>
+      <div class="blog-sub reveal d2">Things I think about at 11pm when I should be sleeping.</div>
+    </div>
+    <a href="work.html" class="work-link reveal">All articles</a>
+  </div>
+  <div class="blog-grid">
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal">
+      <div class="blog-tag">Leadership · Coming soon</div>
+      <div class="blog-card-title">How I built a 20-person design org inside a $140M fintech — and what I'd do differently</div>
+      <p class="blog-card-body">The hiring decisions, the systems, the culture rituals, and the two things I'd change if I did it again.</p>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d1">
+      <div class="blog-tag">AI · Design systems</div>
+      <div class="blog-card-title">Why AI won't replace designers — it'll replace design teams that don't use AI</div>
+      <p class="blog-card-body">What we learned building AI-assisted workflows at Yubi before most teams were even talking about it.</p>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="blog-card reveal d2">
+      <div class="blog-tag">Psychology · UX</div>
+      <div class="blog-card-title">Reward by Design: How visual feedback turns effort into emotion</div>
+      <p class="blog-card-body">On dopamine, completion bias, and why the best interfaces feel like a small celebration every time you use them.</p>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-label">Let's work together</div>
+    <div class="cta-headline">
+      Let's make your company feel inevitable.
+    </div>
+    <p class="cta-sub">
+      If you're building something where design is supposed to be a competitive advantage and it isn't yet — that's exactly the problem I fix.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:subintheuxdesigner@gmail.com" class="btn-white">Email me</a>
+      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank" class="btn-white-outline">LinkedIn</a>
+    </div>
+    <div class="cta-roles">
+      <span class="role-chip-light">VP of Design</span>
+      <span class="role-chip-light">Director of Design</span>
+      <span class="role-chip-light">Head of Design</span>
+      <span class="role-chip-light">Fractional CDO</span>
+      <span class="role-chip-light">India · UK · Singapore · US · Remote</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-brand">The Optimistic Designer</div>
+  <div class="foot-right">
+    <div class="foot-links">
+      <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+      <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
+    </div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
+  </div>
+</footer>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('.page-hero .reveal').forEach(el=>el.classList.add('vis')),200);
+// Counters
+function animateCount(el){
+  if(el.dataset.done)return;el.dataset.done='1';
+  const target=parseInt(el.dataset.count),pre=el.dataset.pre||'',suf=el.dataset.suf||'';
+  const dur=1600,start=performance.now(),ease=t=>1-Math.pow(1-t,3);
+  (function tick(now){const p=Math.min((now-start)/dur,1);
+    el.textContent=pre+Math.round(ease(p)*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(tick);})(start);
+}
+const cObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)animateCount(e.target);});},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
+// Hero photo parallax tilt + custom cursor
+(function(){
+  const wrap=document.getElementById('heroPhotoWrap');
+  const photo=document.getElementById('heroPhoto');
+  if(!wrap||!photo)return;
+  const cursor=document.createElement('div');cursor.className='hero-cursor';
+  const cursorDot=document.createElement('div');cursorDot.className='hero-cursor-dot';
+  document.body.appendChild(cursor);document.body.appendChild(cursorDot);
+  let cx=0,cy=0,dx=0,dy=0;
+  const lerp=(a,b,n)=>a+(b-a)*n;
+  wrap.addEventListener('mouseenter',()=>{cursor.classList.add('active');cursorDot.classList.add('active');});
+  wrap.addEventListener('mouseleave',()=>{
+    cursor.classList.remove('active');cursorDot.classList.remove('active');
+    photo.style.transform='perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+  });
+  wrap.addEventListener('mousemove',(e)=>{
+    const rect=wrap.getBoundingClientRect();
+    const nx=(e.clientX-rect.left)/rect.width-0.5;
+    const ny=(e.clientY-rect.top)/rect.height-0.5;
+    cx=e.clientX;cy=e.clientY;
+    photo.style.transform=`perspective(800px) rotateX(${-ny*10}deg) rotateY(${nx*14}deg) scale(1.02)`;
+  });
+  (function animateCursor(){
+    dx=lerp(dx,cx,0.15);dy=lerp(dy,cy,0.15);
+    cursor.style.left=dx+'px';cursor.style.top=dy+'px';
+    cursorDot.style.left=cx+'px';cursorDot.style.top=cy+'px';
+    requestAnimationFrame(animateCursor);
+  })();
+  wrap.addEventListener('click',(e)=>{
+    const rect=wrap.getBoundingClientRect();
+    const ripple=document.createElement('div');
+    ripple.style.cssText='position:absolute;left:'+(e.clientX-rect.left)+'px;top:'+(e.clientY-rect.top)+'px;width:0;height:0;border-radius:50%;background:rgba(232,93,38,0.25);transform:translate(-50%,-50%);pointer-events:none;z-index:10;animation:rippleOut .6s ease forwards;';
+    wrap.appendChild(ripple);setTimeout(()=>ripple.remove(),700);
+  });
+})();
+if(!document.getElementById('rippleStyle')){
+  const s=document.createElement('style');s.id='rippleStyle';
+  s.textContent='@keyframes rippleOut{to{width:200px;height:200px;opacity:0;}}';
+  document.head.appendChild(s);
+}
+// data-href fallbacks (converted from SPA onclicks)
+document.querySelectorAll('[data-href]').forEach(el=>{
+  el.style.cursor='pointer';
+  el.addEventListener('click',()=>{window.location.href=el.dataset.href;});
+});
+</script>
+</body>
+</html>
