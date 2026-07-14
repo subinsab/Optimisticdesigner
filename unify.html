@@ -2,123 +2,91 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNIFY — NPS 1.7 to 8.23 · The Optimistic Designer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>UNIFY: NPS 1.7 to 8.23 · The Optimistic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-<style>
-.cs-hero{padding:140px 80px 80px;background:#060F08;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
-.cs-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 70% 40%,rgba(74,158,111,.15) 0%,transparent 60%);}
-.cs-hero-inner{position:relative;z-index:1;}
-.cs-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(74,158,111,.7);margin-bottom:16px;}
-.cs-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(48px,8vw,104px);line-height:.9;letter-spacing:-.04em;color:#FAFAF7;margin-bottom:24px;}
-.cs-title em{color:#5AC48A;font-style:italic}
-.cs-tagline{font-size:18px;color:rgba(250,250,247,.5);max-width:560px;line-height:1.75;font-weight:300;}
-.cs-meta-bar{display:flex;gap:48px;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid rgba(250,250,247,.07);}
-.mi-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(74,158,111,.6);display:block;margin-bottom:4px;}
-.mi-val{font-size:14px;font-weight:500;color:rgba(250,250,247,.8);}
-.cs-body{padding:80px 80px;}
-.cs-section{margin-bottom:72px;}
-.cs-section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#4A9E6F;margin-bottom:16px;opacity:.7;}
-.cs-h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:20px;}
-.cs-h2 em{color:#4A9E6F;font-style:italic}
-.cs-text{font-size:16px;color:var(--mid);line-height:1.9;font-weight:300;max-width:640px;}
-.cs-text p{margin-bottom:20px}.cs-text p:last-child{margin-bottom:0}
-.cs-text strong{color:var(--ink);font-weight:500}
-.cs-pull{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2.2vw,26px);line-height:1.4;color:var(--ink);border-left:2px solid #4A9E6F;padding:10px 24px;margin:36px 0;max-width:600px;}
-.nps-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light);border:1px solid var(--border-light);max-width:580px;margin:28px 0;}
-.nps-cell{background:var(--white);padding:32px 28px;}
-.nps-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#4A9E6F;margin-bottom:12px;opacity:.6;}
-.nps-n{font-family:'Fraunces',serif;font-weight:700;font-size:64px;line-height:1;letter-spacing:-.03em;margin-bottom:8px;}
-.nps-n.dim{color:var(--muted)}.nps-n.lit{color:#4A9E6F}
-.nps-note{font-size:13px;color:var(--muted);font-weight:300;line-height:1.5;}
-.outcomes-row{display:flex;gap:40px;flex-wrap:wrap;margin:28px 0;}
-.oc-item .on{font-family:'Fraunces',serif;font-weight:700;font-size:40px;line-height:1;letter-spacing:-.02em;color:#4A9E6F;display:block;margin-bottom:4px;}
-.oc-item .ol{font-size:13px;color:var(--muted);font-weight:300;}
-.visual-placeholder{background:var(--cream);border:1.5px dashed var(--border);border-radius:16px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);margin:28px 0;}
-.vp-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;}
-.nav-case{display:flex;justify-content:space-between;align-items:center;padding:40px 80px;border-top:1px solid var(--border-light);background:var(--cream);}
-.nc-link{font-size:14px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
-.nc-link:hover{color:var(--orange)}.nc-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
-@media(max-width:768px){.cs-hero,.cs-body,.nav-case{padding-left:24px;padding-right:24px;}.nps-grid{grid-template-columns:1fr;}.outcomes-row{gap:24px;}}
-</style>
 </head>
 <body>
-<nav id="nav">
-  <a href="index.html" class="nav-brand"><div class="nav-mark">S</div><div class="nav-name">The <span>Optimistic</span> Designer</div></a>
-  <div class="nav-links"><a href="work.html" class="active">Work</a><a href="journey.html">Journey</a><a href="blog.html">Writing</a><a href="contact.html" class="nav-cta">Let's talk</a></div>
-</nav>
-
-<section class="cs-hero">
-  <div class="cs-hero-inner">
-    <div class="cs-label">UNIFY · Project Sherlock · Yubi · 2023–2025</div>
-    <div class="cs-title">NPS 1.7<br>to <em>8.23.</em></div>
-    <p class="cs-tagline">How a data-backed audit of 500+ screens and a two-year unification programme rebuilt trust across Yubi's entire product ecosystem.</p>
-    <div class="cs-meta-bar">
-      <div><span class="mi-label">Company</span><span class="mi-val">Yubi</span></div>
-      <div><span class="mi-label">My role</span><span class="mi-val">Director of Design · Programme lead</span></div>
-      <div><span class="mi-label">Timeline</span><span class="mi-val">2023–2025 · 2 years</span></div>
-      <div><span class="mi-label">Scope</span><span class="mi-val">UX audit · Standardisation · Design governance</span></div>
-      <div><span class="mi-label">Outcome</span><span class="mi-val">NPS 1.7→8.23 · 92% experience unified</span></div>
-    </div>
+<nav class="site-nav"><div class="wrap">
+  <a href="index.html" class="brand">The <span>Optimistic</span> Designer</a>
+  <div class="nav-links">
+    <a href="work.html" class="active">Work</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html">Let's talk</a>
   </div>
-</section>
+</div></nav>
 
-<section class="cs-body">
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The diagnosis</div>
-    <div class="cs-h2">Project Sherlock:<br><em>500+ screens. Every inconsistency named.</em></div>
-    <div class="cs-text">
-      <p>Before fixing anything, we needed to know exactly what was broken. Project Sherlock was a data-backed design audit — heatmaps, analytics, session recordings, and automated screenshot mapping across every Yubi product.</p>
-      <p>500+ screens audited. Every navigation pattern, filter placement, table layout, and card style catalogued and compared. The finding was stark: without a shared design language, every product team had made rational local decisions that added up to an irrational experience for users moving between products.</p>
-      <p>The NPS of 1.7 wasn't mysterious. Drop-offs were at 87%. Users were confused, stakeholders were frustrated, and the engineering team was fixing the same UI bugs in six different products simultaneously.</p>
-    </div>
-    <div class="cs-pull">"Project Sherlock didn't discover problems — it named them. Naming a problem precisely is the first step to owning it."</div>
+<header class="page"><div class="wrap">
+  <div class="kicker">UNIFY · Project Sherlock · Yubi · 2023–2025</div>
+  <h1>NPS 1.7 to <em>8.23.</em></h1>
+  <p class="lead">How a data-backed audit of 500+ screens and a two-year unification programme rebuilt trust across Yubi's entire product ecosystem.</p>
+  <dl class="rows" style="margin-top:32px">
+    <div class="row"><dt>My role</dt><dd>Director of Design · Programme lead</dd></div>
+    <div class="row"><dt>Timeline</dt><dd>2023–2025 · 2 years</dd></div>
+    <div class="row"><dt>Scope</dt><dd>UX audit · Standardisation · Design governance</dd></div>
+    <div class="row"><dt>Outcome</dt><dd>NPS 1.7→8.23 · 92% experience unified</dd></div>
+  </dl>
+</div></header>
+
+<main>
+<section><div class="wrap">
+  <div class="section-label">The diagnosis</div>
+  <h2>Project Sherlock: <em>500+ screens. Every inconsistency named.</em></h2>
+  <p>Before fixing anything, we needed to know exactly what was broken. Project Sherlock was a data-backed design audit: heatmaps, analytics, session recordings, and automated screenshot mapping across every Yubi product.</p>
+  <p>500+ screens audited. Every navigation pattern, filter placement, table layout, and card style catalogued and compared. The finding was stark: without a shared design language, every product team had made rational local decisions that added up to an irrational experience for users moving between products.</p>
+  <p>The NPS of 1.7 wasn't mysterious. Drop-offs were at 87%. Users were confused, stakeholders were frustrated, and the engineering team was fixing the same UI bugs in six different products simultaneously.</p>
+  <blockquote>"Project Sherlock didn't discover problems. It named them. Naming a problem precisely is the first step to owning it."</blockquote>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">The NPS shift</div>
+  <h2>Before and <em>after.</em></h2>
+  <dl class="rows">
+    <div class="row"><dt><span class="big">1.7</span></dt><dd><span class="t">Before UNIFY.</span> Drop-offs at 87%. Fragmented experience. Users lost between products.</dd></div>
+    <div class="row"><dt><span class="big">8.23</span></dt><dd><span class="t">After UNIFY.</span> Drop-offs at 34.7%. 92% of experience unified. Stakeholder confidence restored.</dd></div>
+  </dl>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">The programme</div>
+  <h2>Standardisation at <em>enterprise scale.</em></h2>
+  <p>UNIFY wasn't a redesign. It was a systematic dismantling of four years of fragmentation, and a rebuild from a single source of truth. Working with design leads across all five product brands, we standardised navigation patterns, page layouts, filter interactions, data table structures, and loading states.</p>
+  <p>We introduced a unified accessibility framework: WCAG AA compliance across all core flows. A new shared design language that felt like an evolution of each product's visual identity, not a takeover. And a governance process that ensured new designs were reviewed against UNIFY standards before shipping.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">The outcomes</div>
+  <h2>The numbers <em>and</em> what they meant.</h2>
+  <dl class="rows">
+    <div class="row"><dt><span class="big">92%</span></dt><dd>Product experience unified</dd></div>
+    <div class="row"><dt><span class="big">87→34.7%</span></dt><dd>Drop-off reduction</dd></div>
+    <div class="row"><dt><span class="big">1.7→8.23</span></dt><dd>NPS improvement</dd></div>
+  </dl>
+  <p>The NPS shift was the clearest signal, but what it represented was simpler than a number. For the first time, users moving between Yubi products recognised where they were. The product started feeling like it was designed by one team with one vision. That's not a UX metric. That's brand trust, rebuilt one screen at a time.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="actions">
+    <a href="yds.html">← YDS</a>
+    <a href="reward.html">Next case: Reward by Design →</a>
   </div>
+</div></section>
+</main>
 
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The NPS shift</div>
-    <div class="cs-h2">Before and <em>after.</em></div>
-    <div class="nps-grid">
-      <div class="nps-cell"><div class="nps-lbl">Before UNIFY</div><div class="nps-n dim">1.7</div><div class="nps-note">Drop-offs at 87%. Fragmented experience. Users lost between products.</div></div>
-      <div class="nps-cell"><div class="nps-lbl">After UNIFY</div><div class="nps-n lit">8.23</div><div class="nps-note">Drop-offs at 34.7%. 92% of experience unified. Stakeholder confidence restored.</div></div>
-    </div>
+<footer class="site-footer"><div class="wrap">
+  <div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
   </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The programme</div>
-    <div class="cs-h2">Standardisation at<br><em>enterprise scale.</em></div>
-    <div class="cs-text">
-      <p>UNIFY wasn't a redesign. It was a systematic dismantling of four years of fragmentation — and a rebuild from a single source of truth. Working with design leads across all five product brands, we standardised navigation patterns, page layouts, filter interactions, data table structures, and loading states.</p>
-      <p>We introduced a unified accessibility framework — WCAG AA compliance across all core flows. A new shared design language that felt like an evolution of each product's visual identity, not a takeover. And a governance process that ensured new designs were reviewed against UNIFY standards before shipping.</p>
-    </div>
-    <div class="visual-placeholder"><div class="vp-label">📎 Add: before/after screens or audit heatmap</div><span style="font-size:13px;font-weight:300;">Replace with Figma export or screenshot</span></div>
+  <div class="foot-links">
+    <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+    <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
   </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The outcomes</div>
-    <div class="cs-h2">The numbers <em>and</em><br>what they meant.</div>
-    <div class="outcomes-row">
-      <div class="oc-item"><span class="on">92%</span><span class="ol">Product experience unified</span></div>
-      <div class="oc-item"><span class="on">87→34.7%</span><span class="ol">Drop-off reduction</span></div>
-      <div class="oc-item"><span class="on">1.7→8.23</span><span class="ol">NPS improvement</span></div>
-    </div>
-    <div class="cs-text"><p>The NPS shift was the clearest signal — but what it represented was simpler than a number. For the first time, users moving between Yubi products recognised where they were. The product started feeling like it was designed by one team with one vision. That's not a UX metric — that's brand trust, rebuilt one screen at a time.</p></div>
-  </div>
-</section>
-
-<div class="nav-case">
-  <a href="yds.html" class="nc-link">← YDS</a>
-  <a href="reward.html" class="nc-link"><div style="text-align:right;"><span class="nc-label">Next case</span>Reward by Design</div> →</a>
-</div>
-
-<footer class="site-footer">
-  <div class="foot-brand">The Optimistic Designer</div>
-  <div class="foot-right"><div class="foot-links"><a href="mailto:subintheuxdesigner@gmail.com">Email</a><a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a></div><div class="foot-copy">Subin Sundaresan · 2026</div></div>
-</footer>
-<script>
-const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
-const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-</body></html>
+</div></footer>
+</body>
+</html>

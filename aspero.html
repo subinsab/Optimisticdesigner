@@ -1,907 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aspero — Case Study · The Optimistic Designer</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aspero: the ₹860M turnaround · The Optimistic Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --white:#FAFAF7;--ink:#141210;--orange:#E85D26;
-  --orange-faint:rgba(232,93,38,.08);--cream:#F5F3EE;
-  --mid:#4A3F36;--muted:#8C7E74;
-  --border:rgba(20,18,16,.1);--bl:rgba(20,18,16,.06);
-  --accent:#C8955A;--accent-dim:rgba(200,149,90,.15);
-}
-html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--ink);font-family:'Cabinet Grotesk',sans-serif;font-size:17px;line-height:1.65;overflow-x:hidden}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 56px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,247,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--bl)}
-.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-mark{width:30px;height:30px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:14px;color:var(--white)}
-.nav-name{font-family:'Fraunces',serif;font-weight:600;font-size:14px;letter-spacing:-.02em;color:var(--ink)}
-.nav-name span{color:var(--orange)}
-.nav-right{display:flex;gap:24px;align-items:center}
-.nav-right a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
-.nav-right a:hover{color:var(--ink)}
-.nav-back{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
-.nav-back::before{content:'←'}
-
-/* HERO */
-.cs-hero{padding:100px 0 0;background:#120C06;position:relative;overflow:hidden}
-.hero-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 60%,rgba(200,149,90,.2) 0%,transparent 65%);pointer-events:none}
-.hero-content{padding:40px 80px 80px;position:relative;z-index:1}
-.hero-breadcrumb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,149,90,.6);margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.hero-breadcrumb::before{content:'';display:block;width:20px;height:1px;background:rgba(200,149,90,.4)}
-.hero-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(52px,8vw,108px);line-height:.88;letter-spacing:-.04em;color:#FAFAF7;margin-bottom:24px}
-.hero-title em{color:var(--accent);font-style:italic}
-.hero-deck{font-size:19px;color:rgba(250,250,247,.55);max-width:600px;line-height:1.7;font-weight:300;margin-bottom:60px}
-
-/* SNAPSHOT BAR */
-.snapshot-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid rgba(250,250,247,.08);border-bottom:1px solid rgba(250,250,247,.08)}
-.snap-item{padding:24px 28px;border-right:1px solid rgba(250,250,247,.06)}
-.snap-item:last-child{border-right:none}
-.snap-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,149,90,.55);margin-bottom:6px;display:block}
-.snap-val{font-size:14px;font-weight:500;color:rgba(250,250,247,.8);line-height:1.35}
-
-/* OUTCOME BANNER */
-.outcome-banner{background:var(--accent);padding:28px 80px;display:flex;align-items:center;gap:48px;overflow-x:auto}
-.ob-item{flex-shrink:0}
-.ob-num{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.03em;color:var(--ink);display:block}
-.ob-label{font-size:12px;color:rgba(20,18,16,.65);font-weight:400;margin-top:3px;display:block}
-.ob-divider{width:1px;height:52px;background:rgba(20,18,16,.15);flex-shrink:0}
-
-/* BODY */
-.cs-body{max-width:1100px;margin:0 auto;padding:0 80px}
-
-/* SECTION TYPES */
-.cs-section{padding:72px 0;border-bottom:1px solid var(--bl)}
-.cs-section:last-child{border-bottom:none}
-.sec-kicker{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;opacity:.8;display:flex;align-items:center;gap:10px}
-.sec-kicker::before{content:'';display:block;width:24px;height:1px;background:var(--accent);opacity:.5}
-.sec-num{opacity:.4;margin-right:4px}
-.sec-h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-.03em;color:var(--ink);margin-bottom:24px}
-.sec-h2 em{color:var(--accent);font-style:italic}
-.sec-lead{font-size:18px;color:var(--mid);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:32px}
-.sec-body{font-size:16px;color:var(--mid);line-height:1.9;font-weight:300;max-width:640px}
-.sec-body p{margin-bottom:20px}
-.sec-body p:last-child{margin-bottom:0}
-.sec-body strong{color:var(--ink);font-weight:500}
-.sec-body em{font-style:italic;color:var(--muted)}
-
-/* TWO COL */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-
-/* PULL QUOTE */
-.pull-quote{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,2.5vw,30px);line-height:1.4;color:var(--ink);border-left:2px solid var(--accent);padding:12px 28px;margin:40px 0;max-width:680px}
-
-/* CONTEXT CARDS */
-.context-card{background:var(--cream);border-radius:14px;padding:28px;border:1px solid var(--bl)}
-.cc-icon{font-size:22px;margin-bottom:12px;display:block}
-.cc-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px}
-.cc-body{font-size:13px;color:var(--muted);line-height:1.65;font-weight:300}
-
-/* BEFORE / AFTER */
-.ba-table{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bl);border:1px solid var(--bl);border-radius:12px;overflow:hidden;margin:32px 0}
-.ba-header{background:rgba(20,18,16,.04);padding:14px 24px}
-.ba-header-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.ba-row{display:contents}
-.ba-cell{background:var(--white);padding:20px 24px;border-top:1px solid var(--bl)}
-.ba-cell.dim .ba-val{color:var(--muted)}
-.ba-cell.lit .ba-val{color:var(--accent)}
-.ba-metric{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.ba-val{font-family:'Fraunces',serif;font-weight:700;font-size:36px;line-height:1;letter-spacing:-.02em;margin-bottom:4px}
-.ba-note{font-size:12px;color:var(--muted);font-weight:300}
-
-/* STRATEGY DIAGRAM */
-.strategy-diagram{background:var(--ink);border-radius:16px;padding:40px;margin:32px 0;color:var(--white)}
-.sd-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,149,90,.7);margin-bottom:28px}
-.sd-row{display:flex;align-items:center;gap:0;margin-bottom:0}
-.sd-block{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:18px 16px;text-align:center}
-.sd-block-num{font-family:'DM Mono',monospace;font-size:10px;color:rgba(200,149,90,.6);margin-bottom:6px}
-.sd-block-title{font-size:14px;font-weight:500;color:rgba(250,250,247,.85);margin-bottom:4px}
-.sd-block-body{font-size:12px;color:rgba(250,250,247,.4);line-height:1.5}
-.sd-arrow{font-size:18px;color:rgba(200,149,90,.4);padding:0 10px;flex-shrink:0}
-
-/* TEAM STRUCTURE */
-.team-section{}
-.team-org{background:var(--cream);border-radius:16px;padding:36px;border:1px solid var(--bl);margin:28px 0}
-.team-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:16px}
-.team-grid{display:flex;flex-direction:column;gap:12px}
-.team-pod{background:var(--white);border:1px solid var(--bl);border-radius:10px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
-.team-pod.lead{background:rgba(200,149,90,.08);border-color:rgba(200,149,90,.2)}
-.tp-left{}
-.tp-role{font-size:14px;font-weight:500;color:var(--ink)}
-.tp-desc{font-size:12px;color:var(--muted);margin-top:2px;font-weight:300}
-.tp-badge{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);background:rgba(200,149,90,.1);border:1px solid rgba(200,149,90,.2);border-radius:100px;padding:2px 10px}
-.team-principles{display:flex;flex-direction:column;gap:0;margin-top:24px}
-.tp-principle{padding:14px 0;border-bottom:1px solid var(--bl);display:flex;gap:16px;align-items:flex-start}
-.tp-principle:last-child{border-bottom:none}
-.tpp-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);min-width:20px;opacity:.6;padding-top:2px}
-.tpp-text{font-size:14px;color:var(--mid);line-height:1.6;font-weight:300}
-.tpp-text strong{color:var(--ink);font-weight:500}
-
-/* WORKFLOW TIMELINE */
-.workflow-timeline{position:relative;margin:32px 0}
-.wf-line{position:absolute;left:32px;top:0;bottom:0;width:1px;background:var(--bl)}
-.wf-phase{position:relative;padding:0 0 32px 72px}
-.wf-phase:last-child{padding-bottom:0}
-.wf-dot{position:absolute;left:22px;top:4px;width:21px;height:21px;border-radius:50%;background:var(--white);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center}
-.wf-dot-inner{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.wf-phase-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;opacity:.7}
-.wf-phase-title{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px}
-.wf-phase-body{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;max-width:560px}
-.wf-phase-body strong{color:var(--mid);font-weight:500}
-.wf-deliverables{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.wf-del{font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(200,149,90,.08);border:1px solid rgba(200,149,90,.2);color:var(--accent);font-weight:400}
-
-/* DECISION LOG */
-.decision-log{margin:32px 0}
-.dl-item{background:var(--cream);border-radius:12px;padding:24px 28px;margin-bottom:10px;border-left:3px solid var(--bl)}
-.dl-item.key{border-left-color:var(--accent)}
-.dl-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
-.dl-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.dl-badge{font-size:11px;padding:2px 10px;border-radius:100px}
-.dl-badge.strategic{background:rgba(200,149,90,.1);color:var(--accent)}
-.dl-badge.design{background:rgba(91,141,184,.1);color:#5B8DB8}
-.dl-badge.org{background:rgba(74,158,111,.1);color:#4A9E6F}
-.dl-question{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px}
-.dl-decision{font-size:14px;color:var(--mid);line-height:1.65;font-weight:300}
-.dl-decision strong{color:var(--ink);font-weight:500}
-.dl-why{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic}
-
-/* METRICS DASHBOARD */
-.metrics-dash{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bl);border:1px solid var(--bl);border-radius:14px;overflow:hidden;margin:32px 0}
-.md-cell{background:var(--white);padding:32px 28px}
-.md-cell.dark{background:var(--ink)}
-.md-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
-.md-cell.dark .md-label{color:rgba(250,250,247,.3)}
-.md-num{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(36px,5vw,60px);line-height:1;letter-spacing:-.03em;color:var(--accent);display:block;margin-bottom:6px}
-.md-cell.dark .md-num{color:var(--accent)}
-.md-context{font-size:13px;color:var(--muted);line-height:1.5;font-weight:300}
-.md-cell.dark .md-context{color:rgba(250,250,247,.4)}
-.md-trend{font-size:12px;color:#4A9E6F;margin-top:6px;font-weight:500}
-
-/* LESSONS */
-.lessons-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
-.lesson-card{background:var(--cream);border-radius:12px;padding:24px;border:1px solid var(--bl)}
-.lesson-icon{font-size:20px;display:block;margin-bottom:10px}
-.lesson-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:8px}
-.lesson-body{font-size:13px;color:var(--muted);line-height:1.65;font-weight:300}
-
-/* WHAT I DID DIFFERENTLY */
-.diff-section{background:var(--ink);border-radius:16px;padding:40px;margin:32px 0}
-.diff-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,149,90,.7);margin-bottom:24px}
-.diff-items{display:flex;flex-direction:column;gap:0}
-.diff-item{padding:18px 0;border-bottom:1px solid rgba(250,250,247,.07);display:flex;gap:20px;align-items:flex-start}
-.diff-item:last-child{border-bottom:none}
-.diff-ico{font-size:18px;flex-shrink:0;padding-top:2px}
-.diff-text{font-size:15px;color:rgba(250,250,247,.75);line-height:1.6;font-weight:300}
-.diff-text strong{color:var(--white);font-weight:500}
-
-/* VISUAL PLACEHOLDER */
-.visual-ph{background:var(--cream);border:1.5px dashed var(--border);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);margin:32px 0;text-align:center;padding:40px}
-.vph-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
-.vph-note{font-size:13px;font-weight:300;max-width:300px}
-
-/* CASE NAV */
-.case-nav{display:flex;justify-content:space-between;align-items:center;padding:48px 80px;border-top:1px solid var(--bl);background:var(--cream)}
-.cn-link{font-size:14px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;cursor:pointer}
-.cn-link:hover{color:var(--orange)}
-.cn-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
-.cn-title{font-size:15px;color:var(--ink);font-weight:500}
-
-/* FOOTER */
-footer{padding:48px 80px;background:var(--ink);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
-.foot-brand{font-family:'Fraunces',serif;font-weight:700;font-style:italic;font-size:clamp(22px,4vw,52px);letter-spacing:-.03em;color:rgba(250,250,247,.07);line-height:1}
-.foot-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.foot-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:flex-end}
-.foot-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,247,.3);text-decoration:none;transition:color .2s}
-.foot-links a:hover{color:var(--orange)}
-.foot-copy{font-family:'DM Mono',monospace;font-size:10px;color:rgba(250,250,247,.15);letter-spacing:.08em;text-transform:uppercase;text-align:right}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
-.reveal.vis{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-  .bts-grid{grid-template-columns:1fr 1fr;}
-  .bba-grid{grid-template-columns:1fr;}
-  .brand-phone-frame{max-width:260px;}
-}
-@media(max-width:600px){
-  .bts-grid{grid-template-columns:1fr;}
-}
-@media(max-width:900px){
-  .hero-content,.cs-body,.case-nav,footer,.outcome-banner{padding-left:24px;padding-right:24px}
-  .two-col,.three-col,.lessons-grid,.metrics-dash{grid-template-columns:1fr}
-  .snapshot-bar{grid-template-columns:1fr 1fr}
-  .ba-table{grid-template-columns:1fr}
-  .sd-row{flex-direction:column}.sd-arrow{transform:rotate(90deg)}
-}
-
-/* ── BRAND STORY SECTION ── */
-.brand-phone-frame{
-  background:var(--ink);border-radius:36px;padding:16px;
-  box-shadow:0 24px 64px rgba(20,18,16,.18),0 0 0 1px rgba(20,18,16,.08);
-  max-width:320px;margin:0 auto;
-}
-.bpf-notch{width:100px;height:6px;background:rgba(250,250,247,.08);border-radius:100px;margin:0 auto 12px;}
-.bpf-screen{background:#F8FBF8;border-radius:24px;padding:16px;overflow:hidden;}
-.bpf-status{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;font-weight:600;color:var(--ink);}
-.bpf-icons{display:flex;gap:4px;font-size:10px;color:var(--ink);}
-.bpf-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.bpf-logo{display:flex;align-items:center;gap:8px;}
-.bpf-logo-mark{width:26px;height:26px;background:#1DB954;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:900;}
-.bpf-welcome{font-size:13px;color:var(--ink);font-weight:400;}
-.bpf-welcome strong{color:#1DB954;}
-.bpf-bookmark{font-size:16px;}
-.bpf-hero-text{font-size:17px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:16px;}
-.bpf-rate{color:#1DB954;}
-.bpf-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.bpf-feat{background:rgba(29,185,84,.08);border-radius:10px;padding:10px;text-align:center;}
-.bpf-feat-icon{font-size:18px;margin-bottom:4px;}
-.bpf-feat-label{font-size:9px;color:var(--mid);line-height:1.3;font-weight:400;}
-.bpf-kyc-card{background:#fff;border-radius:10px;padding:12px;border:1px solid rgba(20,18,16,.08);}
-.bpf-kyc-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px;}
-.bpf-kyc-sub{font-size:10px;color:var(--muted);margin-bottom:10px;}
-.bpf-kyc-btn{background:#1DB954;color:#fff;border-radius:6px;padding:8px 14px;font-size:11px;font-weight:600;text-align:center;}
-.bpf-caption{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:14px;}
-
-/* TRUST SIGNALS GRID */
-.brand-trust-section{margin:56px 0 0;}
-.bts-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:.7;}
-.bts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.bts-item{background:var(--cream);border-radius:12px;padding:24px;border:1px solid var(--bl);}
-.bts-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:8px;opacity:.6;}
-.bts-signal{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px;line-height:1.3;}
-.bts-what{font-size:11px;color:var(--accent);margin-bottom:10px;font-weight:400;letter-spacing:.04em;}
-.bts-why{font-size:13px;color:var(--muted);line-height:1.65;font-weight:300;}
-
-/* PAYOUT MODAL MOCKUP */
-.payout-modal-frame{
-  background:#fff;border-radius:24px 24px 0 0;
-  padding:20px 20px 28px;
-  box-shadow:0 -4px 32px rgba(20,18,16,.1);
-  border:1px solid rgba(20,18,16,.06);
-  position:relative;
-}
-.pmf-handle{width:48px;height:4px;background:rgba(20,18,16,.12);border-radius:100px;margin:0 auto 20px;}
-.pmf-logo{margin-bottom:16px;}
-.pmf-logo-u{
-  width:52px;height:52px;border-radius:12px;
-  background:#E85D26;color:#fff;
-  font-size:24px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cabinet Grotesk',sans-serif;
-}
-.pmf-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3;}
-.pmf-sub{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:20px;font-weight:300;}
-.pmf-table-label{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px;}
-.pmf-table{background:#F5F6FA;border-radius:10px;padding:4px 0;margin-bottom:20px;}
-.pmf-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(20,18,16,.04);}
-.pmf-row:last-child{border-bottom:none;}
-.pmf-row.pmf-bold{padding-top:12px;}
-.pmf-key{font-size:13px;color:var(--mid);}
-.pmf-val{font-size:14px;font-weight:500;color:var(--ink);}
-.pmf-val.pmf-dim{color:var(--muted);}
-.pmf-row.pmf-bold .pmf-key,.pmf-row.pmf-bold .pmf-val{font-weight:600;color:var(--ink);}
-.pmf-btn-fill{background:#1DB954;color:#fff;border-radius:10px;padding:14px;text-align:center;font-size:15px;font-weight:600;margin-bottom:10px;}
-.pmf-btn-line{background:#fff;color:var(--ink);border-radius:10px;padding:14px;text-align:center;font-size:15px;font-weight:400;border:1px solid rgba(20,18,16,.1);}
-.pmf-caption{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:14px;}
-
-/* BEFORE / AFTER BRAND TABLE */
-.brand-ba-section{margin:56px 0 0;}
-.bba-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:.7;}
-.bba-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bl);border:1px solid var(--bl);border-radius:12px;overflow:hidden;}
-.bba-col{background:var(--white);}
-.bba-col-header{padding:16px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--bl);}
-.bba-before .bba-col-header{color:var(--muted);background:rgba(20,18,16,.02);}
-.bba-after .bba-col-header{color:var(--accent);background:rgba(200,149,90,.04);}
-.bba-item{padding:16px 24px;border-bottom:1px solid var(--bl);}
-.bba-item:last-child{border-bottom:none;}
-.bba-item-label{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
-.bba-item-val{font-size:14px;color:var(--mid);line-height:1.55;font-weight:300;}
-.bba-after .bba-item-val{color:var(--ink);}
-
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-brand">
-    <div class="nav-mark">S</div>
-    <div class="nav-name">The <span>Optimistic</span> Designer</div>
-  </a>
-  <div class="nav-right">
-    <a href="index.html" class="nav-back">All work</a>
-    <a href="mailto:subintheuxdesigner@gmail.com" style="background:var(--orange);color:var(--white);padding:8px 20px;border-radius:100px;font-size:13px;font-weight:500;">Let's talk</a>
+<nav class="site-nav"><div class="wrap">
+  <a href="index.html" class="brand">The <span>Optimistic</span> Designer</a>
+  <div class="nav-links">
+    <a href="work.html" class="active">Work</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html">Let's talk</a>
   </div>
-</nav>
+</div></nav>
 
-<!-- ── HERO ── -->
-<section class="cs-hero">
-  <div class="hero-bg-glow"></div>
-  <div class="hero-content">
-    <div class="hero-breadcrumb">Case study · Aspero · Yubi · 2022–2024</div>
-    <h1 class="hero-title">From ₹18Cr loss<br>to <em>₹860M revenue.</em></h1>
-    <p class="hero-deck">How design strategy — brand, UX, and communication architecture working together — turned a failing retail bond platform into Yubi's highest-growth revenue contributor. ₹18Cr in losses. 18 months. ₹860M revenue. A turnaround story about what trust actually looks like when you design for it deliberately.</p>
+<header class="page"><div class="wrap">
+  <div class="kicker">Case study · Aspero · Yubi · 2022–2024</div>
+  <h1>From ₹18Cr loss to <em>₹860M revenue.</em></h1>
+  <p class="lead">How design strategy (brand, UX, and communication architecture working together) turned a failing retail bond platform into Yubi's highest-growth revenue contributor. ₹18Cr in losses. 18 months. ₹860M revenue. A turnaround story about what trust actually looks like when you design for it deliberately.</p>
+  <dl class="rows" style="margin-top:32px">
+    <div class="row"><dt>My role</dt><dd>Director of Design · Design strategy lead</dd></div>
+    <div class="row"><dt>Team</dt><dd>3 designers · 1 researcher · 1 content strategist</dd></div>
+    <div class="row"><dt>Stakeholders</dt><dd>CEO, CFO, CPO, Marketing, Engineering</dd></div>
+    <div class="row"><dt>Timeline</dt><dd>18 months · Q3 2022 to Q1 2024</dd></div>
+    <div class="row"><dt>Scope</dt><dd>Strategy · Brand · UX · Content · Research · DesignOps</dd></div>
+    <div class="row"><dt>Outcomes</dt><dd>₹860M revenue · 32% of Yubi total · 20K+ active investors (from 300) · 18 months to positive ROI · KYC steps 11→5</dd></div>
+  </dl>
+</div></header>
+
+<main>
+<section><div class="wrap">
+  <div class="section-label">01 · Business situation</div>
+  <h2>The honest state of Aspero when I arrived.</h2>
+  <p class="lead">Aspero was Yubi's retail bond investment platform. On paper, it had every reason to work. In reality, it was losing money, losing users, and losing faith internally.</p>
+  <p>When I joined Yubi in 2022, Aspero had been live for over a year. The product existed in a category with real market demand: retail bond investing was an underserved space in India. The business case was there. The team was capable. But the numbers told a different story: under 300 active investors, ₹18 crore in losses, and a product that most internal stakeholders had quietly written off.</p>
+  <p>The deeper problem wasn't acquisition. It was that Aspero couldn't hold users once they arrived. First-time retail bond investors, people who'd never bought a financial instrument beyond an FD, were landing on a platform that assumed they already knew what they were doing. The onboarding asked for information without explaining why. The bond listings displayed data without explaining value. The brand communicated complexity instead of calm.</p>
+  <p><strong>This wasn't a feature problem. It was a trust problem, and trust is a design problem.</strong></p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">02 · Design strategy</div>
+  <h2>The diagnosis came before the <em>design.</em></h2>
+  <p class="lead">Most failing products get redesigned when what they need is re-thought. Before touching a single screen, I spent four weeks on diagnosis. The findings changed everything about how we approached the solution.</p>
+  <p>The audit was structured around three questions: What is the product actually communicating right now? What do users need to feel before they'll invest? What is the gap between those two things?</p>
+  <p>Session recordings, user interviews, analytics deep-dives, and a full heuristic audit of every screen. What I found was that Aspero had been designed from the inside out: built for people who already understood bonds, not for people deciding whether to trust the platform with their money.</p>
+  <dl class="rows">
+    <div class="row"><dt>Diagnosis</dt><dd><span class="t">Trust deficit.</span> Platform communicates complexity; users need to feel safe.</dd></div>
+    <div class="row"><dt>Insight</dt><dd><span class="t">Emotion before action.</span> Users won't invest until the product earns confidence, not just provides information.</dd></div>
+    <div class="row"><dt>North star</dt><dd><span class="t">Perform trust.</span> Every interaction should communicate calm, clarity, and competence.</dd></div>
+    <div class="row"><dt>Measure</dt><dd><span class="t">Investor activation.</span> First investment placed; NPS; retention at 30/60/90 days.</dd></div>
+  </dl>
+  <blockquote>"We didn't have a design problem. We had a communication problem, and the design was doing the communicating. We had to change what it said before we changed how it looked."</blockquote>
+  <p>The north star question I gave the team: <strong>"Why would a first-time retail bond investor trust this platform enough to put their savings in?"</strong> Every design decision for the next 18 months was filtered through that question.</p>
+  <p>The strategic bets we made: Rebuild onboarding as a guided story, not a form. Restructure bond listings to communicate value before data. Redesign the brand to perform calm and confidence. Reduce cognitive load at every step. Make the product feel like it was built for the user, not for the regulator.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">03 · Brand and design language</div>
+  <h2>Every pixel was performing <em>trust.</em></h2>
+  <p class="lead">The Aspero rebrand wasn't a visual exercise. It was a communication strategy. Every design decision (colour, copy, hierarchy, motion) was asking one question: does this make a first-time investor feel safe?</p>
+  <p>When I inherited Aspero, the brand was functionally invisible. It looked like every other fintech product: cool blues, angular typography, data-forward layouts that told the user what was available rather than how to feel about it. Fine for an institutional audience. Alienating for a first-time retail investor who'd never bought a bond in their life.</p>
+  <p>The first brand decision was colour. <strong>We chose green, deliberately, and for reasons that go beyond aesthetics.</strong> Green carries a specific psychological load in the context of Indian retail investing: it is the colour of growth, of positive returns, of money moving in the right direction. It's also the colour most Indians associate with financial safety. In a category defined by anxiety, green was a deliberate de-escalation.</p>
+  <p>The second decision was what to lead with. The hero line, <em>"Invest &amp; earn upto 15.00% returns"</em>, puts the outcome first. Not the instrument, not the mechanism, not a regulatory label. The return. Because that's the question every potential investor is actually asking. We answered it before they had to ask.</p>
+
+  <h3 style="margin-top:32px">The trust architecture: six deliberate signals on a single screen</h3>
+  <div class="num-item">
+    <span class="num">01</span>
+    <h3>Green brand</h3>
+    <p class="meta">Colour psychology</p>
+    <p>Green means growth, safety, positive returns. The dominant colour in the Indian financial experience of "things going right". Immediately communicates alignment with the user's goal.</p>
   </div>
-  <div class="snapshot-bar">
-    <div class="snap-item"><span class="snap-label">My role</span><span class="snap-val">Director of Design<br>Design strategy lead</span></div>
-    <div class="snap-item"><span class="snap-label">Team</span><span class="snap-val">3 designers<br>1 researcher · 1 content strategist</span></div>
-    <div class="snap-item"><span class="snap-label">Stakeholders</span><span class="snap-val">CEO, CFO, CPO,<br>Marketing, Engineering</span></div>
-    <div class="snap-item"><span class="snap-label">Timeline</span><span class="snap-val">18 months<br>Q3 2022 – Q1 2024</span></div>
-    <div class="snap-item"><span class="snap-label">Scope</span><span class="snap-val">Strategy · Brand · UX ·<br>Content · Research · DesignOps</span></div>
+  <div class="num-item">
+    <span class="num">02</span>
+    <h3>"Invest &amp; earn upto 15.00% returns"</h3>
+    <p class="meta">Outcome-first copy</p>
+    <p>The hero answers the investor's primary question before they ask it. Not "Explore bonds", which assumes familiarity. The return rate is the hook for someone who doesn't yet know what a bond is.</p>
   </div>
-</section>
+  <div class="num-item">
+    <span class="num">03</span>
+    <h3>"2 minute paperless KYC"</h3>
+    <p class="meta">Friction reduction promise</p>
+    <p>KYC anxiety was the number one drop-off driver we found in research. Surfacing the "2 minute" promise above the fold directly addresses the fear before it can cause abandonment.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">04</span>
+    <h3>"100% SEBI Compliant"</h3>
+    <p class="meta">Authority trust signal</p>
+    <p>SEBI is the regulatory authority Indian retail investors have been conditioned to look for. This is borrowed credibility, and it works. We placed it at icon level, persistent, not buried in a footer.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">05</span>
+    <h3>AAA bond ratings displayed prominently</h3>
+    <p class="meta">Quality signal</p>
+    <p>First-time investors don't understand bond yields. They understand ratings. Showing AAA-rated issuers (Shriram Finance, Mas Financial, Vivriti Capital) in the browse experience communicates safety through the language of quality, not complexity.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">06</span>
+    <h3>"Learn with Aspero" video section</h3>
+    <p class="meta">Education as trust</p>
+    <p>A platform that teaches you is a platform that respects you. The education section positions Aspero as a knowledgeable friend rather than just a marketplace. Users who understand the product invest more, and stay.</p>
+  </div>
 
-<!-- OUTCOME BANNER -->
-<div class="outcome-banner">
-  <div class="ob-item"><span class="ob-num">₹860M</span><span class="ob-label">Revenue generated</span></div>
-  <div class="ob-divider"></div>
-  <div class="ob-item"><span class="ob-num">32%</span><span class="ob-label">Of Yubi total revenue</span></div>
-  <div class="ob-divider"></div>
-  <div class="ob-item"><span class="ob-num">20K+</span><span class="ob-label">Active investors</span></div>
-  <div class="ob-divider"></div>
-  <div class="ob-item"><span class="ob-num">300</span><span class="ob-label">Investors when we started</span></div>
-  <div class="ob-divider"></div>
-  <div class="ob-item"><span class="ob-num">18mo</span><span class="ob-label">To positive ROI</span></div>
-  <div class="ob-divider"></div>
-  <div class="ob-item"><span class="ob-num">KYC –57%</span><span class="ob-label">Steps reduced (11→5)</span></div>
-</div>
+  <blockquote>"We weren't just designing an app. We were designing what trust looks like in a financial product that most of its users had never used before."</blockquote>
 
-<!-- ── BODY ── -->
-<main class="cs-body">
+  <h3>The payout confirmation: the most important screen nobody talks about</h3>
+  <p>A first-time investor's greatest anxiety isn't whether the platform works while they're investing. It's whether it works when they need their money back. The payout confirmation modal exists entirely to dissolve that anxiety: transparently, at the exact moment it matters most.</p>
+  <p>The design decisions here are deliberate: the Yubi logo appears (institutional credibility: this is backed by Yubi, a $140M ecosystem), the breakdown is line by line (Principal, TDS, Receivable: no black box), and the primary CTA is confirmatory ("Yes, I have received") not dismissive. <strong>The product is asking for closure, not just confirmation. That's a trust relationship, not a transaction.</strong></p>
+  <p>This modal exists because we discovered in research that investors who hadn't received payout confirmations were generating support tickets and, more critically, not reinvesting. Closing the payout loop through the app increased reinvestment rates and materially reduced support volume.</p>
 
-  <!-- 01 BUSINESS SITUATION -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">01</span>Business situation</div>
-    <h2 class="sec-h2">The honest state<br>of Aspero when<br>I arrived.</h2>
-    <p class="sec-lead">Aspero was Yubi's retail bond investment platform. On paper, it had every reason to work. In reality, it was losing money, losing users, and losing faith internally.</p>
+  <h3>Brand language, before and after</h3>
+  <dl class="rows">
+    <div class="row"><dt>Hero copy</dt><dd>Before: "Explore bonds and fixed deposits" · After: <span class="t">"Invest &amp; earn upto 15.00% returns"</span>, outcome first, always</dd></div>
+    <div class="row"><dt>KYC</dt><dd>Before: "Complete your KYC to start investing", no timeline, no promise · After: <span class="t">"2 minute paperless KYC"</span> above the fold. Anxiety dissolved before it starts.</dd></div>
+    <div class="row"><dt>Bond listings</dt><dd>Before: data tables (ISIN, coupon, face value, rating), all data, no context · After: <span class="t">YTM% prominent, issuer name, rating, minimum investment.</span> Value first, data second.</dd></div>
+    <div class="row"><dt>Trust signals</dt><dd>Before: SEBI compliance buried in footer, no education, no issuers explained · After: <span class="t">SEBI compliant at icon level. Expert callback. "Learn with Aspero" education. AAA ratings visible in browse.</span></dd></div>
+    <div class="row"><dt>Post-investment</dt><dd>Before: nothing. No confirmation of payout receipt, no portfolio reassurance · After: <span class="t">payout confirmation modal</span> with transparent breakup, two CTAs, Yubi brand anchoring trust.</dd></div>
+  </dl>
+</div></section>
 
-    <div class="two-col">
-      <div class="sec-body">
-        <p>When I joined Yubi in 2022, Aspero had been live for over a year. The product existed in a category with real market demand — retail bond investing was an underserved space in India. The business case was there. The team was capable. But the numbers told a different story: under 300 active investors, ₹18 crore in losses, and a product that most internal stakeholders had quietly written off.</p>
-        <p>The deeper problem wasn't acquisition. It was that Aspero couldn't hold users once they arrived. First-time retail bond investors — people who'd never bought a financial instrument beyond an FD — were landing on a platform that assumed they already knew what they were doing. The onboarding asked for information without explaining why. The bond listings displayed data without explaining value. The brand communicated complexity instead of calm.</p>
-        <p><strong>This wasn't a feature problem. It was a trust problem — and trust is a design problem.</strong></p>
-      </div>
-      <div>
-        <div class="three-col" style="grid-template-columns:1fr;gap:12px;">
-          <div class="context-card">
-            <span class="cc-icon">📉</span>
-            <div class="cc-title">The business context</div>
-            <div class="cc-body">₹18Cr in losses. Under 300 active investors. Platform had been live 12+ months with no meaningful growth. Internal morale around Aspero was low.</div>
-          </div>
-          <div class="context-card">
-            <span class="cc-icon">👤</span>
-            <div class="cc-title">The user problem</div>
-            <div class="cc-body">First-time retail investors. No prior bond experience. The platform assumed financial literacy it had no right to assume. Drop-offs were happening at every point of friction.</div>
-          </div>
-          <div class="context-card">
-            <span class="cc-icon">🏢</span>
-            <div class="cc-title">The market opportunity</div>
-            <div class="cc-body">India's retail bond market was genuinely underserved. The problem wasn't demand — it was that Aspero couldn't convert demand into trust.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section><div class="wrap">
+  <div class="section-label">04 · Team and organisation</div>
+  <h2>How I structured the team for this <em>problem.</em></h2>
+  <p class="lead">The team structure was a strategic decision, not a staffing one. I built it around the problem, not around headcount availability.</p>
+  <dl class="rows">
+    <div class="row"><dt>Lead</dt><dd><span class="t">Subin Sundaresan</span> · Director of Design: strategy, stakeholder management, final call on all design decisions</dd></div>
+    <div class="row"><dt>Core</dt><dd><span class="t">Lead Product Designer × 1</span> · Owned onboarding flows, trust UX patterns, prototype-to-test cycles</dd></div>
+    <div class="row"><dt>Core</dt><dd><span class="t">Visual / Brand Designer × 1</span> · Brand expression, bond listing design, marketing collateral alignment</dd></div>
+    <div class="row"><dt>Core</dt><dd><span class="t">UX Researcher × 1</span> · User interviews, usability testing, analytics interpretation</dd></div>
+    <div class="row"><dt>Shared</dt><dd><span class="t">Content Strategist × 1</span> · UX writing, error messaging, information hierarchy across flows</dd></div>
+  </dl>
+  <p>I made three deliberate team decisions that shaped the outcome:</p>
+  <div class="num-item">
+    <span class="num">01</span>
+    <p><strong>Researcher embedded from day one</strong>, not brought in to validate decisions already made. We had a researcher running studies before we had designs to test. This changed the quality of our strategic decisions significantly.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">02</span>
+    <p><strong>Content strategy as a design function.</strong> UX writing on Aspero wasn't a polish step. The words were doing structural work: building trust, reducing anxiety, explaining value. I treated the content strategist as a core design voice, not a support role.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">03</span>
+    <p><strong>I stayed in the work.</strong> At Director level, there's pressure to manage up and leave execution to the team. On Aspero, I made a deliberate choice to stay close to the design decisions. The stakes were too high for the typical "approve the mockup" model.</p>
+  </div>
+</div></section>
 
-  <!-- 02 STRATEGY -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">02</span>Design strategy</div>
-    <h2 class="sec-h2">The diagnosis came<br>before the <em>design.</em></h2>
-    <p class="sec-lead">Most failing products get redesigned when what they need is re-thought. Before touching a single screen, I spent four weeks on diagnosis. The findings changed everything about how we approached the solution.</p>
+<section><div class="wrap">
+  <div class="section-label">05 · Plan and workflow</div>
+  <h2>How 18 months of work was <em>structured.</em></h2>
+  <p class="lead">The work ran in three phases. Each phase had a clear goal, a defined team structure, and measurable exit criteria. We didn't move to the next phase until the current one had landed.</p>
+  <div class="num-item">
+    <span class="num">Phase 1 · Weeks 1–6</span>
+    <h3>Diagnostic and strategic alignment</h3>
+    <p>Full product audit. 12 user interviews with first-time retail investors. Analytics deep-dive. Stakeholder workshops with CEO, CFO, and CPO to align on the north star and what success would look like in 6 months. <strong>Key output: a shared understanding that this was a trust problem, not a feature gap.</strong> This was the most important 6 weeks. Getting alignment on diagnosis before solutions prevented scope creep and political friction later.</p>
+    <p class="meta">User research synthesis · Design audit report · North star definition · Stakeholder alignment deck · Success metrics framework</p>
+  </div>
+  <div class="num-item">
+    <span class="num">Phase 2 · Weeks 7–20</span>
+    <h3>Onboarding and trust architecture</h3>
+    <p>The onboarding flow was rebuilt from scratch. We reduced KYC from 11 steps to 5. Every step was redesigned with a single principle: the product should feel like a knowledgeable friend helping you invest, not a regulatory form you're filling in. We ran 4 rounds of usability testing. I personally reviewed every screen against the north star question before any handoff. <strong>The brand refresh ran in parallel: we needed the visual language to carry the same trust signals as the UX.</strong></p>
+    <p class="meta">New onboarding flow · KYC redesign (11→5 steps) · Brand refresh · Usability testing ×4 · Design system tokens for Aspero</p>
+  </div>
+  <div class="num-item">
+    <span class="num">Phase 3 · Weeks 21–44</span>
+    <h3>Bond listings, discovery, and retention</h3>
+    <p>The listing pages were the second major failure point. Users who made it through onboarding were dropping off when they hit the bond marketplace. We rebuilt the bond card system to lead with value (yield, safety rating, tenure) before data. We introduced contextual education: small, in-context explanations of financial concepts, never intrusive. Portfolio view and post-investment communication were redesigned to reinforce the feeling that their money was being looked after. <strong>The retention numbers shifted significantly in Q3 2023.</strong></p>
+    <p class="meta">Bond listing system · Contextual education layer · Portfolio view · Post-investment comms · A/B testing framework</p>
+  </div>
+</div></section>
 
-    <div class="sec-body" style="margin-bottom:32px;">
-      <p>The audit was structured around three questions: What is the product actually communicating right now? What do users need to feel before they'll invest? What is the gap between those two things?</p>
-      <p>Session recordings, user interviews, analytics deep-dives, and a full heuristic audit of every screen. What I found was that Aspero had been designed from the inside out — built for people who already understood bonds, not for people deciding whether to trust the platform with their money.</p>
-    </div>
+<section><div class="wrap">
+  <div class="section-label">06 · Key decisions</div>
+  <h2>The calls that defined the <em>outcome.</em></h2>
+  <p class="lead">Every project has decisions that shape the result. These are the ones that mattered, including the ones where I pushed back against what the business wanted.</p>
+  <div class="num-item">
+    <span class="num">Decision 01 · Strategic</span>
+    <h3>Should we launch new features or fix the existing experience?</h3>
+    <p>The business pressure was to add features: more bond types, comparison tools, market data feeds. I pushed back. <strong>The user research was unambiguous: the existing experience was broken before new features would help anyone.</strong> We negotiated a 6-week freeze on new feature development to fix the foundation. This was the hardest conversation I had with the CPO. I won it with data, not opinion.</p>
+    <p class="meta">Why it mattered: if we'd launched features on a broken experience, we'd have accelerated the wrong thing.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">Decision 02 · Design</span>
+    <h3>How much financial education belongs in the product?</h3>
+    <p>The marketing team wanted extensive education sections: explainer articles, video content, a full learning centre. My position: <strong>education at the point of decision, nowhere else.</strong> Contextual tooltips, in-card explanations, step-by-step guides that appear only when the user is about to do something they don't understand. Education as a destination is ignored. Education as ambient context gets used.</p>
+    <p class="meta">Why it mattered: users don't read. They do. We had to meet them in the doing, not the reading.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">Decision 03 · Brand</span>
+    <h3>Should Aspero feel like a Yubi product or a standalone brand?</h3>
+    <p>Aspero's target user (the first-time retail investor) had a different mental model than Yubi's core institutional users. I argued for a distinct brand expression: <strong>same Yubi values, but a warmer, more human visual language</strong> that wouldn't feel institutional and cold to a retail audience. The Aspero brand was a sub-expression of Yubi, not a copy of it.</p>
+    <p class="meta">Why it mattered: trust signals are context-dependent. What builds trust with a CFO doesn't build trust with a first-time investor.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">Decision 04 · Process</span>
+    <h3>How do we prevent engineering from shipping ahead of design completion?</h3>
+    <p>We established a design sign-off protocol for Aspero: <strong>no screen goes to development without a completed design review against the north star framework.</strong> This wasn't popular with the engineering team in the short term. In practice, it prevented regression and saved us from shipping inconsistent experiences. The engineering lead eventually became one of its strongest advocates.</p>
+    <p class="meta">Why it mattered: the trust architecture breaks if any screen breaks it. Consistency isn't optional when trust is the product.</p>
+  </div>
+</div></section>
 
-    <div class="strategy-diagram reveal">
-      <div class="sd-title">The strategic framework — from diagnosis to north star</div>
-      <div class="sd-row">
-        <div class="sd-block">
-          <div class="sd-block-num">Diagnosis</div>
-          <div class="sd-block-title">Trust deficit</div>
-          <div class="sd-block-body">Platform communicates complexity; users need to feel safe</div>
-        </div>
-        <div class="sd-arrow">→</div>
-        <div class="sd-block">
-          <div class="sd-block-num">Insight</div>
-          <div class="sd-block-title">Emotion before action</div>
-          <div class="sd-block-body">Users won't invest until the product earns confidence, not just provides information</div>
-        </div>
-        <div class="sd-arrow">→</div>
-        <div class="sd-block">
-          <div class="sd-block-num">North star</div>
-          <div class="sd-block-title">Perform trust</div>
-          <div class="sd-block-body">Every interaction should communicate calm, clarity, and competence</div>
-        </div>
-        <div class="sd-arrow">→</div>
-        <div class="sd-block">
-          <div class="sd-block-num">Measure</div>
-          <div class="sd-block-title">Investor activation</div>
-          <div class="sd-block-body">First investment placed; NPS; retention at 30/60/90 days</div>
-        </div>
-      </div>
-    </div>
+<section><div class="wrap">
+  <div class="section-label">07 · Business impact</div>
+  <h2>What the numbers actually <em>mean.</em></h2>
+  <p class="lead">The Aspero results are extraordinary by any measure. But the numbers I care about most aren't the revenue ones. They're the leading indicators that told us the strategy was working before the revenue showed up.</p>
+  <dl class="rows">
+    <div class="row"><dt><span class="big">₹860M</span></dt><dd><span class="t">Revenue generated.</span> 32% of Yubi's total revenue. A product that was losing ₹18Cr is now the portfolio's highest-growth contributor. From ₹18Cr loss in 18 months.</dd></div>
+    <div class="row"><dt><span class="big">20,000+</span></dt><dd><span class="t">Active investors on platform.</span> We started with under 300. The growth curve accelerated in Q3 2023, exactly when Phase 3 (bond listings redesign) launched. 66× growth from baseline.</dd></div>
+    <div class="row"><dt><span class="big">11 → 5</span></dt><dd><span class="t">KYC steps reduced.</span> Drop-off in onboarding fell significantly. More users completing the flow meant more users reaching the bond marketplace. 57% fewer steps.</dd></div>
+    <div class="row"><dt><span class="big">18mo</span></dt><dd><span class="t">From start of redesign to positive ROI.</span> The business case I made to the CPO was a 24-month payback. We hit it in 18. Design velocity and research rigour together compressed the timeline. 6 months ahead of projection.</dd></div>
+  </dl>
+  <p>The revenue number is the headline. But the signal I was watching most closely during the work was something simpler: <strong>were users completing their first investment?</strong> That single action, from landing to first bond purchased, was our design's ultimate test. Every decision we made was pointed at that moment.</p>
+  <p>The other signal that mattered was retention at 30 days. Acquisition is a marketing problem. Retention is a design problem. When we saw 30-day retention improve, we knew the post-onboarding experience was working: the portfolio view, the post-investment communication, the ongoing relationship the product was building with investors.</p>
+</div></section>
 
-    <div class="pull-quote reveal">"We didn't have a design problem. We had a communication problem — and the design was doing the communicating. We had to change what it said before we changed how it looked."</div>
+<section><div class="wrap">
+  <div class="section-label">08 · What I learned</div>
+  <h2>The honest <em>retrospective.</em></h2>
+  <p class="lead">Aspero was the project that taught me the most about the gap between good design thinking and good design leadership. These are the things I'd do the same, and the things I'd do differently.</p>
+  <div class="num-item">
+    <span class="num">What worked</span>
+    <h3>Diagnostic before design</h3>
+    <p>The 6-week freeze on design output at the start, spending time on diagnosis and alignment, paid back tenfold. Every hour spent on research and stakeholder alignment before designing saved multiple hours of design rework and political friction later.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">What worked</span>
+    <h3>Content as a core design function</h3>
+    <p>Embedding a content strategist from phase one changed the quality of the product. Financial products communicate through language as much as layout. The words were doing structural work, and treating them as a design decision rather than a copy task made a measurable difference.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">What I'd do differently</span>
+    <h3>Earlier A/B testing infrastructure</h3>
+    <p>We built A/B testing capability in Phase 3. It should have been in place from Phase 2. Earlier quantitative data would have given us more confidence in some of the bigger UX bets we were making on instinct and qualitative research alone.</p>
+  </div>
+  <div class="num-item">
+    <span class="num">What I'd do differently</span>
+    <h3>Faster brand decision</h3>
+    <p>The brand direction debate with marketing took too long. In hindsight, I should have pushed for a decision in week 2, not week 8. The brand underpins everything: every week of ambiguity was a week of design decisions made on uncertain foundations.</p>
+  </div>
 
-    <div class="sec-body reveal">
-      <p>The north star question I gave the team: <strong>"Why would a first-time retail bond investor trust this platform enough to put their savings in?"</strong> Every design decision for the next 18 months was filtered through that question.</p>
-      <p>The strategic bets we made: Rebuild onboarding as a guided story, not a form. Restructure bond listings to communicate value before data. Redesign the brand to perform calm and confidence. Reduce cognitive load at every step. Make the product feel like it was built for the user, not for the regulator.</p>
-    </div>
-  </section>
+  <h3 style="margin-top:32px">What wouldn't have happened without this design leadership approach</h3>
+  <ul>
+    <li><strong>The feature freeze.</strong> Without a design leader willing to push back against scope expansion, we'd have shipped new features on a broken foundation and made the problem worse.</li>
+    <li><strong>The trust architecture.</strong> Framing the problem as a trust deficit, not a UX problem or a feature gap, changed every subsequent decision. That reframing came from design leadership, not from product or engineering.</li>
+    <li><strong>The team structure.</strong> Researcher and content strategist embedded from day one wasn't the default. I made the case to the CPO that good research and good writing were not optional on a financial trust product. That argument changed the outcome.</li>
+    <li><strong>The north star question.</strong> "Why would a first-time retail bond investor trust this platform with their savings?" That question, and the discipline to filter every decision through it, kept 18 months of work aligned without constant re-explanation.</li>
+  </ul>
+</div></section>
 
-  <!-- 03 TEAM -->
-  <!-- BRANDING STORY SECTION — inserted after Strategy, before Team -->
-
-  <!-- 03 · BRAND STORY -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">03</span>Brand &amp; design language</div>
-    <h2 class="sec-h2">Every pixel was<br>performing <em>trust.</em></h2>
-    <p class="sec-lead">The Aspero rebrand wasn't a visual exercise. It was a communication strategy. Every design decision — colour, copy, hierarchy, motion — was asking one question: does this make a first-time investor feel safe?</p>
-
-    <div class="two-col">
-      <div class="sec-body">
-        <p>When I inherited Aspero, the brand was functionally invisible. It looked like every other fintech product — cool blues, angular typography, data-forward layouts that told the user what was available rather than how to feel about it. Fine for an institutional audience. Alienating for a first-time retail investor who'd never bought a bond in their life.</p>
-        <p>The first brand decision was colour. <strong>We chose green — deliberately, and for reasons that go beyond aesthetics.</strong> Green carries a specific psychological load in the context of Indian retail investing: it is the colour of growth, of positive returns, of money moving in the right direction. It's also the colour most Indians associate with financial safety. In a category defined by anxiety, green was a deliberate de-escalation.</p>
-        <p>The second decision was what to lead with. The hero line — <em>"Invest &amp; earn upto 15.00% returns"</em> — puts the outcome first. Not the instrument, not the mechanism, not a regulatory label. The return. Because that's the question every potential investor is actually asking. We answered it before they had to ask.</p>
-      </div>
-      <div>
-        <!-- Phone mockup showing home screen -->
-        <div class="brand-phone-frame">
-          <div class="bpf-notch"></div>
-          <div class="bpf-screen">
-            <div class="bpf-status">
-              <span class="bpf-time">10:00</span>
-              <div class="bpf-icons">
-                <span>▪▪▪▪</span>
-                <span>WiFi</span>
-                <span>🔋</span>
-              </div>
-            </div>
-            <div class="bpf-header">
-              <div class="bpf-logo">
-                <div class="bpf-logo-mark">▲</div>
-                <span class="bpf-welcome">Welcome <strong>Shubham</strong></span>
-              </div>
-              <div class="bpf-bookmark">🔖</div>
-            </div>
-            <div class="bpf-hero-text">Invest &amp; earn upto <span class="bpf-rate">15.00%</span> returns</div>
-            <div class="bpf-features">
-              <div class="bpf-feat"><div class="bpf-feat-icon">⚡</div><div class="bpf-feat-label">2 min paperless KYC</div></div>
-              <div class="bpf-feat"><div class="bpf-feat-icon">⭐</div><div class="bpf-feat-label">Explore bonds across all ratings</div></div>
-              <div class="bpf-feat"><div class="bpf-feat-icon">🛡</div><div class="bpf-feat-label">100% SEBI Compliant</div></div>
-              <div class="bpf-feat"><div class="bpf-feat-icon">%</div><div class="bpf-feat-label">Zero fee no commission</div></div>
-            </div>
-            <div class="bpf-kyc-card">
-              <div class="bpf-kyc-title">Get investment ready</div>
-              <div class="bpf-kyc-sub">It is a one time process only</div>
-              <div class="bpf-kyc-btn">Start KYC now</div>
-            </div>
-          </div>
-          <div class="bpf-caption">Aspero home screen — outcome-first hierarchy</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TRUST SIGNALS BREAKDOWN -->
-    <div class="brand-trust-section">
-      <div class="bts-label">The trust architecture — 6 deliberate signals on a single screen</div>
-      <div class="bts-grid">
-        <div class="bts-item">
-          <div class="bts-num">01</div>
-          <div class="bts-signal">Green brand</div>
-          <div class="bts-what">Colour psychology</div>
-          <div class="bts-why">Green = growth, safety, positive returns. The dominant colour in Indian financial experience of "things going right". Immediately communicates alignment with the user's goal.</div>
-        </div>
-        <div class="bts-item">
-          <div class="bts-num">02</div>
-          <div class="bts-signal">"Invest &amp; earn upto 15.00% returns"</div>
-          <div class="bts-what">Outcome-first copy</div>
-          <div class="bts-why">The hero answers the investor's primary question before they ask it. Not "Explore bonds" — which assumes familiarity. The return rate is the hook for someone who doesn't yet know what a bond is.</div>
-        </div>
-        <div class="bts-item">
-          <div class="bts-num">03</div>
-          <div class="bts-signal">"2 minute paperless KYC"</div>
-          <div class="bts-what">Friction reduction promise</div>
-          <div class="bts-why">KYC anxiety was the #1 drop-off driver we found in research. Surfacing the "2 minute" promise above the fold directly addresses the fear before it can cause abandonment.</div>
-        </div>
-        <div class="bts-item">
-          <div class="bts-num">04</div>
-          <div class="bts-signal">"100% SEBI Compliant"</div>
-          <div class="bts-what">Authority trust signal</div>
-          <div class="bts-why">SEBI is the regulatory authority Indian retail investors have been conditioned to look for. This is borrowed credibility — and it works. We placed it at icon-level, persistent, not buried in a footer.</div>
-        </div>
-        <div class="bts-item">
-          <div class="bts-num">05</div>
-          <div class="bts-signal">AAA bond ratings displayed prominently</div>
-          <div class="bts-what">Quality signal</div>
-          <div class="bts-why">First-time investors don't understand bond yields. They understand ratings. Showing AAA-rated issuers (Shriram Finance, Mas Financial, Vivriti Capital) in the browse experience communicates safety through the language of quality, not complexity.</div>
-        </div>
-        <div class="bts-item">
-          <div class="bts-num">06</div>
-          <div class="bts-signal">"Learn with Aspero" video section</div>
-          <div class="bts-what">Education as trust</div>
-          <div class="bts-why">A platform that teaches you is a platform that respects you. The education section positions Aspero as a knowledgeable friend rather than just a marketplace. Users who understand the product invest more — and stay.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pull-quote">"We weren't just designing an app. We were designing what trust looks like in a financial product that most of its users had never used before."</div>
-
-    <!-- PAYOUT MODAL STORY -->
-    <div class="two-col" style="margin-top:48px;">
-      <div>
-        <!-- Payout modal mockup -->
-        <div class="payout-modal-frame">
-          <div class="pmf-handle"></div>
-          <div class="pmf-logo">
-            <div class="pmf-logo-u">U</div>
-          </div>
-          <div class="pmf-title">Did you receive your payout?</div>
-          <div class="pmf-sub">Please confirm if you have received your payout on 24 Jun 2024 against your investment of Urgo Finance</div>
-          <div class="pmf-table-label">Payout breakup</div>
-          <div class="pmf-table">
-            <div class="pmf-row"><span class="pmf-key">Principal amount</span><span class="pmf-val">₹1,00,000.00</span></div>
-            <div class="pmf-row"><span class="pmf-key">TDS</span><span class="pmf-val pmf-dim">-₹0.00</span></div>
-            <div class="pmf-row pmf-bold"><span class="pmf-key">Receivable amount</span><span class="pmf-val">₹1,00,000.00</span></div>
-          </div>
-          <div class="pmf-btn-fill">Yes, I have received</div>
-          <div class="pmf-btn-line">Not received yet</div>
-          <div class="pmf-caption">Payout confirmation — closing the loop with total transparency</div>
-        </div>
-      </div>
-      <div class="sec-body" style="padding-top:24px;">
-        <p><strong>The payout confirmation modal is the most important screen in the product that nobody ever talks about.</strong></p>
-        <p>A first-time investor's greatest anxiety isn't whether the platform works while they're investing. It's whether it works when they need their money back. The payout modal exists entirely to dissolve that anxiety — transparently, at the exact moment it matters most.</p>
-        <p>The design decisions here are deliberate: the Yubi U logo appears (institutional credibility — this is backed by Yubi, a $140M ecosystem), the breakdown is line by line (Principal / TDS / Receivable — no black box), and the primary CTA is confirmatory ("Yes, I have received") not dismissive. <strong>The product is asking for closure, not just confirmation. That's a trust relationship, not a transaction.</strong></p>
-        <p>This modal exists because we discovered in research that investors who hadn't received payout confirmations were generating support tickets and — more critically — not reinvesting. Closing the payout loop through the app increased reinvestment rates and materially reduced support volume.</p>
-      </div>
-    </div>
-
-    <!-- BEFORE / AFTER BRAND -->
-    <div class="brand-ba-section">
-      <div class="bba-label">Brand language — before and after</div>
-      <div class="bba-grid">
-        <div class="bba-col bba-before">
-          <div class="bba-col-header">Before</div>
-          <div class="bba-item"><div class="bba-item-label">Hero copy</div><div class="bba-item-val">"Explore bonds and fixed deposits"</div></div>
-          <div class="bba-item"><div class="bba-item-label">KYC</div><div class="bba-item-val">"Complete your KYC to start investing" — no timeline, no promise</div></div>
-          <div class="bba-item"><div class="bba-item-label">Bond listings</div><div class="bba-item-val">Data tables: ISIN / Coupon / Face value / Rating. All data, no context.</div></div>
-          <div class="bba-item"><div class="bba-item-label">Trust signals</div><div class="bba-item-val">SEBI compliance buried in footer. No education. No issuers explained.</div></div>
-          <div class="bba-item"><div class="bba-item-label">Post-investment</div><div class="bba-item-val">Nothing. No confirmation of payout receipt. No portfolio reassurance.</div></div>
-        </div>
-        <div class="bba-col bba-after">
-          <div class="bba-col-header">After</div>
-          <div class="bba-item"><div class="bba-item-label">Hero copy</div><div class="bba-item-val">"Invest &amp; earn upto 15.00% returns" — outcome first, always</div></div>
-          <div class="bba-item"><div class="bba-item-label">KYC</div><div class="bba-item-val">"2 minute paperless KYC" above the fold. Anxiety dissolved before it starts.</div></div>
-          <div class="bba-item"><div class="bba-item-label">Bond listings</div><div class="bba-item-val">YTM% prominent, issuer name, rating, minimum investment. Value first, data second.</div></div>
-          <div class="bba-item"><div class="bba-item-label">Trust signals</div><div class="bba-item-val">SEBI compliant at icon level. Expert callback. "Learn with Aspero" education. AAA ratings visible in browse.</div></div>
-          <div class="bba-item"><div class="bba-item-label">Post-investment</div><div class="bba-item-val">Payout confirmation modal — transparent breakup, two CTAs, Yubi brand anchoring trust.</div></div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-
-<section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">04</span>Team & organisation</div>
-    <h2 class="sec-h2">How I structured the<br>team for this <em>problem.</em></h2>
-    <p class="sec-lead">The team structure was a strategic decision, not a staffing one. I built it around the problem, not around headcount availability.</p>
-
-    <div class="two-col reveal">
-      <div>
-        <div class="team-org">
-          <div class="team-title">Aspero design team structure</div>
-          <div class="team-grid">
-            <div class="team-pod lead">
-              <div class="tp-left">
-                <div class="tp-role">Subin Sundaresan</div>
-                <div class="tp-desc">Director of Design — strategy, stakeholder management, final call on all design decisions</div>
-              </div>
-              <div class="tp-badge">Lead</div>
-            </div>
-            <div class="team-pod">
-              <div class="tp-left">
-                <div class="tp-role">Lead Product Designer × 1</div>
-                <div class="tp-desc">Owned onboarding flows, trust UX patterns, prototype-to-test cycles</div>
-              </div>
-              <div class="tp-badge">Core</div>
-            </div>
-            <div class="team-pod">
-              <div class="tp-left">
-                <div class="tp-role">Visual / Brand Designer × 1</div>
-                <div class="tp-desc">Brand expression, bond listing design, marketing collateral alignment</div>
-              </div>
-              <div class="tp-badge">Core</div>
-            </div>
-            <div class="team-pod">
-              <div class="tp-left">
-                <div class="tp-role">UX Researcher × 1</div>
-                <div class="tp-desc">User interviews, usability testing, analytics interpretation</div>
-              </div>
-              <div class="tp-badge">Core</div>
-            </div>
-            <div class="team-pod">
-              <div class="tp-left">
-                <div class="tp-role">Content Strategist × 1 (shared)</div>
-                <div class="tp-desc">UX writing, error messaging, information hierarchy across flows</div>
-              </div>
-              <div class="tp-badge">Shared</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="sec-body" style="margin-bottom:24px;">
-          <p>I made three deliberate team decisions that shaped the outcome:</p>
-        </div>
-        <div class="team-principles">
-          <div class="tp-principle">
-            <div class="tpp-num">01</div>
-            <div class="tpp-text"><strong>Researcher embedded from day one</strong> — not brought in to validate decisions already made. We had a researcher running studies before we had designs to test. This changed the quality of our strategic decisions significantly.</div>
-          </div>
-          <div class="tp-principle">
-            <div class="tpp-num">02</div>
-            <div class="tpp-text"><strong>Content strategy as a design function</strong> — UX writing on Aspero wasn't a polish step. The words were doing structural work — building trust, reducing anxiety, explaining value. I treated the content strategist as a core design voice, not a support role.</div>
-          </div>
-          <div class="tp-principle">
-            <div class="tpp-num">03</div>
-            <div class="tpp-text"><strong>I stayed in the work</strong> — at Director level, there's pressure to manage up and leave execution to the team. On Aspero, I made a deliberate choice to stay close to the design decisions. The stakes were too high for the typical "approve the mockup" model.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 PLAN & WORKFLOW -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">05</span>Plan & workflow</div>
-    <h2 class="sec-h2">How 18 months of<br>work was <em>structured.</em></h2>
-    <p class="sec-lead">The work ran in three phases. Each phase had a clear goal, a defined team structure, and measurable exit criteria. We didn't move to the next phase until the current one had landed.</p>
-
-    <div class="workflow-timeline reveal">
-      <div class="wf-line"></div>
-
-      <div class="wf-phase">
-        <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-        <div class="wf-phase-label">Phase 1 · Weeks 1–6</div>
-        <div class="wf-phase-title">Diagnostic & strategic alignment</div>
-        <div class="wf-phase-body">Full product audit. 12 user interviews with first-time retail investors. Analytics deep-dive. Stakeholder workshops with CEO, CFO, and CPO to align on north star and what success would look like in 6 months. <strong>Key output: a shared understanding that this was a trust problem, not a feature gap.</strong> This was the most important 6 weeks. Getting alignment on diagnosis before solutions prevented scope creep and political friction later.</div>
-        <div class="wf-deliverables">
-          <span class="wf-del">User research synthesis</span>
-          <span class="wf-del">Design audit report</span>
-          <span class="wf-del">North star definition</span>
-          <span class="wf-del">Stakeholder alignment deck</span>
-          <span class="wf-del">Success metrics framework</span>
-        </div>
-      </div>
-
-      <div class="wf-phase">
-        <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-        <div class="wf-phase-label">Phase 2 · Weeks 7–20</div>
-        <div class="wf-phase-title">Onboarding & trust architecture</div>
-        <div class="wf-phase-body">The onboarding flow was rebuilt from scratch. We reduced KYC from 11 steps to 5. Every step was redesigned with a single principle: the product should feel like a knowledgeable friend helping you invest, not a regulatory form you're filling in. We ran 4 rounds of usability testing. I personally reviewed every screen against the north star question before any handoff. <strong>The brand refresh ran in parallel — we needed the visual language to carry the same trust signals as the UX.</strong></div>
-        <div class="wf-deliverables">
-          <span class="wf-del">New onboarding flow</span>
-          <span class="wf-del">KYC redesign (11→5 steps)</span>
-          <span class="wf-del">Brand refresh</span>
-          <span class="wf-del">Usability testing ×4</span>
-          <span class="wf-del">Design system tokens for Aspero</span>
-        </div>
-      </div>
-
-      <div class="wf-phase">
-        <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-        <div class="wf-phase-label">Phase 3 · Weeks 21–44</div>
-        <div class="wf-phase-title">Bond listings, discovery & retention</div>
-        <div class="wf-phase-body">The listing pages were the second major failure point. Users who made it through onboarding were dropping off when they hit the bond marketplace. We rebuilt the bond card system to lead with value (yield, safety rating, tenure) before data. We introduced contextual education — small, in-context explanations of financial concepts, never intrusive. Portfolio view and post-investment communication were redesigned to reinforce the feeling that their money was being looked after. <strong>The retention numbers shifted significantly in Q3 2023.</strong></div>
-        <div class="wf-deliverables">
-          <span class="wf-del">Bond listing system</span>
-          <span class="wf-del">Contextual education layer</span>
-          <span class="wf-del">Portfolio view</span>
-          <span class="wf-del">Post-investment comms</span>
-          <span class="wf-del">A/B testing framework</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="visual-ph" style="height:280px;">
-      <div class="vph-label">📎 Add: before/after onboarding flow comparison</div>
-      <div class="vph-note">Replace with Figma export — old 11-step flow vs new 5-step guided story</div>
-    </div>
-  </section>
-
-  <!-- 05 KEY DECISIONS -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">06</span>Key decisions</div>
-    <h2 class="sec-h2">The calls that<br>defined the <em>outcome.</em></h2>
-    <p class="sec-lead">Every project has decisions that shape the result. These are the ones that mattered — including the ones where I pushed back against what the business wanted.</p>
-
-    <div class="decision-log reveal">
-      <div class="dl-item key">
-        <div class="dl-header">
-          <div class="dl-label">Decision 01 — Strategic</div>
-          <span class="dl-badge strategic">Strategic</span>
-        </div>
-        <div class="dl-question">Should we launch new features or fix the existing experience?</div>
-        <div class="dl-decision">The business pressure was to add features — more bond types, comparison tools, market data feeds. I pushed back. <strong>The user research was unambiguous: the existing experience was broken before new features would help anyone.</strong> We negotiated a 6-week freeze on new feature development to fix the foundation. This was the hardest conversation I had with the CPO. I won it with data, not opinion.</div>
-        <div class="dl-why">Why it mattered: if we'd launched features on a broken experience, we'd have accelerated the wrong thing.</div>
-      </div>
-      <div class="dl-item key">
-        <div class="dl-header">
-          <div class="dl-label">Decision 02 — Design</div>
-          <span class="dl-badge design">Design</span>
-        </div>
-        <div class="dl-question">How much financial education belongs in the product?</div>
-        <div class="dl-decision">The marketing team wanted extensive education sections — explainer articles, video content, a full learning centre. My position: <strong>education at the point of decision, nowhere else.</strong> Contextual tooltips, in-card explanations, step-by-step guides that appear only when the user is about to do something they don't understand. Education as a destination is ignored. Education as ambient context gets used.</div>
-        <div class="dl-why">Why it mattered: users don't read. They do. We had to meet them in the doing, not the reading.</div>
-      </div>
-      <div class="dl-item">
-        <div class="dl-header">
-          <div class="dl-label">Decision 03 — Brand</div>
-          <span class="dl-badge strategic">Brand</span>
-        </div>
-        <div class="dl-question">Should Aspero feel like a Yubi product or a standalone brand?</div>
-        <div class="dl-decision">Aspero's target user (first-time retail investor) had a different mental model than Yubi's core institutional users. I argued for a distinct brand expression — <strong>same Yubi values, but a warmer, more human visual language</strong> that wouldn't feel institutional and cold to a retail audience. The Aspero brand was a sub-expression of Yubi, not a copy of it.</div>
-        <div class="dl-why">Why it mattered: trust signals are context-dependent. What builds trust with a CFO doesn't build trust with a first-time investor.</div>
-      </div>
-      <div class="dl-item">
-        <div class="dl-header">
-          <div class="dl-label">Decision 04 — Process</div>
-          <span class="dl-badge org">Process</span>
-        </div>
-        <div class="dl-question">How do we prevent engineering from shipping ahead of design completion?</div>
-        <div class="dl-decision">We established a design sign-off protocol for Aspero — <strong>no screen goes to development without a completed design review against the north star framework</strong>. This wasn't popular with the engineering team in the short term. In practice, it prevented regression and saved us from shipping inconsistent experiences. The engineering lead eventually became one of its strongest advocates.</div>
-        <div class="dl-why">Why it mattered: the trust architecture breaks if any screen breaks it. Consistency isn't optional when trust is the product.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 BUSINESS IMPACT -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">07</span>Business impact</div>
-    <h2 class="sec-h2">What the numbers<br>actually <em>mean.</em></h2>
-    <p class="sec-lead">The Aspero results are extraordinary by any measure. But the numbers I care about most aren't the revenue ones — they're the leading indicators that told us the strategy was working before the revenue showed up.</p>
-
-    <div class="metrics-dash reveal">
-      <div class="md-cell dark">
-        <span class="md-label">Primary business outcome</span>
-        <span class="md-num">₹860M</span>
-        <div class="md-context">Revenue generated. 32% of Yubi's total revenue. A product that was losing ₹18Cr is now the portfolio's highest-growth contributor.</div>
-        <div class="md-trend">↑ From ₹18Cr loss in 18 months</div>
-      </div>
-      <div class="md-cell">
-        <span class="md-label">Investor growth</span>
-        <span class="md-num">20,000+</span>
-        <div class="md-context">Active investors on platform. We started with under 300. The growth curve accelerated in Q3 2023 — exactly when Phase 3 (bond listings redesign) launched.</div>
-        <div class="md-trend">↑ 66× growth from baseline</div>
-      </div>
-      <div class="md-cell">
-        <span class="md-label">Onboarding efficiency</span>
-        <span class="md-num">11 → 5</span>
-        <div class="md-context">KYC steps reduced. Drop-off in onboarding fell significantly. More users completing the flow meant more users reaching the bond marketplace.</div>
-        <div class="md-trend">↓ 57% fewer steps</div>
-      </div>
-      <div class="md-cell dark">
-        <span class="md-label">Time to ROI</span>
-        <span class="md-num">18mo</span>
-        <div class="md-context">From start of redesign to positive ROI. The business case I made to the CPO was a 24-month payback. We hit it in 18. Design velocity and research rigour together compressed the timeline.</div>
-        <div class="md-trend">↓ 6 months ahead of projection</div>
-      </div>
-    </div>
-
-    <div class="two-col reveal" style="margin-top:40px;">
-      <div class="sec-body">
-        <p>The revenue number is the headline. But the signal I was watching most closely during the work was something simpler: <strong>were users completing their first investment?</strong> That single action — from landing to first bond purchased — was our design's ultimate test. Every decision we made was pointed at that moment.</p>
-        <p>The other signal that mattered was retention at 30 days. Acquisition is a marketing problem. Retention is a design problem. When we saw 30-day retention improve, we knew the post-onboarding experience was working — the portfolio view, the post-investment communication, the ongoing relationship the product was building with investors.</p>
-      </div>
-      <div>
-        <div class="visual-ph" style="height:200px;">
-          <div class="vph-label">📎 Add: investor growth chart</div>
-          <div class="vph-note">Growth curve from 300 to 20K+ investors — acceleration point in Q3 2023</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07 LESSONS -->
-  <section class="cs-section">
-    <div class="sec-kicker"><span class="sec-num">08</span>What I learned</div>
-    <h2 class="sec-h2">The honest<br><em>retrospective.</em></h2>
-    <p class="sec-lead">Aspero was the project that taught me the most about the gap between good design thinking and good design leadership. These are the things I'd do the same — and the things I'd do differently.</p>
-
-    <div class="lessons-grid reveal">
-      <div class="lesson-card">
-        <span class="lesson-icon">✓</span>
-        <div class="lesson-title">What worked: diagnostic before design</div>
-        <div class="lesson-body">The 6-week freeze on design output at the start — spending time on diagnosis and alignment — paid back tenfold. Every hour spent on research and stakeholder alignment before designing saved multiple hours of design rework and political friction later.</div>
-      </div>
-      <div class="lesson-card">
-        <span class="lesson-icon">✓</span>
-        <div class="lesson-title">What worked: content as a core design function</div>
-        <div class="lesson-body">Embedding a content strategist from phase one changed the quality of the product. Financial products communicate through language as much as layout. The words were doing structural work — and treating them as a design decision rather than a copy task made a measurable difference.</div>
-      </div>
-      <div class="lesson-card">
-        <span class="lesson-icon">△</span>
-        <div class="lesson-title">What I'd do differently: earlier A/B testing infrastructure</div>
-        <div class="lesson-body">We built A/B testing capability in Phase 3. It should have been in place from Phase 2. Earlier quantitative data would have given us more confidence in some of the bigger UX bets we were making on instinct and qualitative research alone.</div>
-      </div>
-      <div class="lesson-card">
-        <span class="lesson-icon">△</span>
-        <div class="lesson-title">What I'd do differently: faster brand decision</div>
-        <div class="lesson-body">The brand direction debate with marketing took too long. In hindsight, I should have pushed for a decision in week 2, not week 8. The brand underpins everything — every week of ambiguity was a week of design decisions made on uncertain foundations.</div>
-      </div>
-    </div>
-
-    <div class="diff-section reveal">
-      <div class="diff-title">What wouldn't have happened without this design leadership approach</div>
-      <div class="diff-items">
-        <div class="diff-item">
-          <div class="diff-ico">🔍</div>
-          <div class="diff-text"><strong>The feature freeze.</strong> Without a design leader willing to push back against scope expansion, we'd have shipped new features on a broken foundation and made the problem worse.</div>
-        </div>
-        <div class="diff-item">
-          <div class="diff-ico">📐</div>
-          <div class="diff-text"><strong>The trust architecture.</strong> Framing the problem as a trust deficit — not a UX problem or a feature gap — changed every subsequent decision. That reframing came from design leadership, not from product or engineering.</div>
-        </div>
-        <div class="diff-item">
-          <div class="diff-ico">👥</div>
-          <div class="diff-text"><strong>The team structure.</strong> Researcher and content strategist embedded from day one wasn't the default. I made the case to the CPO that good research and good writing were not optional on a financial trust product. That argument changed the outcome.</div>
-        </div>
-        <div class="diff-item">
-          <div class="diff-ico">🎯</div>
-          <div class="diff-text"><strong>The north star question.</strong> "Why would a first-time retail bond investor trust this platform with their savings?" — that question, and the discipline to filter every decision through it, kept 18 months of work aligned without constant re-explanation.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<section><div class="wrap">
+  <div class="actions">
+    <a href="work.html">← All work</a>
+    <a href="yds.html">Next case: YDS, ₹136Cr saved →</a>
+  </div>
+</div></section>
 </main>
 
-<!-- CASE NAV -->
-<div class="case-nav">
-  <a href="index.html" class="cn-link">
-    <div><span class="cn-lbl">Back to</span><span class="cn-title">All work</span></div>
-  </a>
-  <a href="yds.html" class="cn-link">
-    <div style="text-align:right;"><span class="cn-lbl">Next case study</span><span class="cn-title">YDS — ₹136Cr Saved →</span></div>
-  </a>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="foot-brand">The Optimistic Designer</div>
-  <div class="foot-right">
-    <div class="foot-links">
-      <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
-      <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
-    </div>
-    <div class="foot-copy">Subin Sundaresan · 2026</div>
+<footer class="site-footer"><div class="wrap">
+  <div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
   </div>
-</footer>
-
-<script>
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
-}, {threshold:.08, rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
+  <div class="foot-links">
+    <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+    <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
+  </div>
+</div></footer>
 </body>
 </html>

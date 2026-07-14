@@ -2,133 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YDS — ₹136Cr Saved · The Optimistic Designer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>YDS: ₹136Cr saved · The Optimistic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-<style>
-.cs-hero{padding:140px 80px 80px;background:#08090F;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
-.cs-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 75% 40%,rgba(91,141,184,.15) 0%,transparent 60%);}
-.cs-hero-inner{position:relative;z-index:1;}
-.cs-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(91,141,184,.7);margin-bottom:16px;}
-.cs-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(48px,8vw,104px);line-height:.9;letter-spacing:-.04em;color:#FAFAF7;margin-bottom:24px;}
-.cs-title em{color:#7BA7DB;font-style:italic}
-.cs-tagline{font-size:18px;color:rgba(250,250,247,.5);max-width:560px;line-height:1.75;font-weight:300;}
-.cs-meta-bar{display:flex;gap:48px;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid rgba(250,250,247,.07);}
-.mi-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(91,141,184,.6);display:block;margin-bottom:4px;}
-.mi-val{font-size:14px;font-weight:500;color:rgba(250,250,247,.8);}
-.cs-body{padding:80px 80px;max-width:1200px;}
-.cs-section{margin-bottom:72px;}
-.cs-section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5B8DB8;margin-bottom:16px;opacity:.7;}
-.cs-h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:20px;}
-.cs-h2 em{color:#5B8DB8;font-style:italic}
-.cs-text{font-size:16px;color:var(--mid);line-height:1.9;font-weight:300;max-width:640px;}
-.cs-text p{margin-bottom:20px}.cs-text p:last-child{margin-bottom:0}
-.cs-text strong{color:var(--ink);font-weight:500}
-.cs-pull{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2.2vw,26px);line-height:1.4;color:var(--ink);border-left:2px solid #5B8DB8;padding:10px 24px;margin:36px 0;max-width:600px;}
-.arch-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border-light);max-width:680px;margin:28px 0;}
-.arch-row{display:flex;align-items:center;gap:20px;padding:14px 20px;border-bottom:1px solid var(--border-light);}
-.arch-row:last-child{border-bottom:none}
-.arch-n{font-family:'DM Mono',monospace;font-size:10px;color:#5B8DB8;min-width:20px;opacity:.6;}
-.arch-name{font-size:13px;font-weight:500;color:var(--ink);min-width:180px;}
-.arch-desc{font-size:13px;color:var(--muted);font-weight:300;}
-.metrics-row{display:flex;gap:0;border:1px solid var(--border-light);margin:28px 0;max-width:680px;}
-.m-cell{flex:1;padding:28px 20px;border-right:1px solid var(--border-light);}
-.m-cell:last-child{border-right:none}
-.m-n{font-family:'Fraunces',serif;font-weight:700;font-size:38px;line-height:1;letter-spacing:-.02em;color:#5B8DB8;margin-bottom:6px;}
-.m-l{font-size:12px;color:var(--muted);line-height:1.4;font-weight:300;}
-.visual-placeholder{background:var(--cream);border:1.5px dashed var(--border);border-radius:16px;height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);margin:32px 0;}
-.vp-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;}
-.nav-case{display:flex;justify-content:space-between;align-items:center;padding:40px 80px;border-top:1px solid var(--border-light);background:var(--cream);}
-.nc-link{font-size:14px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
-.nc-link:hover{color:var(--orange)}.nc-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
-@media(max-width:768px){.cs-hero,.cs-body,.nav-case{padding-left:24px;padding-right:24px;}.metrics-row{flex-direction:column;}.arch-row{flex-direction:column;align-items:flex-start;gap:4px;}}
-</style>
 </head>
 <body>
-<nav id="nav">
-  <a href="index.html" class="nav-brand"><div class="nav-mark">S</div><div class="nav-name">The <span>Optimistic</span> Designer</div></a>
-  <div class="nav-links"><a href="work.html" class="active">Work</a><a href="journey.html">Journey</a><a href="blog.html">Writing</a><a href="contact.html" class="nav-cta">Let's talk</a></div>
-</nav>
-
-<section class="cs-hero">
-  <div class="cs-hero-inner">
-    <div class="cs-label">Yubi Design System · YDS · 2022–2025 · Design Systems & DesignOps</div>
-    <div class="cs-title">44 designers.<br>13 products.<br><em>One language.</em></div>
-    <p class="cs-tagline">The design system that unified Yubi's $140M ecosystem — and saved ₹136 crore in engineering budget over three years.</p>
-    <div class="cs-meta-bar">
-      <div><span class="mi-label">Company</span><span class="mi-val">Yubi</span></div>
-      <div><span class="mi-label">My role</span><span class="mi-val">Director of Design · System architect</span></div>
-      <div><span class="mi-label">Timeline</span><span class="mi-val">2022–2025 · 3 years</span></div>
-      <div><span class="mi-label">Scope</span><span class="mi-val">Design systems · AI workflows · DesignOps · Governance</span></div>
-      <div><span class="mi-label">Outcome</span><span class="mi-val">₹136Cr saved · 85% adoption · 139→4 bugs</span></div>
-    </div>
+<nav class="site-nav"><div class="wrap">
+  <a href="index.html" class="brand">The <span>Optimistic</span> Designer</a>
+  <div class="nav-links">
+    <a href="work.html" class="active">Work</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html">Let's talk</a>
   </div>
-</section>
+</div></nav>
 
-<section class="cs-body">
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The problem</div>
-    <div class="cs-h2">44 designers. 13 products.<br><em>Zero common language.</em></div>
-    <div class="cs-text">
-      <p>As Yubi scaled across five product brands, design fragmentation became a hidden tax on everything. Without a shared system, every team interpreted core patterns in their own way. Buttons had multiple styles. Navigation varied by product. Tables were redesigned from scratch for every new feature.</p>
-      <p>Every inconsistency was a conversation that hadn't happened. Every rework was a cost nobody had calculated. So I calculated it.</p>
-      <p><strong>₹136 crore. That's what design fragmentation was costing in engineering rework over three years.</strong> I didn't ask for a design system budget. I showed the CPTO the invoice.</p>
-    </div>
-    <div class="cs-pull">"That conversation happened once."</div>
+<header class="page"><div class="wrap">
+  <div class="kicker">Yubi Design System · YDS · 2022–2025 · Design systems and DesignOps</div>
+  <h1>44 designers. 13 products. <em>One language.</em></h1>
+  <p class="lead">The design system that unified Yubi's $140M ecosystem, and saved ₹136 crore in engineering budget over three years.</p>
+  <dl class="rows" style="margin-top:32px">
+    <div class="row"><dt>My role</dt><dd>Director of Design · System architect</dd></div>
+    <div class="row"><dt>Timeline</dt><dd>2022–2025 · 3 years</dd></div>
+    <div class="row"><dt>Scope</dt><dd>Design systems · AI workflows · DesignOps · Governance</dd></div>
+    <div class="row"><dt>Outcome</dt><dd>₹136Cr saved · 85% adoption · 139→4 bugs</dd></div>
+  </dl>
+</div></header>
+
+<main>
+<section><div class="wrap">
+  <div class="section-label">The problem</div>
+  <h2>44 designers. 13 products. <em>Zero common language.</em></h2>
+  <p>As Yubi scaled across five product brands, design fragmentation became a hidden tax on everything. Without a shared system, every team interpreted core patterns in their own way. Buttons had multiple styles. Navigation varied by product. Tables were redesigned from scratch for every new feature.</p>
+  <p>Every inconsistency was a conversation that hadn't happened. Every rework was a cost nobody had calculated. So I calculated it.</p>
+  <p><strong>₹136 crore. That's what design fragmentation was costing in engineering rework over three years.</strong> I didn't ask for a design system budget. I showed the CPTO the invoice.</p>
+  <blockquote>"That conversation happened once."</blockquote>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">The architecture</div>
+  <h2>Seven layers. One <em>source of truth.</em></h2>
+  <p>YDS was built as a layered, modular system scalable across 13+ products and teams. Each layer had a specific job, and together they created a system that could flex for every product context while maintaining brand consistency.</p>
+  <dl class="rows">
+    <div class="row"><dt>01</dt><dd><span class="t">Base Tokens.</span> Raw colour, spacing, typography: the atomic foundation. Everything else is built on these.</dd></div>
+    <div class="row"><dt>02</dt><dd><span class="t">Core Semantic Tokens.</span> Intent-mapped values. Designers think in purpose, not hex codes.</dd></div>
+    <div class="row"><dt>03</dt><dd><span class="t">Theme Tokens.</span> Light, dark, and brand-specific UI kits. Drop into any product context.</dd></div>
+    <div class="row"><dt>04</dt><dd><span class="t">Locale and Localisation.</span> RTL, regional typography, cultural adaptation. Built in from day one.</dd></div>
+    <div class="row"><dt>05</dt><dd><span class="t">Components.</span> 98 Figma and code-backed components. Buttons to complex data tables.</dd></div>
+    <div class="row"><dt>06</dt><dd><span class="t">Patterns and Workflows.</span> 6 standardised flows covering roughly 80% of product use cases.</dd></div>
+    <div class="row"><dt>07</dt><dd><span class="t">Documentation and Governance.</span> Single source of truth. Designers and engineers speak the same language.</dd></div>
+  </dl>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">The AI angle</div>
+  <h2>We were early on AI because we <em>had to be.</em></h2>
+  <p>A 20-person design team serving 13 products cannot operate on manual handoffs. We integrated Token Studio for automated token management, Figma automation for component variant generation, and AI-assisted design review workflows that caught inconsistencies before they reached development.</p>
+  <p>This wasn't a trend play. It was an operational necessity, and it gave us a 2-3x velocity advantage over what was possible with manual processes alone.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="section-label">The outcomes</div>
+  <h2>What the system actually <em>changed.</em></h2>
+  <dl class="rows">
+    <div class="row"><dt><span class="big">₹136Cr</span></dt><dd>Engineering budget saved over 3 years</dd></div>
+    <div class="row"><dt><span class="big">139→4</span></dt><dd>UI bugs per quarter (Q1 to Q3)</dd></div>
+    <div class="row"><dt><span class="big">30→85%</span></dt><dd>YDS adoption across 12 product teams</dd></div>
+    <div class="row"><dt><span class="big">68→12</span></dt><dd>Front-end engineers needed</dd></div>
+  </dl>
+  <p><strong>For the first time, Yubi felt like it was made by one team.</strong> That's not a design metric, but it's the most important thing the system delivered.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="actions">
+    <a href="aspero.html">← Aspero</a>
+    <a href="unify.html">Next case: UNIFY, NPS 1.7 → 8.23 →</a>
   </div>
+</div></section>
+</main>
 
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The architecture</div>
-    <div class="cs-h2">Seven layers.<br>One <em>source of truth.</em></div>
-    <div class="cs-text" style="margin-bottom:24px;"><p>YDS was built as a layered, modular system scalable across 13+ products and teams. Each layer had a specific job — and together they created a system that could flex for every product context while maintaining brand consistency.</p></div>
-    <div class="arch-list">
-      <div class="arch-row"><span class="arch-n">01</span><span class="arch-name">Base Tokens</span><span class="arch-desc">Raw colour, spacing, typography — the atomic foundation. Everything else is built on these.</span></div>
-      <div class="arch-row"><span class="arch-n">02</span><span class="arch-name">Core Semantic Tokens</span><span class="arch-desc">Intent-mapped values. Designers think in purpose, not hex codes.</span></div>
-      <div class="arch-row"><span class="arch-n">03</span><span class="arch-name">Theme Tokens</span><span class="arch-desc">Light/dark/brand-specific UI kits. Drop into any product context.</span></div>
-      <div class="arch-row"><span class="arch-n">04</span><span class="arch-name">Locale & Localisation</span><span class="arch-desc">RTL, regional typography, cultural adaptation. Built in from day one.</span></div>
-      <div class="arch-row"><span class="arch-n">05</span><span class="arch-name">Components</span><span class="arch-desc">98 Figma + code-backed components. Buttons to complex data tables.</span></div>
-      <div class="arch-row"><span class="arch-n">06</span><span class="arch-name">Patterns & Workflows</span><span class="arch-desc">6 standardised flows covering ~80% of product use cases.</span></div>
-      <div class="arch-row"><span class="arch-n">07</span><span class="arch-name">Documentation & Governance</span><span class="arch-desc">Single source of truth. Designers and engineers speak the same language.</span></div>
-    </div>
+<footer class="site-footer"><div class="wrap">
+  <div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
   </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The AI angle</div>
-    <div class="cs-h2">We were early on AI<br>because we <em>had to be.</em></div>
-    <div class="cs-text">
-      <p>A 20-person design team serving 13 products cannot operate on manual handoffs. We integrated Token Studio for automated token management, Figma automation for component variant generation, and AI-assisted design review workflows that caught inconsistencies before they reached development.</p>
-      <p>This wasn't a trend play. It was an operational necessity — and it gave us a 2-3x velocity advantage over what was possible with manual processes alone.</p>
-    </div>
-    <div class="visual-placeholder"><div class="vp-label">📎 Add: YDS architecture diagram or component library screenshot</div><span style="font-size:13px;font-weight:300;">Replace with Figma export</span></div>
+  <div class="foot-links">
+    <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+    <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
   </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The outcomes</div>
-    <div class="cs-h2">What the system<br><em>actually changed.</em></div>
-    <div class="metrics-row">
-      <div class="m-cell"><div class="m-n">₹136Cr</div><div class="m-l">Engineering budget saved over 3 years</div></div>
-      <div class="m-cell"><div class="m-n">139→4</div><div class="m-l">UI bugs per quarter (Q1 to Q3)</div></div>
-      <div class="m-cell"><div class="m-n">30→85%</div><div class="m-l">YDS adoption across 12 product teams</div></div>
-      <div class="m-cell"><div class="m-n">68→12</div><div class="m-l">Front-end engineers needed</div></div>
-    </div>
-    <div class="cs-text"><p><strong>For the first time, Yubi felt like it was made by one team.</strong> That's not a design metric — but it's the most important thing the system delivered.</p></div>
-  </div>
-</section>
-
-<div class="nav-case">
-  <a href="aspero.html" class="nc-link">← Aspero</a>
-  <a href="unify.html" class="nc-link"><div style="text-align:right;"><span class="nc-label">Next case</span>UNIFY — NPS 1.7 → 8.23</div> →</a>
-</div>
-
-<footer class="site-footer">
-  <div class="foot-brand">The Optimistic Designer</div>
-  <div class="foot-right"><div class="foot-links"><a href="mailto:subintheuxdesigner@gmail.com">Email</a><a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a></div><div class="foot-copy">Subin Sundaresan · 2026</div></div>
-</footer>
-<script>
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
-const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-</body></html>
+</div></footer>
+</body>
+</html>

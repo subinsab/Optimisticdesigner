@@ -2,193 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — The Optimistic Designer</title>
+<title>Contact · The Optimistic Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Cabinet+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-<style>
-/* === CONTACT PAGE === */
-.contact-hero{min-height:100vh;padding:140px 80px 80px;background:var(--orange);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}
-.contact-hero::before{content:'Let's talk.';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fraunces',serif;font-weight:900;font-size:clamp(100px,22vw,280px);color:rgba(255,255,255,.07);white-space:nowrap;letter-spacing:-.04em;pointer-events:none;line-height:1;}
-.ch-inner{position:relative;z-index:1;}
-.ch-kicker{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,247,.6);margin-bottom:24px;}
-.ch-big{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(52px,9vw,128px);line-height:.92;letter-spacing:-.04em;color:var(--white);margin-bottom:28px;}
-.ch-sub{font-size:18px;color:rgba(250,250,247,.7);max-width:540px;line-height:1.75;font-weight:300;}
-.contact-actions{position:relative;z-index:1;margin-top:60px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
-.btn-white{background:var(--white);color:var(--orange);border:none;border-radius:100px;padding:16px 36px;font-size:16px;font-weight:500;text-decoration:none;transition:opacity .2s,transform .15s;display:inline-block;font-family:'Cabinet Grotesk',sans-serif;letter-spacing:.01em;}
-.btn-white:hover{opacity:.9;transform:translateY(-1px)}
-.btn-wl{background:transparent;color:var(--white);border:1.5px solid rgba(250,250,247,.35);border-radius:100px;padding:16px 36px;font-size:16px;text-decoration:none;transition:border-color .2s,transform .15s;display:inline-block;font-family:'Cabinet Grotesk',sans-serif;}
-.btn-wl:hover{border-color:var(--white);transform:translateY(-1px)}
-/* OPEN TO */
-.open-section{padding:80px 80px;background:var(--white);}
-.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px;}
-.role-card{background:var(--cream);border-radius:14px;padding:28px;border:1px solid var(--border-light);transition:border-color .2s,transform .2s;}
-.role-card:hover{border-color:var(--orange);transform:translateY(-2px);}
-.rc-icon{font-size:28px;display:block;margin-bottom:14px;}
-.rc-title{font-family:'Fraunces',serif;font-weight:600;font-size:20px;letter-spacing:-.01em;color:var(--ink);margin-bottom:8px;}
-.rc-body{font-size:14px;color:var(--muted);line-height:1.65;font-weight:300;}
-/* CONNECT */
-.connect-section{padding:80px 80px;background:var(--cream);}
-.connect-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:40px;}
-.connect-card{background:var(--white);border-radius:12px;padding:22px;border:1px solid var(--border-light);text-decoration:none;display:block;transition:border-color .2s,background .2s;}
-.connect-card:hover{border-color:var(--orange);background:rgba(232,93,38,.04);}
-.cc-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.cc-handle{font-size:14px;font-weight:500;color:var(--ink);}
-.cc-arrow{font-size:12px;color:var(--orange);margin-top:10px;display:block;transition:transform .2s;}
-.connect-card:hover .cc-arrow{transform:translateX(4px);}
-/* WHERE */
-.where-section{padding:80px 80px;background:var(--ink);position:relative;overflow:hidden;}
-.where-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(232,93,38,.08) 0%,transparent 60%);}
-.where-inner{position:relative;z-index:1;}
-.where-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,4.5vw,60px);line-height:1.05;letter-spacing:-.03em;color:var(--white);margin-bottom:40px;}
-.where-title em{color:var(--orange);font-style:italic}
-.locations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.loc-card{background:rgba(250,250,247,.04);border:1px solid rgba(250,250,247,.07);border-radius:12px;padding:20px 22px;transition:border-color .2s;}
-.loc-card:hover{border-color:rgba(232,93,38,.3);}
-.lc-region{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,93,38,.6);margin-bottom:6px;}
-.lc-name{font-size:15px;font-weight:500;color:rgba(250,250,247,.85);}
-.lc-note{font-size:12px;color:rgba(250,250,247,.35);margin-top:3px;font-weight:300;}
-@media(max-width:900px){.roles-grid{grid-template-columns:1fr 1fr;}.connect-grid{grid-template-columns:1fr 1fr;}.locations-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:600px){.roles-grid,.connect-grid,.locations-grid{grid-template-columns:1fr;}.contact-hero,.open-section,.connect-section,.where-section{padding-left:24px;padding-right:24px;}.contact-actions{flex-direction:column;align-items:flex-start;}}
-
-
-</style>
 </head>
 <body>
-<nav id="nav">
-  <a href="index.html" class="nav-brand">
-    <div class="nav-mark">S</div>
-    <div class="nav-name">The <span>Optimistic</span> Designer</div>
-  </a>
+<nav class="site-nav"><div class="wrap">
+  <a href="index.html" class="brand">The <span>Optimistic</span> Designer</a>
   <div class="nav-links">
     <a href="work.html">Work</a>
     <a href="journey.html">Journey</a>
     <a href="blog.html">Writing</a>
-    <a href="contact.html" class="nav-cta">Let's talk</a>
+    <a href="contact.html" class="active">Let's talk</a>
   </div>
-</nav>
+</div></nav>
 
-<div id="page-contact">
-<section class="contact-hero">
-  <div class="ch-inner">
-    <div class="ch-kicker">Let's work together</div>
-    <div class="ch-big">Let's make your<br>company feel<br>inevitable.</div>
-    <p class="ch-sub">If you're building something where design is supposed to be a competitive advantage and it isn't yet — that's exactly the problem I fix. I'd love to hear about it.</p>
-    <div class="contact-actions">
-      <a href="mailto:subintheuxdesigner@gmail.com" class="btn-white">Email me directly</a>
-      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank" class="btn-wl">Connect on LinkedIn</a>
-    </div>
+<header class="page"><div class="wrap">
+  <div class="kicker">Let's work together</div>
+  <h1>Let's make your company feel <em>inevitable.</em></h1>
+  <p class="lead">If you're building something where design is supposed to be a competitive advantage and it isn't yet, that's exactly the problem I fix. I'd love to hear about it.</p>
+  <div class="actions">
+    <a href="mailto:subintheuxdesigner@gmail.com">Email me directly</a>
+    <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">Connect on LinkedIn</a>
   </div>
-  <div style="position:relative;z-index:1;">
-    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,247,.5);">subintheuxdesigner@gmail.com · +91 9742889859</div>
-  </div>
-</section>
+  <p class="meta" style="margin-top:20px">subintheuxdesigner@gmail.com · +91 9742889859</p>
+</div></header>
 
-<!-- OPEN TO -->
-<section class="open-section">
-  <div class="section-label reveal">What I'm open to</div>
-  <div class="section-title reveal d1">The right <em>role</em><br>looks like this.</div>
-  <div class="roles-grid">
-    <div class="role-card reveal">
-      <span class="rc-icon">🏛️</span>
-      <div class="rc-title">VP of Design</div>
-      <p class="rc-body">Executive-level design leadership at Series B+ or large-scale product organisations. Board-level stakeholder management, org building, design strategy.</p>
-    </div>
-    <div class="role-card reveal d1">
-      <span class="rc-icon">🎯</span>
-      <div class="rc-title">Director of Design</div>
-      <p class="rc-body">Leading a multi-team design function with full ownership of design vision, systems, and execution. Fintech, SaaS, or complex product ecosystems.</p>
-    </div>
-    <div class="role-card reveal d2">
-      <span class="rc-icon">🏗️</span>
-      <div class="rc-title">Head of Design</div>
-      <p class="rc-body">Building or rebuilding a design function from the ground up. Setting the culture, the systems, and the standards that scale.</p>
-    </div>
-    <div class="role-card reveal d1">
-      <span class="rc-icon">⚡</span>
-      <div class="rc-title">Fractional CDO</div>
-      <p class="rc-body">Part-time Chief Design Officer engagement for startups or scale-ups that need executive design leadership without a full-time hire yet.</p>
-    </div>
-    <div class="role-card reveal d2">
-      <span class="rc-icon">🎤</span>
-      <div class="rc-title">Speaking & Advisory</div>
-      <p class="rc-body">Design leadership, DesignOps, AI-augmented design, fintech UX, building design-led organisations. Conferences, panels, and advisory board roles.</p>
-    </div>
-    <div class="role-card reveal d3">
-      <span class="rc-icon">🔭</span>
-      <div class="rc-title">Not sure yet?</div>
-      <p class="rc-body">If you're working on something interesting and think there might be a fit — just reach out. Some of the best conversations start with "I'm not sure exactly what I need."</p>
-    </div>
-  </div>
-</section>
+<main>
+<section><div class="wrap">
+  <div class="section-label">What I'm open to</div>
+  <h2>The right role looks like <em>this.</em></h2>
+  <dl class="rows">
+    <div class="row"><dt>VP of Design</dt><dd>Executive-level design leadership at Series B+ or large-scale product organisations. Board-level stakeholder management, org building, design strategy.</dd></div>
+    <div class="row"><dt>Director of Design</dt><dd>Leading a multi-team design function with full ownership of design vision, systems, and execution. Fintech, SaaS, or complex product ecosystems.</dd></div>
+    <div class="row"><dt>Head of Design</dt><dd>Building or rebuilding a design function from the ground up. Setting the culture, the systems, and the standards that scale.</dd></div>
+    <div class="row"><dt>Fractional CDO</dt><dd>Part-time Chief Design Officer engagement for startups or scale-ups that need executive design leadership without a full-time hire yet.</dd></div>
+    <div class="row"><dt>Speaking, advisory</dt><dd>Design leadership, DesignOps, AI-augmented design, fintech UX, building design-led organisations. Conferences, panels, and advisory board roles.</dd></div>
+    <div class="row"><dt>Not sure yet?</dt><dd>If you're working on something interesting and think there might be a fit, just reach out. Some of the best conversations start with "I'm not sure exactly what I need."</dd></div>
+  </dl>
+</div></section>
 
-<!-- CONNECT -->
-<section class="connect-section">
-  <div class="section-label reveal">Find me here</div>
-  <div class="section-title reveal d1">The best way<br>is <em>email.</em></div>
-  <div class="connect-grid reveal d2">
-    <a href="mailto:subintheuxdesigner@gmail.com" class="connect-card">
-      <div class="cc-label">Email · Primary</div>
-      <div class="cc-handle">subintheuxdesigner@gmail.com</div>
-      <span class="cc-arrow">Send email →</span>
-    </a>
-    <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank" class="connect-card">
-      <div class="cc-label">LinkedIn</div>
-      <div class="cc-handle">linkedin.com/in/subin-sundaresan</div>
-      <span class="cc-arrow">Connect →</span>
-    </a>
-    <a href="https://medium.com/@subintheuxdesigner" target="_blank" class="connect-card">
-      <div class="cc-label">Medium · Writing</div>
-      <div class="cc-handle">@subintheuxdesigner</div>
-      <span class="cc-arrow">Read articles →</span>
-    </a>
-    <a href="https://dribbble.com/subincs" target="_blank" class="connect-card">
-      <div class="cc-label">Dribbble</div>
-      <div class="cc-handle">dribbble.com/subincs</div>
-      <span class="cc-arrow">See work →</span>
-    </a>
-  </div>
-</section>
+<section><div class="wrap">
+  <div class="section-label">Find me here</div>
+  <h2>The best way is <em>email.</em></h2>
+  <dl class="rows">
+    <div class="row"><dt>Email · Primary</dt><dd><a href="mailto:subintheuxdesigner@gmail.com">subintheuxdesigner@gmail.com</a></dd></div>
+    <div class="row"><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">linkedin.com/in/subin-sundaresan</a></dd></div>
+    <div class="row"><dt>Medium · Writing</dt><dd><a href="https://medium.com/@subintheuxdesigner" target="_blank">@subintheuxdesigner</a></dd></div>
+    <div class="row"><dt>Dribbble</dt><dd><a href="https://dribbble.com/subincs" target="_blank">dribbble.com/subincs</a></dd></div>
+  </dl>
+</div></section>
 
-<!-- WHERE -->
-<section class="where-section">
-  <div class="where-inner">
-    <div class="section-label reveal" style="color:rgba(232,93,38,.7);">Where I work</div>
-    <div class="where-title reveal d1">Open to India<br>and <em>globally.</em></div>
-    <div class="locations-grid reveal d2">
-      <div class="loc-card"><div class="lc-region">Current base</div><div class="lc-name">Bengaluru, India</div><div class="lc-note">Available for local roles</div></div>
-      <div class="loc-card"><div class="lc-region">Open to</div><div class="lc-name">Pan-India</div><div class="lc-note">Mumbai · Delhi · Hyderabad · Chennai</div></div>
-      <div class="loc-card"><div class="lc-region">International</div><div class="lc-name">United Kingdom</div><div class="lc-note">London fintech ecosystem · Open to relocation</div></div>
-      <div class="loc-card"><div class="lc-region">International</div><div class="lc-name">Singapore</div><div class="lc-note">Grab · Sea Ltd · Aspire · Nium</div></div>
-      <div class="loc-card"><div class="lc-region">International</div><div class="lc-name">United States</div><div class="lc-note">Stripe · Brex · Mercury · Remote-first</div></div>
-      <div class="loc-card"><div class="lc-region">Preferred</div><div class="lc-name">Remote-first</div><div class="lc-note">Proven in Singapore–India–Africa distributed teams</div></div>
-    </div>
-  </div>
-</section>
-</div>
+<section><div class="wrap">
+  <div class="section-label">Where I work</div>
+  <h2>Open to India and <em>globally.</em></h2>
+  <dl class="rows">
+    <div class="row"><dt>Current base</dt><dd><span class="t">Bengaluru, India.</span> Available for local roles.</dd></div>
+    <div class="row"><dt>Pan-India</dt><dd>Mumbai · Delhi · Hyderabad · Chennai</dd></div>
+    <div class="row"><dt>United Kingdom</dt><dd>London fintech ecosystem · Open to relocation</dd></div>
+    <div class="row"><dt>Singapore</dt><dd>Grab · Sea Ltd · Aspire · Nium</dd></div>
+    <div class="row"><dt>United States</dt><dd>Stripe · Brex · Mercury · Remote-first</dd></div>
+    <div class="row"><dt>Preferred</dt><dd><span class="t">Remote-first.</span> Proven in Singapore-India-Africa distributed teams.</dd></div>
+  </dl>
+</div></section>
+</main>
 
-<footer class="site-footer">
-  <div class="foot-brand">The Optimistic Designer</div>
-  <div class="foot-right">
-    <div class="foot-links">
-      <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
-      <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
-      <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
-    </div>
+<footer class="site-footer"><div class="wrap">
+  <div>
     <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
     <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
   </div>
-</footer>
-</div>
-
-<script>
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('shadow',window.scrollY>20);},{passive:true});
-const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-setTimeout(()=>document.querySelectorAll('.page-hero .reveal').forEach(el=>el.classList.add('vis')),200);
-</script>
+  <div class="foot-links">
+    <a href="mailto:subintheuxdesigner@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/subin-sundaresan/" target="_blank">LinkedIn</a>
+    <a href="https://medium.com/@subintheuxdesigner" target="_blank">Medium</a>
+    <a href="https://dribbble.com/subincs" target="_blank">Dribbble</a>
+  </div>
+</div></footer>
 </body>
 </html>
