@@ -15,7 +15,14 @@ Written 17 Jul 2026. Companion to STRATEGY.md (site strategy). Based on live res
 
 Key finding on Optimistic Design: a self-built published design system as personal centerpiece has NO famous precedent (differentiating), but reads as senior-IC unless it is live, adopted, narrated as operating leverage, and paired with doctrine. It must be evidence, never the headline.
 
-## Four directions
+## DECISION (17 Jul 2026): Direction A chosen
+
+Subin chose Direction A: The Operator (machine builder). Positioning centers entirely on the two org builds, the named frameworks, business dialect, and third-party stages. Implications:
+- The site leads with the machine: frameworks and org stories, numbers everywhere, minimal presentation, humility register (third parties do the bragging).
+- Optimistic Design stays in the portfolio (user requirement) but as SUPPORTING evidence of operational capability, framed as operating leverage ("what one operator plus AI can stand up"), never the flagship and never a component tour.
+- The Author layer (serialized framework) and Builder teardown remain optional amplifiers, not the spine.
+
+## Four directions (evaluated; A chosen)
 
 - A. The Operator (machine builder): position on the two org builds + named frameworks; podcast/conference push. Fastest for VP searches, weakest differentiation.
 - B. The Author (framework voice): serialize ONE named framework; open lane = "The AI-Speed Design Org" (nobody owns it; Merholz circling, Zhuo left, Maeda writes reports). Highest ceiling, slowest payoff (5+ yrs). Layer, not primary.
