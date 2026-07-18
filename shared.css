@@ -270,6 +270,7 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 .sa-head{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:start}
 .sa-logo{grid-column:1/span 5;display:flex;align-items:center;gap:18px;text-decoration:none}
 .sa-logo .glyph{width:44px;height:44px;background:var(--accent);flex-shrink:0}
+.sa-logo .glyph-o{width:48px;height:48px;flex-shrink:0}
 .sa-logo .word{font-weight:600;font-size:clamp(40px,4.6vw,64px);letter-spacing:-.04em;color:var(--text);line-height:1}
 .sa-nav1{grid-column:6/span 2;display:flex;flex-direction:column;gap:10px;padding-top:8px}
 .sa-nav2{grid-column:8/span 3;display:flex;flex-direction:column;gap:10px;padding-top:8px}
