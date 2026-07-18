@@ -263,3 +263,31 @@ section.band.dark .section-label .ln{color:rgba(244,242,237,.16)}
 /* Dots on dark panels */
 .dots-dark i{background:#3D3A35}
 .dots-dark i.seed{background:var(--ember)}
+
+
+/* ── The Letter ── */
+.letter{max-width:1120px;margin:0 auto;padding:96px 32px 40px}
+.letter-date{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 56px 292px}
+.salut{font-size:clamp(30px,4.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.05;margin:0 0 44px 292px;max-width:640px}
+.lrow{display:grid;grid-template-columns:220px minmax(0,620px);column-gap:72px;margin-bottom:26px}
+.lrow p{grid-column:2;font-size:18px;line-height:1.78;color:#33302B;margin:0}
+.lrow p strong{color:var(--ink);font-weight:600}
+.lnote{grid-column:1;align-self:start;justify-self:end;text-align:right;padding-top:7px;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ember);line-height:1.7;opacity:0;transform:translateX(-10px);transition:opacity .6s ease .45s,transform .6s ease .45s}
+.lnote::after{content:'';display:inline-block;width:7px;height:7px;background:var(--ember);margin-left:9px}
+.lrow.vis .lnote{opacity:1;transform:none}
+.lrow.rv{transition-delay:0s}
+.sig{margin:64px 0 0 292px}
+.sig .sig-word{font-size:16px;color:var(--mid);margin-bottom:14px}
+.sig .sig-name{font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.sig .sig-title{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.ps{margin:56px 0 0 292px;font-size:14.5px;font-style:italic;color:var(--muted);max-width:560px}
+.appendix{border-top:1px solid var(--border-light);margin-top:88px;padding:44px 0 8px}
+.appendix .wrap{align-items:baseline}
+.appendix-links{display:flex;gap:32px;flex-wrap:wrap}
+.appendix-links a{font-size:15px;font-weight:500}
+@media(max-width:880px){
+  .letter{padding:56px 24px 24px}
+  .letter-date,.salut,.sig,.ps{margin-left:0}
+  .lrow{display:block;margin-bottom:22px}
+  .lnote{display:block;text-align:left;padding:0 0 6px;transform:translateY(6px)}
+}
