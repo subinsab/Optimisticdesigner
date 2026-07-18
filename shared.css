@@ -1,14 +1,14 @@
 /* The Optimistic Designer · Light monochrome, rail edition */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --paper:#FBF9F5;
-  --ink:#161412;
-  --panel:#F2EFE9;
-  --mid:#4C4843;
-  --muted:#8F8880;
+  --paper:#FFFFFF;
+  --ink:#101010;
+  --panel:#F3F3F1;
+  --mid:#4F4F4D;
+  --muted:#9A9A97;
   --ember:#E85D26;
-  --border:rgba(22,20,18,.15);
-  --border-light:rgba(22,20,18,.08);
+  --border:rgba(16,16,16,.15);
+  --border-light:rgba(16,16,16,.08);
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{
@@ -34,7 +34,7 @@ body{
 .site-nav{
   position:sticky;top:0;z-index:50;
   border-bottom:1px solid var(--border-light);padding:18px 0;
-  background:rgba(251,249,245,.88);
+  background:rgba(255,255,255,.88);
   backdrop-filter:saturate(1.4) blur(14px);
   -webkit-backdrop-filter:saturate(1.4) blur(14px);
 }
@@ -53,7 +53,7 @@ body{
 h1{font-weight:600;font-size:clamp(40px,6.8vw,78px);line-height:1.0;letter-spacing:-.04em;margin-bottom:30px}
 h2{font-weight:600;font-size:clamp(26px,3.8vw,40px);line-height:1.06;letter-spacing:-.03em;margin:0 0 18px}
 h3{font-weight:600;font-size:19px;letter-spacing:-.02em;margin:0 0 8px}
-h1 em,h2 em,h3 em{color:var(--ember);font-style:normal}
+h1 em,h2 em,h3 em{color:var(--muted);font-style:normal}
 .lead{font-size:19px;color:var(--mid);font-weight:400;max-width:640px;line-height:1.65}
 p{color:var(--mid);font-weight:400;margin-bottom:18px;max-width:660px}
 p strong,li strong{color:var(--ink);font-weight:600}
@@ -309,7 +309,7 @@ section.band.dark .section-label .ln{color:rgba(244,242,237,.16)}
 .hero-final{min-height:82svh;background:var(--panel);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px}
 .hero-final h2{font-size:clamp(30px,4.6vw,52px);max-width:760px}
 .btn{display:inline-block;background:var(--ink);color:var(--paper);padding:14px 32px;border-radius:100px;font-weight:500;font-size:15px;text-decoration:none;margin-top:28px;transition:background .2s,transform .2s}
-.btn:hover{background:var(--ember);opacity:1;transform:translateY(-2px)}
+.btn:hover{background:#333331;opacity:1;transform:translateY(-2px)}
 
 /* Principles: one at a time */
 .principle{min-height:46vh;display:flex;align-items:center;border-top:none!important}
@@ -324,3 +324,28 @@ section.band.dark .section-label .ln{color:rgba(244,242,237,.16)}
 .focus .f-card h3{margin-bottom:10px}
 .focus .f-card p{font-size:14.5px;margin:0}
 @media(max-width:880px){.focus{grid-template-columns:1fr}.principle{min-height:34vh}}
+
+
+/* ── Sirnik-final layer ── */
+
+/* Character life */
+.px-char .eye-g{transform-box:fill-box;transform-origin:center;transition:transform .18s ease-out}
+.px-char .heart{transform-box:fill-box;transform-origin:center;animation:heartbeat 2.6s ease-in-out infinite}
+@keyframes heartbeat{0%,14%,100%{transform:scale(1)}5%{transform:scale(1.28)}9%{transform:scale(1.06)}}
+.px-char.pulse .heart{animation:heartbig .7s ease}
+@keyframes heartbig{30%{transform:scale(1.8)}}
+@media (prefers-reduced-motion: reduce){.px-char .heart{animation:none}}
+
+/* Principles ink themselves in */
+.principle .p-line{color:#CFCFCB;transition:color .7s ease}
+.principle .p-sub{opacity:0;transform:translateY(12px);transition:opacity .7s ease .15s,transform .7s ease .15s}
+.principle.focused .p-line{color:var(--ink)}
+.principle.focused .p-sub{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.principle .p-line{color:var(--ink)}.principle .p-sub{opacity:1;transform:none}}
+
+/* Giant footer wordmark */
+.foot-giant{font-size:clamp(44px,9vw,120px);font-weight:600;letter-spacing:-.045em;line-height:1;color:rgba(16,16,16,.05);margin:0 0 40px;user-select:none}
+
+/* Link underline draw */
+.nav-links a,.actions a,.appendix-links a{position:relative}
+.foot-links a{transition:color .2s}
