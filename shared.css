@@ -341,7 +341,7 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 .ka-right a:hover{opacity:.6}
 .ka-burger{width:44px;height:44px;border-radius:50%;background:#F5F5F2;border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0}
 .ka-burger span{display:block;width:16px;height:1.6px;background:#0B0B0B}
-.ka-photo{width:min(470px,46vw);aspect-ratio:3/4;background:#DCDCDA;margin:56px auto 0;position:relative;z-index:1;flex-shrink:0}
+.ka-photo{width:min(470px,46vw);aspect-ratio:3/4;background:#DCDCDA;margin:56px auto 0;position:relative;z-index:1;flex-shrink:0;display:block;object-fit:cover;object-position:center top}
 .ka-facts{position:absolute;top:63%;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:#DADAD8;line-height:2}
 .ka-facts.l{left:40px;text-align:left}
 .ka-facts.r{right:40px;text-align:right}
