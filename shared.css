@@ -1,14 +1,14 @@
 /* The Optimistic Designer · Light monochrome, rail edition */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --paper:#FFFFFF;
-  --ink:#0F0F0F;
-  --panel:#F4F4F2;
-  --mid:#4A4A4A;
-  --muted:#8F8F8C;
-  --ember:#D96A35;
-  --border:rgba(15,15,15,.14);
-  --border-light:rgba(15,15,15,.08);
+  --paper:#FBF9F5;
+  --ink:#161412;
+  --panel:#F2EFE9;
+  --mid:#4C4843;
+  --muted:#8F8880;
+  --ember:#E85D26;
+  --border:rgba(22,20,18,.15);
+  --border-light:rgba(22,20,18,.08);
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{
@@ -34,7 +34,7 @@ body{
 .site-nav{
   position:sticky;top:0;z-index:50;
   border-bottom:1px solid var(--border-light);padding:18px 0;
-  background:rgba(255,255,255,.88);
+  background:rgba(251,249,245,.88);
   backdrop-filter:saturate(1.4) blur(14px);
   -webkit-backdrop-filter:saturate(1.4) blur(14px);
 }
@@ -53,7 +53,7 @@ body{
 h1{font-weight:600;font-size:clamp(40px,6.8vw,78px);line-height:1.0;letter-spacing:-.04em;margin-bottom:30px}
 h2{font-weight:600;font-size:clamp(26px,3.8vw,40px);line-height:1.06;letter-spacing:-.03em;margin:0 0 18px}
 h3{font-weight:600;font-size:19px;letter-spacing:-.02em;margin:0 0 8px}
-h1 em,h2 em,h3 em{color:var(--muted);font-style:normal}
+h1 em,h2 em,h3 em{color:var(--ember);font-style:normal}
 .lead{font-size:19px;color:var(--mid);font-weight:400;max-width:640px;line-height:1.65}
 p{color:var(--mid);font-weight:400;margin-bottom:18px;max-width:660px}
 p strong,li strong{color:var(--ink);font-weight:600}
@@ -239,3 +239,27 @@ section.band.dark .actions a{color:var(--bone)}
   .scrolly-panels .panel{position:static;opacity:1;transform:none;margin-bottom:44px}
   .cards{grid-template-columns:1fr}
 }
+
+
+/* ── The Optimistic Theory layer ── */
+
+/* The warm pixel */
+.pixel{display:inline-block;width:.16em;height:.16em;background:var(--ember);margin-left:.14em;vertical-align:baseline}
+body.loaded .pixel{animation:pixelblink .9s ease .8s 1}
+@keyframes pixelblink{0%,100%{opacity:1}30%{opacity:0}60%{opacity:1}}
+
+/* Chapter numerals in the rail */
+.section-label .ln{display:block;font-family:'Switzer',sans-serif;font-size:42px;font-weight:600;letter-spacing:-.03em;line-height:1;color:rgba(22,20,18,.14);margin-bottom:10px}
+section.band.dark .section-label .ln{color:rgba(244,242,237,.16)}
+
+/* Reconciled: the receipt stamp */
+.reconciled{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ember);margin-top:16px}
+.reconciled::before{content:'';display:inline-block;width:7px;height:7px;background:var(--ember);margin-right:9px}
+
+/* Counter confirmation flash */
+.big.confirmed{animation:confirmflash .7s ease}
+@keyframes confirmflash{25%{color:var(--ember)}}
+
+/* Dots on dark panels */
+.dots-dark i{background:#3D3A35}
+.dots-dark i.seed{background:var(--ember)}

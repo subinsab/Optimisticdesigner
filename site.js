@@ -36,7 +36,7 @@
       var p = Math.min((now - start) / dur, 1);
       var val = from + ease(p) * (target - from);
       el.textContent = pre + val.toFixed(dec) + suf;
-      if (p < 1) requestAnimationFrame(tick);
+      if (p < 1) { requestAnimationFrame(tick); } else { el.classList.add('confirmed'); }
     })(start);
   }
   var counters = document.querySelectorAll('[data-count]');
