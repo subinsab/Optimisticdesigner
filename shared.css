@@ -291,3 +291,36 @@ section.band.dark .section-label .ln{color:rgba(244,242,237,.16)}
   .lrow{display:block;margin-bottom:22px}
   .lnote{display:block;text-align:left;padding:0 0 6px;transform:translateY(6px)}
 }
+
+
+/* ── Pixel character ── */
+.px-wrap{display:flex;justify-content:center;margin-bottom:44px}
+.px-char{width:150px;height:auto;animation:breathe 4.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.px-char .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}
+@keyframes blink{0%,91%,97%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+@media (prefers-reduced-motion: reduce){.px-char,.px-char .eye{animation:none}}
+
+/* Full-screen heroes */
+.hero-full{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 24px 64px}
+.hero-full h1{max-width:900px}
+.hero-full .lead{margin:0 auto;max-width:660px}
+.hero-full .lead p{margin-bottom:16px;color:var(--mid)}
+.hero-final{min-height:82svh;background:var(--panel);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px}
+.hero-final h2{font-size:clamp(30px,4.6vw,52px);max-width:760px}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);padding:14px 32px;border-radius:100px;font-weight:500;font-size:15px;text-decoration:none;margin-top:28px;transition:background .2s,transform .2s}
+.btn:hover{background:var(--ember);opacity:1;transform:translateY(-2px)}
+
+/* Principles: one at a time */
+.principle{min-height:46vh;display:flex;align-items:center;border-top:none!important}
+.principle .p-line{font-size:clamp(26px,3.6vw,40px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin-bottom:14px}
+.principle .p-sub{font-size:18px;color:var(--mid);max-width:560px;line-height:1.7}
+.principle .p-sub p{margin-bottom:6px}
+
+/* Focus areas */
+.focus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
+.focus .f-card{border:1px solid var(--border-light);padding:28px 26px;transition:transform .3s,border-color .3s}
+.focus .f-card:hover{transform:translateY(-4px);border-color:var(--border)}
+.focus .f-card h3{margin-bottom:10px}
+.focus .f-card p{font-size:14.5px;margin:0}
+@media(max-width:880px){.focus{grid-template-columns:1fr}.principle{min-height:34vh}}
