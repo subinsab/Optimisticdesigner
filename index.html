@@ -439,10 +439,17 @@
         var o = oc.getContext('2d');
         o.font = font; o.fillStyle = '#fff'; o.textBaseline = 'top';
         o.fillText(text, 0, 0);
-        var data = o.getImageData(0, 0, tw, th).data;
+        // area-averaged downscale so partially covered cells (glyph tips) still register
+        var gw2 = Math.ceil(tw / cellN), gh2 = Math.ceil(th / cellN);
+        var sc = document.createElement('canvas');
+        sc.width = gw2; sc.height = gh2;
+        var s = sc.getContext('2d');
+        s.imageSmoothingEnabled = true;
+        s.drawImage(oc, 0, 0, gw2, gh2);
+        var data = s.getImageData(0, 0, gw2, gh2).data;
         var px = [];
-        for (var y = 0; y < th; y += cellN) for (var x = 0; x < tw; x += cellN) {
-          if (data[(y * tw + x) * 4 + 3] > 128) px.push({ x: x, y: y, on: 0, e: 0, j: Math.random() });
+        for (var gy = 0; gy < gh2; gy++) for (var gx = 0; gx < gw2; gx++) {
+          if (data[(gy * gw2 + gx) * 4 + 3] > 90) px.push({ x: gx * cellN, y: gy * cellN, on: 0, e: 0, j: Math.random() });
         }
         if (!px.length) return;
         var dpr2 = Math.min(2, window.devicePixelRatio || 1);
