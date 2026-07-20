@@ -211,9 +211,17 @@
 
   // every section except hero and footer zooms out into place on scroll
   var zoomEls = [].slice.call(document.querySelectorAll('.wy-proof, .wy-decl, #about, #experience, #frameworks, .wy-contact'));
+  var heroEl = document.querySelector('.wy-hero');
   function sectionZoom() {
     if (reduced) return;
     var vh = window.innerHeight;
+    // the hero zooms IN and fades as you leave it, the counterpart of the sections
+    // zooming out, so the whole page reads as one continuous depth cycle
+    if (heroEl) {
+      var hp = Math.max(0, Math.min(1, window.scrollY / (heroEl.offsetHeight * 0.9)));
+      heroEl.style.transform = 'scale(' + (1 + 0.5 * hp * hp).toFixed(4) + ')';
+      heroEl.style.opacity = (1 - 0.78 * hp).toFixed(3);
+    }
     zoomEls.forEach(function (el) {
       // layout position, not the transformed rect, else the scale feeds back into itself
       var top = el.offsetTop - window.scrollY;
@@ -401,7 +409,8 @@
     function pwake() { if (!raf2 && parts.length) raf2 = requestAnimationFrame(ptick); }
     function paintAt(clientX, clientY) {
       var rct = pcv.getBoundingClientRect();
-      mx = clientX - rct.left; my = clientY - rct.top;
+      var sf = rct.width ? cw / rct.width : 1; // hero may be scaled by the scroll zoom
+      mx = (clientX - rct.left) * sf; my = (clientY - rct.top) * sf;
       if (mx < -BRUSH || my < -BRUSH || mx > cw + BRUSH || my > chh + BRUSH) return;
       var r2 = BRUSH * BRUSH, hits = [];
       for (var k = 0; k < parts.length; k++) {
