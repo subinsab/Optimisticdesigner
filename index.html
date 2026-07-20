@@ -205,7 +205,7 @@
     var p = (vh - top) / (vh + h);
     p = Math.max(0, Math.min(1, p / 0.78));
     var ease = 1 - Math.pow(1 - p, 3);
-    decl.style.transform = 'scale(' + (2 - 1 * ease).toFixed(4) + ')';
+    decl.style.transform = 'scale(' + (2 - 1.2 * ease).toFixed(4) + ')';
     decl.style.opacity = (0.3 + 0.7 * ease).toFixed(3);
   }
   window.addEventListener('scroll', declZoom, { passive: true });
