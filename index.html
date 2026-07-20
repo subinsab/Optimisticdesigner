@@ -210,25 +210,27 @@
     if (prog && max > 0) prog.style.width = (window.scrollY / max * 100) + '%';
   }, { passive: true });
 
-  // section C zooms out as it scrolls into place
-  var decl = document.querySelector('.wy-decl');
-  function declZoom() {
-    if (!decl || reduced) return;
-    // layout position, not the transformed rect, else the scale feeds back into itself
-    var top = decl.offsetTop - window.scrollY;
-    var h = decl.offsetHeight;
+  // every section except hero and footer zooms out into place on scroll
+  var zoomEls = [].slice.call(document.querySelectorAll('.wy-proof, .wy-decl, #about, #experience, #frameworks, .wy-contact'));
+  function sectionZoom() {
+    if (reduced) return;
     var vh = window.innerHeight;
-    if (top > vh) { decl.style.transform = 'scale(2)'; decl.style.opacity = '0.3'; return; }
-    if (top + h < 0) { decl.style.transform = 'scale(0.8)'; decl.style.opacity = '1'; return; }
-    var p = (vh - top) / (vh + h);
-    p = Math.max(0, Math.min(1, p / 0.78));
-    var ease = 1 - Math.pow(1 - p, 3);
-    decl.style.transform = 'scale(' + (2 - 1.2 * ease).toFixed(4) + ')';
-    decl.style.opacity = (0.3 + 0.7 * ease).toFixed(3);
+    zoomEls.forEach(function (el) {
+      // layout position, not the transformed rect, else the scale feeds back into itself
+      var top = el.offsetTop - window.scrollY;
+      var h = el.offsetHeight;
+      if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
+      if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
+      var p = (vh - top) / (vh + h);
+      p = Math.max(0, Math.min(1, p / 0.78));
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.style.transform = 'scale(' + (2 - 1.2 * ease).toFixed(4) + ')';
+      el.style.opacity = (0.3 + 0.7 * ease).toFixed(3);
+    });
   }
-  window.addEventListener('scroll', declZoom, { passive: true });
-  window.addEventListener('resize', declZoom);
-  declZoom();
+  window.addEventListener('scroll', sectionZoom, { passive: true });
+  window.addEventListener('resize', sectionZoom);
+  sectionZoom();
 
   var band = document.querySelector('.wy-band');
   var bandImg = band ? band.querySelector('img') : null;
