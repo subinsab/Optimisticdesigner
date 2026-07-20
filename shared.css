@@ -563,9 +563,9 @@ body.loaded .hw:nth-child(4) .hw-in{transition-delay:.54s}
 .hero-canvas canvas{display:block}
 .hero-left{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:2}
 .wy-hero .hero-left h1.hw-stack{margin:0}
-.hero-left .wy-eyebrow{margin-bottom:22px}
+.hero-left .wy-eyebrow{margin-bottom:18px;font-family:'Switzer',-apple-system,sans-serif;font-size:clamp(16px,1.7vw,23px);letter-spacing:0;text-transform:none;color:#C9C9C6}
 .hero-left h1.hw-stack{font-size:clamp(30px,4.6vw,78px)}
-.hero-left .hw-in{font-size:inherit}
+.hero-left .hw-in{font-size:inherit;text-transform:none;letter-spacing:-.03em}
 .hero-br{position:absolute;right:36px;bottom:96px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:18px;text-align:right}
 .hero-br .wy-sub{margin:0;max-width:36ch}
 .wy-hero .hero-br .watch{position:static}
