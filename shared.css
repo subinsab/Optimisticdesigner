@@ -617,6 +617,6 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 /* Contact rows flash their tag white while "Copied" shows */
 .wy-clinks a.copied span:last-child{color:#FFF;transition:color .15s steps(2,end)}
 
-/* Signature under the hero portrait */
-.hero-canvas{flex-direction:column;gap:14px}
-.px-sign{font-family:'Great Vibes',cursive;font-size:clamp(26px,2.8vw,42px);color:#C9C9C6;letter-spacing:.02em;line-height:1;user-select:none;pointer-events:none}
+/* Caption under the hero portrait, set like a plaque under a print */
+.hero-canvas{flex-direction:column;gap:20px}
+.px-caption{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A8A88;user-select:none;pointer-events:none}
