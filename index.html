@@ -402,6 +402,107 @@
       prt = setTimeout(function () { if (img2.naturalWidth) pbuild(false); }, 150);
     });
   })();
+
+  // proof strip: numbers print themselves as a dot-matrix dither wave
+  var pfNums = [].slice.call(document.querySelectorAll('.pf-num'));
+  if (pfNums.length && !reduced) (function () {
+    var jobs = [], nraf = 0, inited = false;
+
+    function setup() {
+      pfNums.forEach(function (el) {
+        var cs = getComputedStyle(el);
+        var fs = parseFloat(cs.fontSize);
+        var font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+        var text = el.textContent;
+        var cellN = Math.max(3, Math.round(fs / 15));
+        var meas = document.createElement('canvas').getContext('2d');
+        meas.font = font;
+        var tw = Math.ceil(meas.measureText(text).width) + cellN;
+        var th = Math.ceil(fs * 1.24);
+        var oc = document.createElement('canvas');
+        oc.width = tw; oc.height = th;
+        var o = oc.getContext('2d');
+        o.font = font; o.fillStyle = '#fff'; o.textBaseline = 'top';
+        o.fillText(text, 0, 0);
+        var data = o.getImageData(0, 0, tw, th).data;
+        var px = [];
+        for (var y = 0; y < th; y += cellN) for (var x = 0; x < tw; x += cellN) {
+          if (data[(y * tw + x) * 4 + 3] > 128) px.push({ x: x, y: y, on: 0, e: 0, j: Math.random() });
+        }
+        if (!px.length) return;
+        var dpr2 = Math.min(2, window.devicePixelRatio || 1);
+        var cv = document.createElement('canvas');
+        cv.width = tw * dpr2; cv.height = th * dpr2;
+        cv.style.cssText = 'position:absolute;left:0;top:0;width:' + tw + 'px;height:' + th + 'px';
+        cv.setAttribute('aria-hidden', 'true');
+        el.style.position = 'relative';
+        el.style.color = 'transparent';
+        el.appendChild(cv);
+        var ctx3 = cv.getContext('2d');
+        ctx3.setTransform(dpr2, 0, 0, dpr2, 0, 0);
+        jobs.push({ el: el, cv: cv, ctx: ctx3, px: px, tw: tw, th: th, cell: cellN, t: -1, settled: false });
+      });
+      onscrollCheck();
+    }
+
+    var DUR = 55;
+    function render(j, final) {
+      var c = j.ctx;
+      c.clearRect(0, 0, j.tw, j.th);
+      var sz = j.cell - 1;
+      for (var k = 0; k < j.px.length; k++) {
+        var p = j.px[k];
+        if (!p.on && !final) continue;
+        var e = p.e;
+        var g = e * j.cell * 0.7;
+        c.fillStyle = '#FFFFFF';
+        c.globalAlpha = final ? 1 : 0.55 + 0.45 * (1 - e) + e * 0.45;
+        if (c.globalAlpha > 1) c.globalAlpha = 1;
+        c.fillRect(p.x - g, p.y - g, sz + g * 2, sz + g * 2);
+      }
+      c.globalAlpha = 1;
+    }
+    function nframe() {
+      var animating = false;
+      jobs.forEach(function (j) {
+        if (j.settled || j.t < 0) return;
+        animating = true;
+        var wave = j.t / DUR;
+        var pending = 0, easing = 0;
+        for (var k = 0; k < j.px.length; k++) {
+          var p = j.px[k];
+          if (!p.on) {
+            if (p.x / j.tw < wave * 1.3 - p.j * 0.3) { p.on = 1; p.e = 1; }
+            else { pending++; continue; }
+          }
+          p.e *= 0.8;
+          if (p.e > 0.03) easing++; else p.e = 0;
+        }
+        render(j, false);
+        j.t++;
+        if (!pending && !easing) { j.settled = true; render(j, true); }
+      });
+      nraf = animating ? requestAnimationFrame(nframe) : 0;
+    }
+    function nwake() { if (!nraf) nraf = requestAnimationFrame(nframe); }
+    function onscrollCheck() {
+      var hit = false;
+      jobs.forEach(function (j) {
+        if (j.t === -1 && j.el.getBoundingClientRect().top < window.innerHeight * 0.86) { j.t = 0; hit = true; }
+      });
+      if (hit) nwake();
+    }
+    function init() {
+      if (inited) return;
+      inited = true;
+      document.fonts.ready.then(function () {
+        setup();
+        window.addEventListener('scroll', onscrollCheck, { passive: true });
+      });
+    }
+    if (!document.hidden) { init(); }
+    else document.addEventListener('visibilitychange', function () { if (!document.hidden) init(); });
+  })();
 })();
 </script>
 </body>
