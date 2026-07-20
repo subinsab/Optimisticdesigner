@@ -197,13 +197,16 @@
   var decl = document.querySelector('.wy-decl');
   function declZoom() {
     if (!decl || reduced) return;
-    var r = decl.getBoundingClientRect();
+    // layout position, not the transformed rect, else the scale feeds back into itself
+    var top = decl.offsetTop - window.scrollY;
+    var h = decl.offsetHeight;
     var vh = window.innerHeight;
-    if (r.bottom < 0 || r.top > vh) return;
-    var p = (vh - r.top) / (vh + r.height);
-    p = Math.max(0, Math.min(1, p / 0.55));
+    if (top + h < -vh || top > vh * 1.5) return;
+    var p = (vh - top) / (vh + h);
+    p = Math.max(0, Math.min(1, p / 0.78));
     var ease = 1 - Math.pow(1 - p, 3);
-    decl.style.transform = 'scale(' + (1.22 - 0.22 * ease).toFixed(4) + ')';
+    decl.style.transform = 'scale(' + (2 - 1 * ease).toFixed(4) + ')';
+    decl.style.opacity = (0.3 + 0.7 * ease).toFixed(3);
   }
   window.addEventListener('scroll', declZoom, { passive: true });
   window.addEventListener('resize', declZoom);
