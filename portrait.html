@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portrait · Pixel Test</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#0B0B0B;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;overflow:hidden}
+canvas{display:block;image-rendering:pixelated}
+.cap{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#5A5A58;user-select:none}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div class="cap">Portrait · pixel test · click to reassemble</div>
+<script>
+(function () {
+  var GRID_SRC = 'assets/portrait-grid.png';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var parts = [], cell = 4, gw = 0, gh = 0, cw = 0, ch = 0;
+  var mx = -1e4, my = -1e4, raf = 0, settledFrames = 0;
+  var R = 70, dpr = Math.min(2, window.devicePixelRatio || 1);
+
+  var img = new Image();
+  img.src = GRID_SRC;
+  img.onload = function () { build(true); };
+
+  function build(scattered) {
+    gw = img.naturalWidth; gh = img.naturalHeight;
+    cell = Math.max(2, Math.floor(Math.min(window.innerWidth * 0.92 / gw, window.innerHeight * 0.82 / gh)));
+    cw = gw * cell; ch = gh * cell;
+    cv.width = cw * dpr; cv.height = ch * dpr;
+    cv.style.width = cw + 'px'; cv.style.height = ch + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var oc = document.createElement('canvas');
+    oc.width = gw; oc.height = gh;
+    var octx = oc.getContext('2d');
+    octx.drawImage(img, 0, 0);
+    var d = octx.getImageData(0, 0, gw, gh).data;
+
+    parts = [];
+    for (var gy = 0; gy < gh; gy++) {
+      for (var gx = 0; gx < gw; gx++) {
+        var i = (gy * gw + gx) * 4;
+        var r = d[i], g = d[i + 1], b = d[i + 2];
+        if (r + g + b <= 30) continue;
+        var tx = gx * cell, ty = gy * cell;
+        parts.push({
+          tx: tx, ty: ty,
+          c: 'rgb(' + r + ',' + g + ',' + b + ')',
+          x: scattered ? Math.random() * cw : tx,
+          y: scattered ? Math.random() * ch : ty,
+          d: Math.random() * 42
+        });
+      }
+    }
+    if (reduced || scattered === false) { snap(); draw(); return; }
+    // hidden pages pause rAF, paint the finished portrait so the page is never blank
+    if (document.hidden) { snap(); draw(); return; }
+    settledFrames = 0;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function snap() { parts.forEach(function (p) { p.x = p.tx; p.y = p.ty; p.d = 0; }); }
+
+  function draw() {
+    ctx.clearRect(0, 0, cw, ch);
+    for (var k = 0; k < parts.length; k++) {
+      var p = parts[k];
+      ctx.fillStyle = p.c;
+      ctx.fillRect(Math.round(p.x), Math.round(p.y), cell, cell);
+    }
+  }
+
+  function tick() {
+    var moving = 0;
+    for (var k = 0; k < parts.length; k++) {
+      var p = parts[k];
+      if (p.d > 0) { p.d--; moving++; continue; }
+      var dx = p.tx - p.x, dy = p.ty - p.y;
+      p.x += dx * 0.085; p.y += dy * 0.085;
+      // cursor pushes pixels aside, the ease above springs them back
+      var ox = p.x - mx, oy = p.y - my;
+      var dist = Math.sqrt(ox * ox + oy * oy);
+      if (dist < R && dist > 0.01) {
+        var f = (R - dist) / R * 6;
+        p.x += ox / dist * f; p.y += oy / dist * f;
+      }
+      if (Math.abs(dx) + Math.abs(dy) > 0.6) moving++;
+    }
+    draw();
+    if (moving === 0 && mx < -999) { settledFrames++; } else { settledFrames = 0; }
+    if (settledFrames > 30) { raf = 0; return; }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function wake() { if (!raf) raf = requestAnimationFrame(tick); }
+
+  cv.addEventListener('mousemove', function (e) {
+    var r = cv.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+    wake();
+  });
+  cv.addEventListener('mouseleave', function () { mx = -1e4; my = -1e4; wake(); });
+  document.addEventListener('click', function () {
+    if (reduced) return;
+    parts.forEach(function (p) {
+      p.x = Math.random() * cw; p.y = Math.random() * ch; p.d = Math.random() * 42;
+    });
+    wake();
+  });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) wake(); });
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { build(false); }, 150);
+  });
+})();
+</script>
+</body>
+</html>
