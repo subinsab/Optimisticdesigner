@@ -593,6 +593,8 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .pf-item:nth-child(even){padding-left:28px}
 }
 
+.exp-note{margin-top:48px}
+
 /* Section D: statement left, subtext + button right */
 .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,96px);align-items:start}
 .about-grid .wy-state{margin-bottom:0}
