@@ -262,13 +262,13 @@
   pixCheck();
   setTimeout(pixCheck, 400);
 
-  // hero pixel portrait: every cell of the art is its own particle
+  // hero pixel portrait: assembles in grayscale, the cursor paints the color back in
   var pcv = document.getElementById('pxPortrait');
   if (pcv) (function () {
     var ctx2 = pcv.getContext('2d');
     var parts = [], cell = 2, gw = 0, gh = 0, cw = 0, chh = 0;
     var mx = -1e4, my = -1e4, raf2 = 0, still = 0;
-    var R = 60, dpr = Math.min(2, window.devicePixelRatio || 1);
+    var BRUSH = 34, dpr = Math.min(2, window.devicePixelRatio || 1);
     var img2 = new Image();
     img2.src = 'assets/portrait-grid.png';
     img2.onload = function () { pbuild(true); };
@@ -293,7 +293,10 @@
         var i2 = (gy * gw + gx) * 4;
         var r = d[i2], g = d[i2 + 1], b = d[i2 + 2];
         if (r + g + b <= 30) continue;
-        parts.push({ tx: gx * cell, ty: gy * cell, c: 'rgb(' + r + ',' + g + ',' + b + ')',
+        var l = Math.round(0.2126 * r + 0.7152 * g + 0.0722 * b);
+        parts.push({ tx: gx * cell, ty: gy * cell,
+          r: r, g: g, b: b, l: l,
+          p: 0, t: 0, cs: 'rgb(' + l + ',' + l + ',' + l + ')',
           x: scattered ? Math.random() * cw : gx * cell,
           y: scattered ? Math.random() * chh : gy * cell,
           d: Math.random() * 42 });
@@ -310,35 +313,47 @@
       ctx2.clearRect(0, 0, cw, chh);
       for (var k = 0; k < parts.length; k++) {
         var p = parts[k];
-        ctx2.fillStyle = p.c;
+        ctx2.fillStyle = p.cs;
         ctx2.fillRect(Math.round(p.x), Math.round(p.y), cell, cell);
       }
     }
     function ptick() {
-      var moving = 0;
+      var busy = 0;
       for (var k = 0; k < parts.length; k++) {
         var p = parts[k];
-        if (p.d > 0) { p.d--; moving++; continue; }
+        if (p.d > 0) { p.d--; busy++; continue; }
         var dx = p.tx - p.x, dy = p.ty - p.y;
-        p.x += dx * 0.085; p.y += dy * 0.085;
-        var ox = p.x - mx, oy = p.y - my;
-        var dist = Math.sqrt(ox * ox + oy * oy);
-        if (dist < R && dist > 0.01) {
-          var f = (R - dist) / R * 6;
-          p.x += ox / dist * f; p.y += oy / dist * f;
+        if (Math.abs(dx) + Math.abs(dy) > 0.6) {
+          p.x += dx * 0.085; p.y += dy * 0.085;
+          busy++;
+        } else { p.x = p.tx; p.y = p.ty; }
+        if (p.p !== p.t) {
+          p.p += (p.t - p.p) * 0.22;
+          if (Math.abs(p.t - p.p) < 0.02) { p.p = p.t; } else { busy++; }
+          var f = p.p;
+          p.cs = 'rgb(' + Math.round(p.l + (p.r - p.l) * f) + ',' +
+                          Math.round(p.l + (p.g - p.l) * f) + ',' +
+                          Math.round(p.l + (p.b - p.l) * f) + ')';
         }
-        if (Math.abs(dx) + Math.abs(dy) > 0.6) moving++;
       }
       pdraw();
-      if (moving === 0 && mx < -999) { still++; } else { still = 0; }
+      if (busy === 0) { still++; } else { still = 0; }
       if (still > 30) { raf2 = 0; return; }
       raf2 = requestAnimationFrame(ptick);
     }
     function pwake() { if (!raf2 && parts.length) raf2 = requestAnimationFrame(ptick); }
     window.addEventListener('mousemove', function (e) {
-      var r = pcv.getBoundingClientRect();
-      mx = e.clientX - r.left; my = e.clientY - r.top;
-      if (mx > -R && my > -R && mx < cw + R && my < chh + R) pwake();
+      var rct = pcv.getBoundingClientRect();
+      mx = e.clientX - rct.left; my = e.clientY - rct.top;
+      if (mx < -BRUSH || my < -BRUSH || mx > cw + BRUSH || my > chh + BRUSH) return;
+      var r2 = BRUSH * BRUSH, touched = false;
+      for (var k = 0; k < parts.length; k++) {
+        var p = parts[k];
+        if (p.t === 1) continue;
+        var ox = p.tx - mx, oy = p.ty - my;
+        if (ox * ox + oy * oy < r2) { p.t = 1; touched = true; }
+      }
+      if (touched) pwake();
     });
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden && parts.length) { pwake(); }
