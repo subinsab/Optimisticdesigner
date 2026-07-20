@@ -495,3 +495,24 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 .wy-clinks a{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;border-top:1px solid var(--border-light);font-size:17px;color:#FFF;text-decoration:none;transition:padding-left .3s}
 .wy-clinks a:hover{opacity:1;padding-left:14px}
 .wy-clinks a span{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A8A88}
+
+
+/* ══ WY interaction layer ══ */
+.wy-progress{position:fixed;top:0;left:0;height:2px;background:#FFF;width:0%;z-index:120;transition:width .1s linear}
+.wy-nav .n-links a.on{color:#FFF}
+.wy-scroll{display:flex;align-items:center;gap:10px}
+.wy-scroll svg{width:14px;height:14px;stroke:#8A8A88;stroke-width:2;fill:none;animation:chev 2.2s ease-in-out infinite}
+@keyframes chev{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion: reduce){.wy-scroll svg{animation:none}}
+.wy-decl .d-line,.wy-decl .d-line.dim{color:#2A2A28;transition:color .9s ease}
+.wy-decl .d-line.lit{color:#FFF}
+.wy-link svg{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.wy-link:hover svg{transform:translate(4px,-4px)}
+.wy-hero .watch .play{transition:background .3s,border-color .3s}
+.wy-hero .watch:hover .play{background:#FFF;border-color:#FFF}
+.wy-hero .watch:hover .play svg{fill:#050505}
+.wy-cell{cursor:default}
+.wy-clinks a .l{display:flex;align-items:center;gap:14px}
+.wy-clinks a .c-ic{width:19px;height:19px;stroke:#8A8A88;stroke-width:1.6;fill:none;flex-shrink:0;transition:stroke .3s}
+.wy-clinks a:hover .c-ic{stroke:#FFF}
+.wy-pill{will-change:transform}
