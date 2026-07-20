@@ -214,6 +214,7 @@
   var heroEl = document.querySelector('.wy-hero');
   var heroCue = document.querySelector('.wy-hero .wy-scroll');
   var heroSub = document.querySelector('.hero-br .wy-sub');
+  var heroWatch = document.querySelector('.hero-br .watch');
   function sectionZoom() {
     if (reduced) return;
     var vh = window.innerHeight;
@@ -232,6 +233,10 @@
       if (heroSub) {
         if (hp > 0.01) { heroSub.style.transition = 'none'; heroSub.style.opacity = fast; }
         else { heroSub.style.transition = ''; heroSub.style.opacity = ''; }
+      }
+      if (heroWatch) {
+        if (hp > 0.01) { heroWatch.style.transition = 'none'; heroWatch.style.opacity = fast; }
+        else { heroWatch.style.transition = ''; heroWatch.style.opacity = ''; }
       }
     }
     zoomEls.forEach(function (el) {
