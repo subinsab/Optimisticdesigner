@@ -432,13 +432,20 @@
         var cellN = Math.max(2, Math.round(fs / 30));
         var meas = document.createElement('canvas').getContext('2d');
         meas.font = font;
-        var tw = Math.ceil(meas.measureText(text).width) + cellN;
+        // snap each glyph to the cell grid so identical glyphs always dot identically
+        var chars = [], penX = 0;
+        for (var ci = 0; ci < text.length; ci++) {
+          var snap = Math.round(penX / cellN) * cellN;
+          chars.push({ ch: text[ci], x: snap });
+          penX = snap + meas.measureText(text[ci]).width;
+        }
+        var tw = Math.ceil(penX) + cellN;
         var th = Math.ceil(fs * 1.24);
         var oc = document.createElement('canvas');
         oc.width = tw; oc.height = th;
         var o = oc.getContext('2d');
         o.font = font; o.fillStyle = '#fff'; o.textBaseline = 'top';
-        o.fillText(text, 0, 0);
+        chars.forEach(function (g) { o.fillText(g.ch, g.x, 0); });
         // area-averaged downscale so partially covered cells (glyph tips) still register
         var gw2 = Math.ceil(tw / cellN), gh2 = Math.ceil(th / cellN);
         var sc = document.createElement('canvas');
