@@ -48,7 +48,7 @@
 <!-- SECTION B · Proof strip -->
 <section class="wy-proof">
   <div class="pf-grid">
-    <div class="pf-item rv" style="--d:0"><span class="pf-num" id="pfHours">34,580</span><span class="pf-label">Hours of design, 14 years at 9.5 a day</span></div>
+    <div class="pf-item rv" style="--d:0"><span class="pf-num" id="pfHours">34,580</span><span class="pf-label">Hours spent on design</span></div>
     <div class="pf-item rv" style="--d:1"><span class="pf-num">164+</span><span class="pf-label">Designers hired, led, and worked with</span></div>
     <div class="pf-item rv" style="--d:2"><span class="pf-num">$400M+</span><span class="pf-label">Revenue enabled through design</span></div>
     <div class="pf-item rv" style="--d:3"><span class="pf-num">6</span><span class="pf-label">Promotions along the way</span></div>
@@ -471,7 +471,22 @@
         el.appendChild(cv);
         var ctx3 = cv.getContext('2d');
         ctx3.setTransform(sc2, 0, 0, sc2, 0, 0);
-        jobs.push({ el: el, cv: cv, ctx: ctx3, px: px, tw: tw, th: th, cell: cellN, t: -1, settled: false });
+        var job = { el: el, cv: cv, ctx: ctx3, px: px, tw: tw, th: th, cell: cellN, t: -1, settled: false };
+        jobs.push(job);
+        // hover shimmer: pixels under the cursor pop and settle, one by one
+        cv.addEventListener('mousemove', function (ev) {
+          if (job.t < 0) return;
+          var r = cv.getBoundingClientRect();
+          var hx = (ev.clientX - r.left) * 2, hy = (ev.clientY - r.top) * 2;
+          var HR = 30 * 30, hit = false;
+          for (var k = 0; k < job.px.length; k++) {
+            var p = job.px[k];
+            if (!p.on || p.e > 0.4) continue;
+            var dx = p.x - hx, dy = p.y - hy;
+            if (dx * dx + dy * dy < HR) { p.e = 1; hit = true; }
+          }
+          if (hit) { job.settled = false; nwake(); }
+        });
       });
       onscrollCheck();
     }
