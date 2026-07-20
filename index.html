@@ -427,8 +427,7 @@
       pfNums.forEach(function (el) {
         var cs = getComputedStyle(el);
         var fs = parseFloat(cs.fontSize);
-        var fsR = fs * 2; // raster at 2x, display at half: 1px pixel pitch
-        var font = cs.fontWeight + ' ' + fsR + 'px ' + cs.fontFamily;
+        var font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
         var text = el.textContent;
         var cellN = Math.max(2, Math.round(fs / 30));
         var meas = document.createElement('canvas').getContext('2d');
@@ -441,7 +440,7 @@
           penX = snap + meas.measureText(text[ci]).width;
         }
         var tw = Math.ceil(penX) + cellN;
-        var th = Math.ceil(fsR * 1.24);
+        var th = Math.ceil(fs * 1.24);
         var oc = document.createElement('canvas');
         oc.width = tw; oc.height = th;
         var o = oc.getContext('2d');
@@ -461,23 +460,22 @@
         }
         if (!px.length) return;
         var dpr2 = Math.min(2, window.devicePixelRatio || 1);
-        var sc2 = dpr2 / 2;
         var cv = document.createElement('canvas');
-        cv.width = Math.ceil(tw * sc2); cv.height = Math.ceil(th * sc2);
-        cv.style.cssText = 'position:absolute;left:0;top:0;width:' + (tw / 2) + 'px;height:' + (th / 2) + 'px';
+        cv.width = tw * dpr2; cv.height = th * dpr2;
+        cv.style.cssText = 'position:absolute;left:0;top:0;width:' + tw + 'px;height:' + th + 'px';
         cv.setAttribute('aria-hidden', 'true');
         el.style.position = 'relative';
         el.style.color = 'transparent';
         el.appendChild(cv);
         var ctx3 = cv.getContext('2d');
-        ctx3.setTransform(sc2, 0, 0, sc2, 0, 0);
+        ctx3.setTransform(dpr2, 0, 0, dpr2, 0, 0);
         var job = { el: el, cv: cv, ctx: ctx3, px: px, tw: tw, th: th, cell: cellN, t: -1, settled: false };
         jobs.push(job);
         // hover shimmer: pixels under the cursor pop and settle, one by one
         cv.addEventListener('mousemove', function (ev) {
           if (job.t < 0) return;
           var r = cv.getBoundingClientRect();
-          var hx = (ev.clientX - r.left) * 2, hy = (ev.clientY - r.top) * 2;
+          var hx = ev.clientX - r.left, hy = ev.clientY - r.top;
           var HR = 30 * 30, hit = false;
           for (var k = 0; k < job.px.length; k++) {
             var p = job.px[k];
