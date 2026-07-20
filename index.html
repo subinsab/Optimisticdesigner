@@ -212,6 +212,8 @@
   // every section except hero and footer zooms out into place on scroll
   var zoomEls = [].slice.call(document.querySelectorAll('.wy-proof, .wy-decl, #about, #experience, #frameworks, .wy-contact'));
   var heroEl = document.querySelector('.wy-hero');
+  var heroCue = document.querySelector('.wy-hero .wy-scroll');
+  var heroSub = document.querySelector('.hero-br .wy-sub');
   function sectionZoom() {
     if (reduced) return;
     var vh = window.innerHeight;
@@ -221,6 +223,16 @@
       var hp = Math.max(0, Math.min(1, window.scrollY / (heroEl.offsetHeight * 0.9)));
       heroEl.style.transform = 'scale(' + (1 + 0.5 * hp * hp).toFixed(4) + ')';
       heroEl.style.opacity = (1 - 0.78 * hp).toFixed(3);
+      // the scroll cue and tagline get out of the way much sooner
+      var fast = Math.max(0, 1 - hp / 0.28).toFixed(3);
+      if (heroCue) {
+        if (hp > 0.01) { heroCue.style.animation = 'none'; heroCue.style.opacity = fast; }
+        else { heroCue.style.animation = ''; heroCue.style.opacity = ''; }
+      }
+      if (heroSub) {
+        if (hp > 0.01) { heroSub.style.transition = 'none'; heroSub.style.opacity = fast; }
+        else { heroSub.style.transition = ''; heroSub.style.opacity = ''; }
+      }
     }
     zoomEls.forEach(function (el) {
       // layout position, not the transformed rect, else the scale feeds back into itself
