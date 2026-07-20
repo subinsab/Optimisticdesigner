@@ -436,3 +436,62 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
   .kd-head,.kd .flow,.kd-cta{margin-left:0}
   .kc .manifesto-item{min-height:54svh}
 }
+
+
+/* ══ WY: Won J You structure, black and white ══ */
+.wy-nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px 36px;background:rgba(5,5,5,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border-light)}
+.wy-nav .n-logo{display:flex;align-items:center;text-decoration:none}
+.wy-nav .n-logo svg{width:28px;height:28px}
+.wy-nav .n-links{display:flex;align-items:center;gap:26px}
+.wy-nav .n-links a{font-size:13.5px;color:#B3B3B3;text-decoration:none;transition:color .2s}
+.wy-nav .n-links a:hover{color:#FFF;opacity:1}
+.wy-pill{border:1px solid rgba(255,255,255,.25);color:#FFF!important;padding:9px 22px;border-radius:100px;font-weight:500;font-size:13.5px;transition:background .25s,color .25s}
+.wy-pill:hover{background:#FFF;color:#050505!important}
+
+.wy-hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 36px 90px;position:relative;max-width:1500px;margin:0 auto}
+.wy-eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A88;margin-bottom:34px}
+.wy-hero h1{font-weight:600;font-size:clamp(56px,10.5vw,168px);line-height:.98;letter-spacing:-.045em;color:#FFF;margin:0 0 36px;max-width:11ch}
+.wy-sub{font-size:clamp(17px,1.6vw,21px);color:#B3B3B3;line-height:1.6;max-width:540px}
+.wy-scroll{position:absolute;bottom:32px;left:36px;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#5A5A58;animation:hintpulse 2.8s ease-in-out infinite}
+@keyframes hintpulse{0%,100%{opacity:.45}50%{opacity:1}}
+.wy-hero .watch{position:absolute;bottom:32px;right:36px;display:flex;align-items:center;gap:12px;font-size:13.5px;color:#B3B3B3;text-decoration:none}
+.wy-hero .watch:hover{color:#FFF;opacity:1}
+.wy-hero .watch .play{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
+.wy-hero .watch .play svg{width:12px;height:12px;fill:#FFF}
+
+.wy-band{width:100%;height:clamp(360px,70vh,720px);overflow:hidden;position:relative}
+.wy-band img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(1) contrast(1.05);transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.wy-band.vis img{transform:scale(1)}
+
+.wy-decl{padding:130px 36px;max-width:1500px;margin:0 auto}
+.wy-decl .d-line{font-weight:600;font-size:clamp(34px,6vw,96px);line-height:1.04;letter-spacing:-.04em;text-transform:uppercase;color:#FFF;margin-bottom:10px}
+.wy-decl .d-line.dim{color:#3A3A38}
+
+.wy-sec{padding:130px 36px;max-width:1500px;margin:0 auto;position:relative}
+.wy-sec.alt{background:#0A0A0A;max-width:none}
+.wy-sec.alt>.wy-sec-in{max-width:1500px;margin:0 auto}
+.wy-label{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A88;margin-bottom:40px}
+.wy-state{font-weight:600;font-size:clamp(30px,4.4vw,64px);line-height:1.1;letter-spacing:-.032em;color:#FFF;max-width:22ch;margin-bottom:36px}
+.wy-copy{font-size:16.5px;color:#B3B3B3;line-height:1.75;max-width:560px}
+.wy-copy p{color:#B3B3B3;max-width:none}
+.wy-link{display:inline-flex;align-items:center;gap:10px;margin-top:34px;font-size:15px;font-weight:500;color:#FFF;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:8px;transition:border-color .25s}
+.wy-link:hover{opacity:1;border-color:#FFF}
+.wy-link svg{width:13px;height:13px;stroke:#FFF;stroke-width:2;fill:none}
+
+.wy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--border-light);border-left:1px solid var(--border-light);margin-top:24px}
+.wy-cell{border-right:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding:52px 24px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#B3B3B3;transition:background .3s,color .3s}
+.wy-cell:hover{background:#FFF;color:#050505}
+@media(max-width:880px){.wy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.wy-rows{margin-top:24px}
+.wy-row{display:flex;justify-content:space-between;gap:32px;padding:26px 0;border-top:1px solid var(--border-light);flex-wrap:wrap}
+.wy-row .r-name{font-weight:600;font-size:clamp(18px,2.2vw,26px);letter-spacing:-.02em;color:#FFF}
+.wy-row .r-note{font-size:14px;color:#8A8A88;text-align:right;max-width:420px}
+@media(max-width:880px){.wy-row .r-note{text-align:left}}
+
+.wy-contact{padding:150px 36px 120px;text-align:left;max-width:1500px;margin:0 auto}
+.wy-contact h2{font-weight:600;font-size:clamp(56px,10vw,160px);line-height:.98;letter-spacing:-.045em;color:#FFF;text-transform:uppercase;margin-bottom:48px}
+.wy-clinks{display:flex;flex-direction:column;gap:0;max-width:640px}
+.wy-clinks a{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;border-top:1px solid var(--border-light);font-size:17px;color:#FFF;text-decoration:none;transition:padding-left .3s}
+.wy-clinks a:hover{opacity:1;padding-left:14px}
+.wy-clinks a span{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A8A88}
