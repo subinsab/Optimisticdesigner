@@ -557,3 +557,21 @@ body.loaded .hw:nth-child(2) .hw-in{transition-delay:.26s}
 body.loaded .hw:nth-child(3) .hw-in{transition-delay:.4s}
 body.loaded .hw:nth-child(4) .hw-in{transition-delay:.54s}
 @media (prefers-reduced-motion: reduce){.hw-in{transform:none;transition:none}}
+
+/* Hero v2: pixel portrait center, headline left, tagline bottom right */
+.hero-canvas{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0}
+.hero-canvas canvas{display:block}
+.hero-left{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:2}
+.wy-hero .hero-left h1.hw-stack{margin:0}
+.hero-left .wy-eyebrow{margin-bottom:22px}
+.hero-left h1.hw-stack{font-size:clamp(30px,4.6vw,78px)}
+.hero-left .hw-in{font-size:inherit}
+.hero-br{position:absolute;right:36px;bottom:96px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:18px;text-align:right}
+.hero-br .wy-sub{margin:0;max-width:36ch}
+.wy-hero .hero-br .watch{position:static}
+@media(max-width:880px){
+  .wy-hero{justify-content:flex-start;padding-top:110px}
+  .hero-canvas{position:static;order:2;margin:26px 0 12px}
+  .hero-left{position:static;transform:none;order:1}
+  .hero-br{position:static;order:3;align-items:flex-start;text-align:left}
+}
