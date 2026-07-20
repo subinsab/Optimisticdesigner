@@ -538,8 +538,14 @@ body.cursor-on .cursor-ring.grow{width:48px;height:48px}
 .wy-cell{position:relative;z-index:0;transition:color .18s steps(2,end) .08s}
 .wy-cell::before{content:'';position:absolute;inset:0;z-index:-1;opacity:0;background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0 75%,transparent 0) 0 0/10px 10px}
 .wy-cell:hover{background:transparent;color:#050505}
-.wy-cell:hover::before{opacity:1;animation:dithersolid .26s steps(2,end) forwards}
-@keyframes dithersolid{60%{background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0 75%,transparent 0) 0 0/10px 10px}100%{background:#FFF}}
+.wy-cell:hover::before{opacity:1;animation:cellpix .5s steps(1,end) forwards}
+@keyframes cellpix{
+  0%{background:conic-gradient(#FFF 25%,transparent 0) 0 0/18px 18px}
+  28%{background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0 75%,transparent 0) 0 0/18px 18px}
+  52%{background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0 75%,transparent 0) 0 0/9px 9px}
+  76%{background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0) 0 0/9px 9px}
+  100%{background:#FFF}
+}
 
 /* Pixel band canvas */
 .wy-band{position:relative}
