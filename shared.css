@@ -469,6 +469,9 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 .wy-decl .d-line.dim{color:#3A3A38}
 
 .wy-sec{padding:260px 36px;max-width:1500px;margin:0 auto;position:relative}
+#about{padding-bottom:130px}
+#experience{padding-top:130px;padding-bottom:130px}
+#frameworks{padding-top:130px}
 .wy-sec.alt{background:#0A0A0A;max-width:none}
 .wy-sec.alt>.wy-sec-in{max-width:1500px;margin:0 auto}
 .wy-label{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A88;margin-bottom:40px}
