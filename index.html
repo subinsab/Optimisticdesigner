@@ -221,11 +221,17 @@
       var h = el.offsetHeight;
       if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
       if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
-      var p = (vh - top) / (vh + h);
-      p = Math.max(0, Math.min(1, p / 0.78));
-      var ease = 1 - Math.pow(1 - p, 3);
-      el.style.transform = 'scale(' + (2 - 1.2 * ease).toFixed(4) + ')';
-      el.style.opacity = (0.3 + 0.7 * ease).toFixed(3);
+      var p = Math.max(0, Math.min(1, (vh - top) / (vh + h)));
+      // phase 1: 2x -> 1x fast, finished before the next section can enter
+      var e1 = 1 - Math.pow(1 - Math.min(1, p / 0.24), 3);
+      var s = 2 - e1;
+      // phase 2: 1x -> 0.8 as a slow drift for the rest of the travel
+      if (p > 0.24) {
+        var e2 = 1 - Math.pow(1 - Math.min(1, (p - 0.24) / 0.54), 3);
+        s -= 0.2 * e2;
+      }
+      el.style.transform = 'scale(' + s.toFixed(4) + ')';
+      el.style.opacity = (0.3 + 0.7 * e1).toFixed(3);
     });
   }
   window.addEventListener('scroll', sectionZoom, { passive: true });

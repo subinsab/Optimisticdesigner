@@ -464,7 +464,7 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 .wy-band.vis img{transform:scale(1)}
 
 .wy-decl{padding:100px 36px 260px;max-width:1500px;margin:0 auto}
-.wy-proof,.wy-decl,#about,#experience,#frameworks,.wy-contact{transform-origin:50% 45%;will-change:transform}
+.wy-proof,.wy-decl,#about,#experience,#frameworks,.wy-contact{transform-origin:50% 0;will-change:transform}
 .wy-decl .d-line{font-weight:600;font-size:clamp(34px,6vw,96px);line-height:1.04;letter-spacing:-.04em;text-transform:uppercase;color:#FFF;margin-bottom:10px}
 .wy-decl .d-line.dim{color:#3A3A38}
 
