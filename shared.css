@@ -386,3 +386,53 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 /* Cursor visible on light and dark */
 .cursor-dot,.cursor-ring{mix-blend-mode:difference}
 .ka-up{border:1px solid rgba(0,0,0,.18)}
+
+
+/* ── Sections C-G: alternating rhythm ── */
+.sec-index{font-size:15px;letter-spacing:.06em;margin-bottom:24px}
+
+/* C · Manifesto (dark) */
+.kc{background:var(--bg);padding:110px 40px 60px;position:relative}
+.kc-in{max-width:1440px;margin:0 auto}
+.kc .sec-index{color:var(--text)}
+.kc .manifesto-item{min-height:78svh}
+
+/* D · Journey (light) */
+.kd{background:#FAFAF8;color:#101010;padding:120px 40px 140px;position:relative}
+.kd-in{max-width:1440px;margin:0 auto}
+.kd .sec-index{color:#101010}
+.kd-head{font-weight:600;font-size:clamp(40px,5.6vw,84px);line-height:1.04;letter-spacing:-.03em;text-transform:uppercase;color:#101010;max-width:20ch;margin-left:clamp(48px,7vw,100px)}
+.kd .flow{margin:clamp(70px,9vw,120px) 0 0 clamp(48px,7vw,100px)}
+.kd .flow span{color:#C2C2BE}
+.kd .flow span.lit{color:#101010}
+.kd .flow i{background:rgba(16,16,16,.2)}
+.kd-cta{margin:80px 0 0 clamp(48px,7vw,100px)}
+.kd-cta a{display:inline-block;font-size:16px;color:#101010;text-decoration:none;border-bottom:1px solid rgba(16,16,16,.5);padding-bottom:10px;transition:color .25s,border-color .25s}
+.kd-cta a:hover{opacity:1;color:#3A6E33;border-color:#3A6E33}
+
+/* E · Selected work (dark) */
+.ke{background:var(--bg);padding:130px 40px 150px;position:relative}
+.ke-in{max-width:1440px;margin:0 auto}
+.ke .sec-index{color:var(--text)}
+.ke .works{margin-top:70px}
+
+/* F · Thinking (light) */
+.kf{background:#FAFAF8;color:#101010;padding:0 40px;position:relative}
+.kf-in{max-width:1440px;margin:0 auto;min-height:78svh;display:flex;flex-direction:column;justify-content:center}
+.kf .sec-index{color:#101010}
+.kf .t-quote{color:#101010;font-weight:600;font-size:clamp(34px,5.6vw,80px);line-height:1.05;letter-spacing:-.04em;max-width:1000px;transition:opacity .6s ease}
+.kf .t-quote.fade{opacity:0}
+
+/* G · Closing (dark) */
+.kg{background:var(--bg);padding:150px 40px 120px;position:relative}
+.kg-in{max-width:1440px;margin:0 auto;text-align:center}
+.kg-head{font-weight:600;font-size:clamp(44px,7vw,110px);line-height:1;letter-spacing:-.04em;color:var(--text);text-transform:uppercase}
+.kg-cta{margin-top:56px}
+.kg-cta a{display:inline-block;font-size:17px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--text2);padding-bottom:10px;transition:color .25s,border-color .25s}
+.kg-cta a:hover{opacity:1;color:var(--accent);border-color:var(--accent)}
+
+@media(max-width:980px){
+  .kc,.kd,.ke,.kf,.kg{padding-left:20px;padding-right:20px}
+  .kd-head,.kd .flow,.kd-cta{margin-left:0}
+  .kc .manifesto-item{min-height:54svh}
+}

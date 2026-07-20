@@ -59,6 +59,79 @@
     <div class="kb-dot" aria-hidden="true"></div>
   </div>
 </section>
+
+<!-- SECTION C · Manifesto -->
+<section class="kc" id="sectionC">
+  <div class="kc-in"><div class="sec-index">( 02 )</div></div>
+  <div class="wrap manifesto-item"><div style="grid-column:1/-1">
+    <div class="m-line">People before <span class="acc">pixels.</span></div>
+  </div></div>
+  <div class="wrap manifesto-item"><div style="grid-column:1/-1">
+    <div class="m-line">Systems before <span class="acc">screens.</span></div>
+  </div></div>
+  <div class="wrap manifesto-item"><div style="grid-column:1/-1">
+    <div class="m-line">Curiosity before <span class="acc">certainty.</span></div>
+  </div></div>
+  <div class="wrap manifesto-item"><div style="grid-column:1/-1">
+    <div class="m-line">Optimism before <span class="acc">perfection.</span></div>
+  </div></div>
+  <div class="wrap manifesto-item"><div style="grid-column:1/-1">
+    <div class="m-line">Every challenge deserves a <span class="acc">better experience.</span></div>
+  </div></div>
+</section>
+
+<!-- SECTION D · Journey -->
+<section class="kd" id="sectionD">
+  <div class="kd-in">
+    <div class="sec-index">( 03 )</div>
+    <h2 class="kd-head rv">Placeholder journey headline</h2>
+    <div class="flow" id="flow">
+      <span>Curiosity</span><i></i>
+      <span>Craft</span><i></i>
+      <span>Systems</span><i></i>
+      <span>Leadership</span><i></i>
+      <span>AI</span><i></i>
+      <span>Future</span>
+    </div>
+    <div class="kd-cta rv"><a href="journey.html">Explore My Journey</a></div>
+  </div>
+</section>
+
+<!-- SECTION E · Selected work -->
+<section class="ke" id="sectionE">
+  <div class="ke-in">
+    <div class="sec-index">( 04 )</div>
+    <div class="works">
+      <div class="works-info">
+        <p class="wi-desc" id="wiDesc">Placeholder description for the first project, swapped on hover.</p>
+        <div class="wi-metrics" id="wiMetrics">Placeholder metrics line</div>
+      </div>
+      <div class="works-list" id="worksList">
+        <a href="stories.html" class="on" data-desc="Placeholder: one sentence about Aspero, written later." data-metrics="Placeholder metric one · metric two"><span class="wyear">2022</span>Aspero</a>
+        <a href="unify.html" data-desc="Placeholder: one sentence about UNIFY, written later." data-metrics="Placeholder metric one · metric two"><span class="wyear">2023</span>UNIFY</a>
+        <a href="stories.html" data-desc="Placeholder: one sentence about Yubi 2.0, written later." data-metrics="Placeholder metric one · metric two"><span class="wyear">2024</span>Yubi 2.0</a>
+        <a href="stories.html" data-desc="Placeholder: one sentence about YuCollect, written later." data-metrics="Placeholder metric one · metric two"><span class="wyear">2024</span>YuCollect</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION F · Thinking -->
+<section class="kf" id="sectionF">
+  <div class="kf-in">
+    <div class="sec-index">( 05 )</div>
+    <div class="t-quote" id="tQuote">Placeholder rotating statement one.</div>
+  </div>
+</section>
+
+<!-- SECTION G · Closing -->
+<section class="kg" id="sectionG">
+  <div class="kg-in">
+    <div class="sec-index" style="color:var(--text)">( 06 )</div>
+    <div class="kg-head rv">Placeholder closing line</div>
+    <div class="kg-cta rv"><a href="contact.html">Start a conversation</a></div>
+  </div>
+</section>
 </main>
 
 <footer class="site-footer"><div class="wrap">
@@ -150,6 +223,72 @@
       window.addEventListener('scroll', onFillScroll, { passive: true });
       onFillScroll();
     }
+  }
+  var mans = document.querySelectorAll('.manifesto-item');
+  if (mans.length && 'IntersectionObserver' in window && !reduced) {
+    var mio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('on'); mio.unobserve(e.target); }
+      });
+    }, { threshold: 0.55 });
+    mans.forEach(function (el) { mio.observe(el); });
+  } else {
+    mans.forEach(function (el) { el.classList.add('on'); });
+  }
+
+  var flow = document.getElementById('flow');
+  if (flow && 'IntersectionObserver' in window && !reduced) {
+    var fio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          flow.querySelectorAll('span').forEach(function (s, i) {
+            setTimeout(function () { s.classList.add('lit'); }, i * 260);
+          });
+          fio.unobserve(flow);
+        }
+      });
+    }, { threshold: 0.6 });
+    fio.observe(flow);
+  } else if (flow) {
+    flow.querySelectorAll('span').forEach(function (s) { s.classList.add('lit'); });
+  }
+
+  var wiDesc = document.getElementById('wiDesc');
+  var wiMetrics = document.getElementById('wiMetrics');
+  var wlinks = document.querySelectorAll('.works-list a');
+  if (wlinks.length) {
+    wiDesc.textContent = wlinks[0].dataset.desc;
+    wiMetrics.textContent = wlinks[0].dataset.metrics;
+    wlinks.forEach(function (a) {
+      a.addEventListener('mouseenter', function () {
+        wlinks.forEach(function (x) { x.classList.remove('on'); });
+        a.classList.add('on');
+        wiDesc.style.opacity = 0;
+        setTimeout(function () {
+          wiDesc.textContent = a.dataset.desc;
+          wiMetrics.textContent = a.dataset.metrics;
+          wiDesc.style.opacity = 1;
+        }, 180);
+      });
+    });
+  }
+
+  var quotes = [
+    'Placeholder rotating statement one.',
+    'Placeholder rotating statement two.',
+    'Placeholder rotating statement three.'
+  ];
+  var tq = document.getElementById('tQuote');
+  if (tq && !reduced) {
+    var qi = 0;
+    setInterval(function () {
+      tq.classList.add('fade');
+      setTimeout(function () {
+        qi = (qi + 1) % quotes.length;
+        tq.textContent = quotes[qi];
+        tq.classList.remove('fade');
+      }, 620);
+    }, 5200);
   }
 })();
 </script>
