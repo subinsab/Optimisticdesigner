@@ -592,3 +592,11 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .pf-item:nth-child(odd){border-left:none;padding-left:0}
   .pf-item:nth-child(even){padding-left:28px}
 }
+
+/* Section D: statement left, subtext + button right */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,96px);align-items:start}
+.about-grid .wy-state{margin-bottom:0}
+.about-side{padding-top:10px}
+.about-side .btn{margin-top:30px}
+.about-side .btn:hover{background:#E8E8E6;color:#0B0B0B}
+@media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:36px}}
