@@ -414,7 +414,7 @@
         var fs = parseFloat(cs.fontSize);
         var font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
         var text = el.textContent;
-        var cellN = Math.max(3, Math.round(fs / 15));
+        var cellN = Math.max(2, Math.round(fs / 30));
         var meas = document.createElement('canvas').getContext('2d');
         meas.font = font;
         var tw = Math.ceil(meas.measureText(text).width) + cellN;
