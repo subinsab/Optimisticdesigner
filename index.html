@@ -193,6 +193,22 @@
     if (prog && max > 0) prog.style.width = (window.scrollY / max * 100) + '%';
   }, { passive: true });
 
+  // section C zooms out as it scrolls into place
+  var decl = document.querySelector('.wy-decl');
+  function declZoom() {
+    if (!decl || reduced) return;
+    var r = decl.getBoundingClientRect();
+    var vh = window.innerHeight;
+    if (r.bottom < 0 || r.top > vh) return;
+    var p = (vh - r.top) / (vh + r.height);
+    p = Math.max(0, Math.min(1, p / 0.55));
+    var ease = 1 - Math.pow(1 - p, 3);
+    decl.style.transform = 'scale(' + (1.22 - 0.22 * ease).toFixed(4) + ')';
+  }
+  window.addEventListener('scroll', declZoom, { passive: true });
+  window.addEventListener('resize', declZoom);
+  declZoom();
+
   var band = document.querySelector('.wy-band');
   var bandImg = band ? band.querySelector('img') : null;
   if (band && bandImg && !reduced) {
