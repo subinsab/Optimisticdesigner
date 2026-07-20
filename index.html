@@ -268,7 +268,7 @@
     var ctx2 = pcv.getContext('2d');
     var parts = [], cell = 2, gw = 0, gh = 0, cw = 0, chh = 0;
     var mx = -1e4, my = -1e4, raf2 = 0, still = 0;
-    var BRUSH = 34, dpr = Math.min(2, window.devicePixelRatio || 1);
+    var BRUSH = 14, CAP = 26, dpr = Math.min(2, window.devicePixelRatio || 1);
     var img2 = new Image();
     img2.src = 'assets/portrait-grid.png';
     img2.onload = function () { pbuild(true); };
@@ -296,7 +296,7 @@
         var l = Math.round(0.2126 * r + 0.7152 * g + 0.0722 * b);
         parts.push({ tx: gx * cell, ty: gy * cell,
           r: r, g: g, b: b, l: l,
-          p: 0, t: 0, cs: 'rgb(' + l + ',' + l + ',' + l + ')',
+          p: 0, t: 0, e: 0, cs: 'rgb(' + l + ',' + l + ',' + l + ')',
           x: scattered ? Math.random() * cw : gx * cell,
           y: scattered ? Math.random() * chh : gy * cell,
           d: Math.random() * 42 });
@@ -314,7 +314,12 @@
       for (var k = 0; k < parts.length; k++) {
         var p = parts[k];
         ctx2.fillStyle = p.cs;
-        ctx2.fillRect(Math.round(p.x), Math.round(p.y), cell, cell);
+        if (p.e > 0.02) {
+          var gsz = p.e * 1.6;
+          ctx2.fillRect(Math.round(p.x) - gsz, Math.round(p.y) - gsz, cell + gsz * 2, cell + gsz * 2);
+        } else {
+          ctx2.fillRect(Math.round(p.x), Math.round(p.y), cell, cell);
+        }
       }
     }
     function ptick() {
@@ -327,13 +332,16 @@
           p.x += dx * 0.085; p.y += dy * 0.085;
           busy++;
         } else { p.x = p.tx; p.y = p.ty; }
-        if (p.p !== p.t) {
+        if (p.p !== p.t || p.e > 0.02) {
           p.p += (p.t - p.p) * 0.22;
           if (Math.abs(p.t - p.p) < 0.02) { p.p = p.t; } else { busy++; }
-          var f = p.p;
-          p.cs = 'rgb(' + Math.round(p.l + (p.r - p.l) * f) + ',' +
-                          Math.round(p.l + (p.g - p.l) * f) + ',' +
-                          Math.round(p.l + (p.b - p.l) * f) + ')';
+          p.e *= 0.88;
+          if (p.e > 0.02) { busy++; } else { p.e = 0; }
+          var f = p.p, hl = 0.35 * p.e;
+          var cr = p.l + (p.r - p.l) * f, cg = p.l + (p.g - p.l) * f, cb = p.l + (p.b - p.l) * f;
+          p.cs = 'rgb(' + Math.round(cr + (255 - cr) * hl) + ',' +
+                          Math.round(cg + (255 - cg) * hl) + ',' +
+                          Math.round(cb + (255 - cb) * hl) + ')';
         }
       }
       pdraw();
@@ -346,14 +354,19 @@
       var rct = pcv.getBoundingClientRect();
       mx = e.clientX - rct.left; my = e.clientY - rct.top;
       if (mx < -BRUSH || my < -BRUSH || mx > cw + BRUSH || my > chh + BRUSH) return;
-      var r2 = BRUSH * BRUSH, touched = false;
+      var r2 = BRUSH * BRUSH, hits = [];
       for (var k = 0; k < parts.length; k++) {
         var p = parts[k];
         if (p.t === 1) continue;
         var ox = p.tx - mx, oy = p.ty - my;
-        if (ox * ox + oy * oy < r2) { p.t = 1; touched = true; }
+        var d2 = ox * ox + oy * oy;
+        if (d2 < r2) hits.push([d2, p]);
       }
-      if (touched) pwake();
+      if (!hits.length) return;
+      hits.sort(function (a, b) { return a[0] - b[0]; });
+      var n = Math.min(CAP, hits.length);
+      for (var h = 0; h < n; h++) { hits[h][1].t = 1; hits[h][1].e = 1; }
+      pwake();
     });
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden && parts.length) { pwake(); }
