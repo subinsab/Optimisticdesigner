@@ -495,7 +495,7 @@
     function render(j, final) {
       var c = j.ctx;
       c.clearRect(0, 0, j.tw, j.th);
-      var sz = j.cell - 1;
+      var sz = (j.cell - 1) * 1.2;
       for (var k = 0; k < j.px.length; k++) {
         var p = j.px[k];
         if (!p.on && !final) continue;
