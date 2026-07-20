@@ -584,6 +584,87 @@
     if (!document.hidden) { init(); }
     else document.addEventListener('visibilitychange', function () { if (!document.hidden) init(); });
   })();
+
+  // section headlines materialize through a dissolving pixel cover, like the proof numbers
+  var pxTargets = [].slice.call(document.querySelectorAll('.wy-decl .d-line, #about .wy-state, #experience .wy-state, #frameworks .wy-state, .wy-contact h2'));
+  if (pxTargets.length && !reduced) (function () {
+    var jobs2 = [], raf3 = 0, inited2 = false;
+    var CELL2 = 10, DUR2 = 42;
+    function bgOf(el) {
+      var n = el;
+      while (n && n !== document.body) {
+        var c = getComputedStyle(n).backgroundColor;
+        if (c && c !== 'rgba(0, 0, 0, 0)' && c !== 'transparent') return c;
+        n = n.parentElement;
+      }
+      return '#0B0B0B';
+    }
+    function setup2() {
+      pxTargets.forEach(function (el) {
+        el.classList.add('pxr');
+        if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+        var w = el.offsetWidth, h = el.offsetHeight;
+        if (!w || !h) return;
+        var dprX = Math.min(2, window.devicePixelRatio || 1);
+        var cv = document.createElement('canvas');
+        cv.width = Math.ceil(w * dprX); cv.height = Math.ceil(h * dprX);
+        cv.style.cssText = 'position:absolute;left:0;top:0;width:' + w + 'px;height:' + h + 'px;pointer-events:none';
+        cv.setAttribute('aria-hidden', 'true');
+        el.appendChild(cv);
+        var cx = cv.getContext('2d');
+        cx.setTransform(dprX, 0, 0, dprX, 0, 0);
+        var bg = bgOf(el);
+        var cols = Math.ceil(w / CELL2), rows2 = Math.ceil(h / CELL2);
+        var cells = [];
+        for (var gy = 0; gy < rows2; gy++) for (var gx = 0; gx < cols; gx++) {
+          cells.push({ x: gx * CELL2, y: gy * CELL2, j: Math.random(), gone: false });
+        }
+        cx.fillStyle = bg;
+        cx.fillRect(0, 0, w, h);
+        jobs2.push({ el: el, cv: cv, ctx: cx, cells: cells, w: w, h: h, bg: bg, t: -1, done: false });
+      });
+      check2();
+    }
+    function frame2() {
+      var any = false;
+      jobs2.forEach(function (j) {
+        if (j.done || j.t < 0) return;
+        any = true;
+        var wave = j.t / DUR2;
+        var remaining = 0;
+        j.ctx.clearRect(0, 0, j.w, j.h);
+        j.ctx.fillStyle = j.bg;
+        for (var k = 0; k < j.cells.length; k++) {
+          var c = j.cells[k];
+          if (c.gone) continue;
+          if (c.x / j.w < wave * 1.3 - c.j * 0.3) { c.gone = true; continue; }
+          remaining++;
+          j.ctx.fillRect(c.x, c.y, CELL2, CELL2);
+        }
+        j.t++;
+        if (!remaining) { j.done = true; j.cv.remove(); }
+      });
+      raf3 = any ? requestAnimationFrame(frame2) : 0;
+    }
+    function wake2() { if (!raf3) raf3 = requestAnimationFrame(frame2); }
+    function check2() {
+      var hit = false;
+      jobs2.forEach(function (j) {
+        if (j.t === -1 && j.el.getBoundingClientRect().top < window.innerHeight * 0.88) { j.t = 0; hit = true; }
+      });
+      if (hit) wake2();
+    }
+    function init2() {
+      if (inited2) return;
+      inited2 = true;
+      document.fonts.ready.then(function () {
+        setup2();
+        window.addEventListener('scroll', check2, { passive: true });
+      });
+    }
+    if (!document.hidden) { init2(); }
+    else document.addEventListener('visibilitychange', function () { if (!document.hidden) init2(); });
+  })();
 })();
 </script>
 </body>
