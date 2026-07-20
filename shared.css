@@ -620,3 +620,30 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 /* Caption under the hero portrait, set like a plaque under a print */
 .hero-canvas{flex-direction:column;gap:20px}
 .px-caption{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A8A88;user-select:none;pointer-events:none}
+
+/* ── Journey page ── */
+.jn-hero{padding:180px 36px 60px;max-width:1500px;margin:0 auto}
+.jn-hero h1.hw-stack{font-size:clamp(34px,5.4vw,92px);margin:0 0 28px;max-width:none}
+.jn-hero .hw-in{font-size:inherit;text-transform:none;letter-spacing:-.03em}
+.jn-hero .wy-sub{max-width:600px}
+.jn-ages{padding:50px 36px 140px;max-width:1500px;margin:0 auto}
+.age-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,56px);align-items:end}
+.age-card{margin:0}
+.age-num{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8A8A88}
+.age-title{font-weight:600;font-size:15px;letter-spacing:.24em;text-transform:uppercase;margin:12px 0 14px;color:#FFF}
+.age-copy{font-size:13.5px;color:#9C9C9A;line-height:1.65;min-height:72px;max-width:30ch}
+.age-card img{width:100%;height:auto;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .4s}
+.age-card:hover img{transform:translateY(-8px);filter:brightness(1.18)}
+.age-rail{display:grid;grid-template-columns:repeat(4,1fr);position:relative;height:14px;margin-top:2px}
+.age-rail::before{content:'';position:absolute;left:0;right:0;top:6px;height:1px;background:rgba(255,255,255,.28)}
+.age-rail .dot{width:13px;height:13px;border-radius:50%;border:2px solid #FFF;background:#0B0B0B;justify-self:center;position:relative;z-index:1}
+.age-caption{text-align:center;margin-top:46px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.36em;text-transform:uppercase;color:#B3B3B3}
+.jn-ch{padding:120px 36px}
+.jn-ch .wy-copy{margin-top:8px}
+.jn-ch .wy-link{margin-top:40px}
+.wy-nav .n-links a.on{color:#FFF}
+@media(max-width:900px){
+  .age-grid{grid-template-columns:1fr 1fr;row-gap:52px;align-items:end}
+  .age-rail{display:none}
+  .age-copy{min-height:0}
+}
