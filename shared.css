@@ -516,3 +516,35 @@ a.card:hover .card-arrow{opacity:1;transform:none;color:var(--accent)}
 .wy-clinks a .c-ic{width:19px;height:19px;stroke:#8A8A88;stroke-width:1.6;fill:none;flex-shrink:0;transition:stroke .3s}
 .wy-clinks a:hover .c-ic{stroke:#FFF}
 .wy-pill{will-change:transform}
+
+
+/* ══ Pixel interaction language ══ */
+
+/* Quantized motion: reveals move in steps, like sprite frames */
+.rv,.hero-rv{transition-timing-function:steps(6,end)}
+
+/* Square cursor + trail */
+.cursor-dot{width:8px;height:8px;border-radius:0}
+.cursor-ring{width:30px;height:30px;border-radius:0;transition:width .18s steps(3,end),height .18s steps(3,end),border-color .18s}
+body.cursor-on .cursor-ring.grow{width:48px;height:48px}
+.px-trail{position:fixed;top:0;left:0;width:6px;height:6px;background:#FFF;pointer-events:none;z-index:998;mix-blend-mode:difference;transform:translate(-50%,-50%);animation:trailfade .38s steps(4,end) forwards}
+@keyframes trailfade{to{opacity:0;transform:translate(-50%,-50%) scale(.3)}}
+
+/* Segmented pixel progress bar */
+.wy-progress{height:4px;background:repeating-linear-gradient(90deg,#FFF 0 8px,transparent 8px 12px);transition:width .12s steps(4,end)}
+
+/* Declarations flicker on like a CRT */
+.wy-decl .d-line.lit{animation:pixlit .3s steps(1,end)}
+@keyframes pixlit{0%{color:#2A2A28}35%{color:#FFF}65%{color:#2A2A28}100%{color:#FFF}}
+
+/* Brand cells fill with dither, then solid */
+.wy-cell{position:relative;z-index:0;transition:color .18s steps(2,end) .08s}
+.wy-cell::before{content:'';position:absolute;inset:0;z-index:-1;opacity:0;background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0 75%,transparent 0) 0 0/10px 10px}
+.wy-cell:hover{background:transparent;color:#050505}
+.wy-cell:hover::before{opacity:1;animation:dithersolid .26s steps(2,end) forwards}
+@keyframes dithersolid{60%{background:conic-gradient(#FFF 25%,transparent 0 50%,#FFF 0 75%,transparent 0) 0 0/10px 10px}100%{background:#FFF}}
+
+/* Pixel band canvas */
+.wy-band{position:relative}
+.wy-band canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;z-index:2}
+@media (prefers-reduced-motion: reduce){.px-trail{display:none}.wy-band canvas{display:none}}

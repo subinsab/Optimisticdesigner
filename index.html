@@ -32,8 +32,8 @@
   <div class="wy-eyebrow hero-rv">The Optimistic Designer · Design Director</div>
   <h1 class="hero-rv">Same optimism. New mission.</h1>
   <p class="wy-sub hero-rv">Designing better products. Building better teams. Creating better futures.</p>
-  <div class="wy-scroll"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>Scroll to discover</div>
-  <a class="watch hero-rv" href="stories.html"><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z"/></svg></span>watch the work</a>
+  <div class="wy-scroll"><svg viewBox="0 0 24 24" aria-hidden="true" style="animation-name:chev"><rect x="4" y="8" width="4" height="4" fill="#8A8A88"/><rect x="16" y="8" width="4" height="4" fill="#8A8A88"/><rect x="7" y="11" width="4" height="4" fill="#8A8A88"/><rect x="13" y="11" width="4" height="4" fill="#8A8A88"/><rect x="10" y="14" width="4" height="4" fill="#8A8A88"/></svg>Scroll to discover</div>
+  <a class="watch hero-rv" href="stories.html"><span class="play"><svg viewBox="0 0 12 12"><rect x="3" y="2" width="2" height="8"/><rect x="5" y="3" width="2" height="6"/><rect x="7" y="4" width="2" height="4"/><rect x="9" y="5" width="2" height="2"/></svg></span>watch the work</a>
 </section>
 
 <div class="wy-band rv">
@@ -193,6 +193,57 @@
     });
     pill.addEventListener('mouseleave', function () { pill.style.transform = ''; });
   }
+  if (fine && !reduced) {
+    var lastTrail = 0;
+    document.addEventListener('mousemove', function (e) {
+      var now = Date.now();
+      if (now - lastTrail < 42) return;
+      lastTrail = now;
+      var t = document.createElement('div');
+      t.className = 'px-trail';
+      t.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+      document.body.appendChild(t);
+      t.addEventListener('animationend', function () { t.remove(); });
+    });
+  }
+
+  var pixDone = false;
+  function pixelResolve() {
+    if (pixDone || reduced || !band || !bandImg) return;
+    pixDone = true;
+    if (!bandImg.complete || !bandImg.naturalWidth) { bandImg.addEventListener('load', function () { pixDone = false; pixelResolve(); }); return; }
+    var cv = document.createElement('canvas');
+    band.appendChild(cv);
+    var w = band.clientWidth, hh = band.clientHeight;
+    cv.width = w; cv.height = hh;
+    var ctx = cv.getContext('2d');
+    var ir = bandImg.naturalWidth / bandImg.naturalHeight, br = w / hh;
+    var sx, sy, sw, sh;
+    if (ir > br) { sh = bandImg.naturalHeight; sw = sh * br; sx = (bandImg.naturalWidth - sw) / 2; sy = 0; }
+    else { sw = bandImg.naturalWidth; sh = sw / br; sx = 0; sy = (bandImg.naturalHeight - sh) * 0.2; }
+    var sizes = [30, 20, 13, 8, 5, 3];
+    var i = 0;
+    (function stepFn() {
+      var px = sizes[i];
+      var tw = Math.max(2, Math.round(w / px)), th = Math.max(2, Math.round(hh / px));
+      var t = document.createElement('canvas');
+      t.width = tw; t.height = th;
+      var tc = t.getContext('2d');
+      tc.drawImage(bandImg, sx, sy, sw, sh, 0, 0, tw, th);
+      ctx.imageSmoothingEnabled = false;
+      ctx.clearRect(0, 0, w, hh);
+      ctx.drawImage(t, 0, 0, w, hh);
+      i++;
+      if (i < sizes.length) { setTimeout(stepFn, 140); }
+      else { setTimeout(function () { cv.remove(); }, 180); }
+    })();
+  }
+  var pixCheck = function () {
+    if (band && band.classList.contains('vis')) { pixelResolve(); window.removeEventListener('scroll', pixCheck); }
+  };
+  window.addEventListener('scroll', pixCheck, { passive: true });
+  pixCheck();
+  setTimeout(pixCheck, 400);
 })();
 </script>
 </body>
