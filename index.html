@@ -66,7 +66,7 @@
 <!-- SECTION D · About -->
 <section class="wy-sec alt" id="about"><div class="wy-sec-in">
   <div class="wy-label rv">About</div>
-  <div class="wy-state rv">My focus has shifted from running one design organisation to helping every team I touch move faster, think clearer, and believe bigger.</div>
+  <div class="wy-state rv">I build design organisations that move faster, think clearer, and believe bigger. AI just raised the ceiling on all three.</div>
   <div class="wy-copy rv">
     <p>Placeholder: two or three sentences about the shift. From fourteen years of building products and design orgs, to the current chapter working with AI, and what stays constant underneath it all: optimism as a working method.</p>
   </div>
@@ -201,7 +201,8 @@
     var top = decl.offsetTop - window.scrollY;
     var h = decl.offsetHeight;
     var vh = window.innerHeight;
-    if (top + h < -vh || top > vh * 1.5) return;
+    if (top > vh) { decl.style.transform = 'scale(2)'; decl.style.opacity = '0.3'; return; }
+    if (top + h < 0) { decl.style.transform = 'scale(0.8)'; decl.style.opacity = '1'; return; }
     var p = (vh - top) / (vh + h);
     p = Math.max(0, Math.min(1, p / 0.78));
     var ease = 1 - Math.pow(1 - p, 3);
