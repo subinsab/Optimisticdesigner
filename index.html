@@ -350,9 +350,9 @@
       raf2 = requestAnimationFrame(ptick);
     }
     function pwake() { if (!raf2 && parts.length) raf2 = requestAnimationFrame(ptick); }
-    window.addEventListener('mousemove', function (e) {
+    function paintAt(clientX, clientY) {
       var rct = pcv.getBoundingClientRect();
-      mx = e.clientX - rct.left; my = e.clientY - rct.top;
+      mx = clientX - rct.left; my = clientY - rct.top;
       if (mx < -BRUSH || my < -BRUSH || mx > cw + BRUSH || my > chh + BRUSH) return;
       var r2 = BRUSH * BRUSH, hits = [];
       for (var k = 0; k < parts.length; k++) {
@@ -367,7 +367,27 @@
       var n = Math.min(CAP, hits.length);
       for (var h = 0; h < n; h++) { hits[h][1].t = 1; hits[h][1].e = 1; }
       pwake();
+    }
+    var painting = false;
+    pcv.addEventListener('mouseenter', function () { document.body.classList.add('bucketing'); });
+    pcv.addEventListener('mouseleave', function () { document.body.classList.remove('bucketing'); });
+    pcv.addEventListener('mousedown', function (e) {
+      painting = true;
+      paintAt(e.clientX, e.clientY);
+      e.preventDefault();
     });
+    window.addEventListener('mouseup', function () { painting = false; });
+    window.addEventListener('mousemove', function (e) {
+      if (painting) paintAt(e.clientX, e.clientY);
+    });
+    pcv.addEventListener('touchstart', function (e) {
+      var t = e.touches[0];
+      if (t) paintAt(t.clientX, t.clientY);
+    }, { passive: true });
+    pcv.addEventListener('touchmove', function (e) {
+      var t = e.touches[0];
+      if (t) paintAt(t.clientX, t.clientY);
+    }, { passive: true });
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden && parts.length) { pwake(); }
     });
