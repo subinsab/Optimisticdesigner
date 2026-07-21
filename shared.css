@@ -667,3 +667,33 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .cr-row{grid-template-columns:1fr;gap:6px}
   .cr-role{text-align:left}
 }
+
+/* Journey: pinned age scrub, the portrait ages as you scroll */
+.age-scrub{position:relative;height:340vh}
+.scrub-pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 36px 36px;max-width:1500px;margin:0 auto}
+.scrub-main{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,4vw,72px);align-items:center;flex:1;min-height:0}
+.scrub-info{position:relative;min-height:260px}
+.scrub-stage{position:absolute;top:50%;transform:translateY(-50%);opacity:0;transition:opacity .28s steps(3,end);max-width:34ch}
+.scrub-stage.on{opacity:1}
+.scrub-title{font-weight:600;font-size:19px;letter-spacing:.26em;text-transform:uppercase;margin:-30px 0 18px 22px;color:#FFF;position:relative}
+.scrub-copy{font-size:16px;color:#9C9C9A;line-height:1.7}
+#ageCanvas{display:block;justify-self:center}
+.scrub-rail{position:relative;height:14px;margin:30px auto 0;width:min(560px,64%)}
+.scrub-rail::before{content:'';position:absolute;left:0;right:0;top:6px;height:1px;background:rgba(255,255,255,.22)}
+.scrub-fill{position:absolute;left:0;top:6px;height:1px;background:#FFF;width:0}
+.scrub-rail .dot{position:absolute;top:0;width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:#0B0B0B;transform:translateX(-50%)}
+.scrub-rail .dot:nth-child(2){left:0.5%}
+.scrub-rail .dot:nth-child(3){left:33.6%}
+.scrub-rail .dot:nth-child(4){left:66.8%}
+.scrub-rail .dot:nth-child(5){left:100%}
+.scrub-rail .dot.on{border-color:#FFF;background:#FFF}
+.age-scrub .age-caption{margin-top:26px}
+.jn-ages{display:none}
+@media(max-width:899px){
+  .age-scrub{display:none}
+  .jn-ages{display:block}
+}
+@media (prefers-reduced-motion: reduce){
+  .age-scrub{display:none}
+  .jn-ages{display:block}
+}
