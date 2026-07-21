@@ -631,7 +631,7 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .age-card{margin:0;display:flex;flex-direction:column}
 .age-num{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8A8A88}
 .age-title{font-weight:600;font-size:15px;letter-spacing:.24em;text-transform:uppercase;margin:12px 0 14px;color:#FFF}
-.age-copy{font-size:13.5px;color:#9C9C9A;line-height:1.65;max-width:30ch;flex:1;margin-bottom:22px}
+.age-copy{font-size:13.5px;color:#9C9C9A;line-height:1.65;max-width:none;flex:1;margin-bottom:22px}
 .age-card img{width:100%;aspect-ratio:900/797;object-fit:contain;background:#0B0B0B;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .4s}
 .age-card:hover img{transform:translateY(-8px);filter:brightness(1.18)}
 .age-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,56px);position:relative;height:14px;margin-top:2px}
