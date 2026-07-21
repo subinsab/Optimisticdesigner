@@ -768,3 +768,13 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .cs-mx-head{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#5A5A58}
 .cs-mx-head span{color:#5A5A58!important;font-size:10.5px!important}
 @media(max-width:720px){.cs-mx-row{grid-template-columns:1.4fr .6fr .6fr .6fr;gap:10px;font-size:13px}}
+
+/* Case study: brand block */
+.cs-brand{margin-top:42px}
+.cs-brand-hero{background:linear-gradient(105deg,#01D464 10%,#FDFD6C 95%);padding:clamp(48px,7vw,110px) clamp(28px,5vw,72px);display:flex;justify-content:center}
+.cs-brand-word{position:relative;font-weight:600;font-size:clamp(52px,8.5vw,132px);letter-spacing:-.035em;line-height:1;color:#101828}
+.cs-brand-peak{position:absolute;right:-.06em;top:-.34em;width:.42em;height:.34em;background:#101828;clip-path:polygon(50% 0,100% 100%,72% 100%,50% 42%,28% 100%,0 100%)}
+.cs-brand-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.cs-chip{display:flex;justify-content:space-between;align-items:baseline;padding:22px 24px;font-size:14px;font-weight:500}
+.cs-chip span:last-child{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.06em;opacity:.75}
+@media(max-width:720px){.cs-brand-chips{grid-template-columns:1fr}}
