@@ -647,3 +647,15 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .age-rail{display:none}
   .age-copy{min-height:0}
 }
+
+/* Journey: career stops */
+.cr-rows{margin-top:28px}
+.cr-row{display:grid;grid-template-columns:170px 1fr auto;gap:28px;padding:24px 0;border-top:1px solid var(--border-light);align-items:baseline}
+.cr-row:first-child{border-top:none}
+.cr-year{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:#8A8A88}
+.cr-co{font-weight:600;font-size:clamp(17px,1.7vw,23px);letter-spacing:-.015em;color:#FFF}
+.cr-role{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A8A88;text-align:right}
+@media(max-width:760px){
+  .cr-row{grid-template-columns:1fr;gap:6px}
+  .cr-role{text-align:left}
+}
