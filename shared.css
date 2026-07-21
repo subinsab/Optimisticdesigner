@@ -729,3 +729,32 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .st-stat{text-align:left;padding-top:4px}
   .st-mini{grid-template-columns:1fr;gap:8px}
 }
+
+/* ── Case study pages ── */
+.cs-sec{padding:100px 36px;max-width:1500px;margin:0 auto;transform-origin:50% 0;will-change:transform}
+.cs-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border-light)}
+.cs-fact{padding:26px 28px 26px 0;border-bottom:1px solid var(--border-light)}
+.cs-fk{display:block;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#5A5A58;margin-bottom:10px}
+.cs-fv{display:block;font-size:14.5px;line-height:1.6;color:#C9C9C6}
+.cs-quote{font-weight:300;font-size:clamp(24px,2.6vw,42px);line-height:1.3;letter-spacing:-.015em;color:#EDEDEB;max-width:26ch;margin:38px 0 8px}
+.cs-moves{margin-top:40px}
+.cs-move{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:30px 0;border-top:1px solid var(--border-light)}
+.cs-mnum{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.2em;color:#5A5A58;padding-top:5px}
+.cs-mtitle{display:block;font-weight:600;font-size:clamp(18px,1.8vw,24px);letter-spacing:-.015em;color:#FFF;margin-bottom:8px}
+.cs-mdesc{display:block;font-size:15px;line-height:1.65;color:#9C9C9A;max-width:64ch}
+.cs-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:42px 0 46px}
+.cs-num{padding:6px 28px 6px 0;border-left:1px solid var(--border-light);padding-left:24px}
+.cs-num:first-child{border-left:none;padding-left:0}
+.cs-nv{display:block;font-weight:600;font-size:clamp(26px,2.8vw,44px);letter-spacing:-.025em;color:#FFF;font-variant-numeric:tabular-nums}
+.cs-nl{display:block;margin-top:10px;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88;line-height:1.7}
+.cs-nextwrap{padding-bottom:150px}
+.cs-next{display:inline-flex;align-items:center;gap:18px;margin-top:18px;font-weight:600;font-size:clamp(28px,3.6vw,56px);letter-spacing:-.03em;color:#FFF;text-decoration:none;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.cs-next:hover{opacity:1;transform:translateX(14px)}
+.cs-next svg{width:.7em;height:.7em;stroke:#FFF;stroke-width:2;fill:none}
+@media(max-width:880px){
+  .cs-facts{grid-template-columns:1fr 1fr}
+  .cs-nums{grid-template-columns:1fr 1fr;row-gap:30px}
+  .cs-num:nth-child(odd){border-left:none;padding-left:0}
+  .cs-num:nth-child(even){padding-left:24px}
+  .cs-sec{padding:70px 36px}
+}
