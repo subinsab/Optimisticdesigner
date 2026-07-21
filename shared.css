@@ -622,6 +622,8 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .px-caption{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A8A88;user-select:none;pointer-events:none}
 
 /* ── Journey page ── */
+.jn-ages,.jn-ch{transform-origin:50% 0;will-change:transform}
+.jn-hero{transform-origin:50% 100%;will-change:transform}
 .jn-hero{padding:180px 36px 60px;max-width:1500px;margin:0 auto}
 .jn-hero h1.hw-stack{font-size:clamp(34px,5.4vw,92px);margin:0 0 28px;max-width:none}
 .jn-hero .hw-in{font-size:inherit;text-transform:none;letter-spacing:-.03em}
