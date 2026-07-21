@@ -778,3 +778,8 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .cs-chip{display:flex;justify-content:space-between;align-items:baseline;padding:22px 24px;font-size:14px;font-weight:500}
 .cs-chip span:last-child{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.06em;opacity:.75}
 @media(max-width:720px){.cs-brand-chips{grid-template-columns:1fr}}
+
+/* Case study: figures */
+.cs-fig{margin:44px 0 0;border:1px solid var(--border-light)}
+.cs-fig img{width:100%;display:block}
+.cs-figcap{margin-top:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88;line-height:1.8;max-width:70ch}
