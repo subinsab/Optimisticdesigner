@@ -624,7 +624,7 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 /* ── Journey page ── */
 .jn-ages,.jn-ch{transform-origin:50% 0;will-change:transform}
 .jn-hero{transform-origin:50% 100%;will-change:transform}
-.jn-hero{padding:180px 36px 60px;max-width:1500px;margin:0 auto}
+.jn-hero{padding:250px 36px 60px;max-width:1500px;margin:0 auto}
 .jn-hero h1.hw-stack{font-size:clamp(34px,5.4vw,92px);margin:0 0 28px;max-width:none}
 .jn-hero .hw-in{font-size:inherit;text-transform:none;letter-spacing:-.03em}
 .jn-hero .wy-sub{max-width:600px}
