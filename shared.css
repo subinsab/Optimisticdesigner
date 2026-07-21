@@ -673,10 +673,11 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .scrub-pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 36px 36px;max-width:1500px;margin:0 auto}
 .scrub-main{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,4vw,72px);align-items:center;flex:1;min-height:0}
 .scrub-info{position:relative;min-height:360px}
-.scrub-stage{position:absolute;top:50%;right:0;transform:translate(0,calc(-50% + 16px));opacity:0;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);max-width:38ch}
+.scrub-stage{position:absolute;top:50%;right:0;transform:translate(0,calc(-50% + 16px));opacity:0;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);max-width:44ch;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:22px}
 .scrub-stage.on{opacity:1;transform:translate(0,-50%)}
-.scrub-stage .age-num{font-size:clamp(90px,10vw,150px)}
-.scrub-title{font-weight:600;font-size:clamp(26px,2.7vw,42px);letter-spacing:.12em;text-transform:uppercase;margin:-52px 0 22px 30px;color:#FFF;position:relative}
+.scrub-stage .age-num{font-size:clamp(52px,5.6vw,86px)}
+.scrub-title{font-weight:600;font-size:clamp(26px,2.7vw,42px);letter-spacing:.12em;text-transform:uppercase;margin:0;color:#FFF}
+.scrub-copy{flex-basis:100%;margin-top:16px}
 .scrub-copy{font-size:clamp(16px,1.5vw,21px);color:#9C9C9A;line-height:1.65}
 #ageCanvas{display:block;justify-self:center}
 .scrub-rail{position:relative;height:14px;margin:30px auto 0;width:min(560px,64%)}
