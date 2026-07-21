@@ -783,3 +783,115 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .cs-fig{margin:44px 0 0;border:1px solid var(--border-light)}
 .cs-fig img{width:100%;display:block}
 .cs-figcap{margin-top:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88;line-height:1.8;max-width:70ch}
+
+/* Case study: full-bleed brand break */
+.cs-sec.cs-break{max-width:none;padding:0}
+.cs-break img{width:100%;max-height:86vh;object-fit:cover;display:block}
+
+/* Case study: section with a brand image as background */
+.cs-sec.cs-brandbg{max-width:none;position:relative;overflow:hidden;padding-top:180px;padding-bottom:180px}
+.cs-bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.cs-bgscrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0B0B0B 0%,rgba(11,11,11,.66) 42%,rgba(11,11,11,.72) 62%,#0B0B0B 100%)}
+.cs-bgwrap{position:relative;z-index:2;max-width:1500px;margin:0 auto}
+@media(max-width:720px){.cs-sec.cs-brandbg{padding-top:120px;padding-bottom:120px}}
+
+/* Case study: architecture levels */
+.cs-arch{margin:44px 0 0;display:grid;gap:10px}
+.cs-arch-row{display:grid;grid-template-columns:var(--w) 1fr;gap:28px;align-items:center}
+.cs-arch-block{background:#141414;border:1px solid var(--border-light);padding:22px 24px;display:flex;flex-direction:column;gap:6px}
+.cs-arch-num{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#8A8A88}
+.cs-arch-name{font-weight:600;font-size:17px;letter-spacing:-.01em;color:var(--ink)}
+.cs-arch-desc{font-size:14.5px;line-height:1.7;color:var(--text2);max-width:52ch}
+@media(max-width:720px){.cs-arch-row{grid-template-columns:1fr;gap:10px}.cs-arch-block{width:var(--w)}}
+
+/* Case study: before/after gap bars */
+.cs-gap{margin:44px 0 0;display:grid;gap:26px}
+.cs-gap-row{display:grid;grid-template-columns:130px 1fr;gap:24px;align-items:center}
+.cs-gap-k{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88}
+.cs-gap-bars{display:grid;gap:8px}
+.cs-gap-bar{display:flex;align-items:center;gap:12px;height:26px}
+.cs-gap-bar i{display:block;height:100%;width:0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.cs-gap-bar i.was{background:#1C1C1C;border:1px solid var(--border-light)}
+.cs-gap-bar i.now{background:var(--ink)}
+.cs-gap-row.vis .cs-gap-bar i{width:calc(var(--n)/8*100%)}
+.cs-gap-bar span{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;color:#8A8A88;white-space:nowrap}
+@media(max-width:720px){.cs-gap-row{grid-template-columns:1fr;gap:10px}}
+
+/* Case study: progress rows */
+.cs-prog{margin:40px 0 0;display:grid;gap:24px}
+.cs-prog-row{display:grid;gap:10px}
+.cs-prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.cs-prog-k{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88}
+.cs-prog-v{font-weight:600;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.cs-prog-track{height:8px;background:#161616;border:1px solid var(--border-light)}
+.cs-prog-fill{height:100%;background:var(--ink);width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.cs-prog-row.vis .cs-prog-fill{width:var(--p)}
+
+/* Case study: quarterly chart */
+.cs-chart{margin:44px 0 0}
+.cs-chart svg{width:100%;height:auto;display:block}
+
+/* Mobile menu (injected by nav.js on every .wy-nav page) */
+.nav-toggle{display:none;position:relative;z-index:101;width:36px;height:36px;padding:0;border:0;background:none;cursor:pointer;align-items:center;justify-content:center}
+.nav-toggle i{display:block;width:22px;height:1.5px;background:var(--ink);position:relative;transition:background .25s}
+.nav-toggle i::before,.nav-toggle i::after{content:'';position:absolute;left:0;width:22px;height:1.5px;background:var(--ink);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.nav-toggle i::before{top:-7px}
+.nav-toggle i::after{top:7px}
+body.nav-open .nav-toggle i{background:transparent}
+body.nav-open .nav-toggle i::before{transform:translateY(7px) rotate(45deg)}
+body.nav-open .nav-toggle i::after{transform:translateY(-7px) rotate(-45deg)}
+.nav-sheet{position:fixed;inset:0;z-index:95;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:0 26px;opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.2,.7,.2,1)}
+body.nav-open .wy-nav{z-index:100;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom-color:transparent}
+body.nav-open .nav-sheet{opacity:1;pointer-events:auto}
+body.nav-open{overflow:hidden}
+.nav-sheet a{display:block;padding:18px 0;border-bottom:1px solid var(--border-light);font-weight:600;font-size:clamp(26px,7.5vw,40px);letter-spacing:-.02em;line-height:1.15;color:var(--ink);text-decoration:none;opacity:0;transform:translateY(16px);transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*55ms)}
+.nav-sheet a:last-child{border-bottom:0}
+body.nav-open .nav-sheet a{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.nav-sheet a{transition:none;transform:none}}
+@media(max-width:760px){
+  .wy-nav{padding:15px 22px}
+  .wy-nav .n-links{display:none}
+  .nav-toggle{display:flex}
+}
+
+/* Contact rows: click to copy, with a "Copied" flag */
+.ct-copy a{position:relative;cursor:copy}
+.ct-flag{position:absolute;left:calc(100% + 14px);top:50%;transform:translateY(-50%) translateX(-6px);opacity:0;pointer-events:none;white-space:nowrap;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#6E6E6C;transition:opacity .3s cubic-bezier(.2,.7,.2,1),transform .3s cubic-bezier(.2,.7,.2,1)}
+.ct-copy a.copied .ct-flag{opacity:1;transform:translateY(-50%) translateX(0)}
+@media(max-width:720px){.ct-flag{left:auto;right:0;top:calc(100% + 4px);transform:none}.ct-copy a.copied .ct-flag{transform:none}}
+
+/* Hero call to action (design system page) */
+.st-cta{display:inline-flex;align-items:center;gap:14px;margin-top:38px;padding:16px 26px;border:1px solid var(--border);color:var(--ink);text-decoration:none;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:background .35s cubic-bezier(.2,.7,.2,1),color .35s cubic-bezier(.2,.7,.2,1),border-color .35s}
+.st-cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.st-cta svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6}
+.st-cta-note{display:block;margin-top:14px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6E6E6C}
+
+/* One warm pixel (the system's own rule, quoted as content) */
+.od-pixel{display:inline-block;width:9px;height:9px;background:#FF7A00;vertical-align:baseline;margin-left:2px}
+
+/* Case study: video showcases */
+.cs-vidfeat{margin:44px auto 0;max-width:320px;border:1px solid var(--border-light);background:#141414}
+.cs-vidfeat video{width:100%;display:block}
+.cs-vids{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:44px auto 0;max-width:1100px}
+.cs-vids.cs-vids-2{grid-template-columns:repeat(2,1fr);max-width:660px}
+.cs-vid{border:1px solid var(--border-light);background:#141414}
+.cs-vid video{width:100%;display:block}
+.cs-vid-k{display:block;padding:12px 14px;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A8A88;border-top:1px solid var(--border-light)}
+@media(max-width:720px){.cs-vids{grid-template-columns:1fr 1fr}}
+
+/* Case study: two-level operating model (product level / system level per phase) */
+.cs-duo{position:relative;margin:44px 0 0}
+.cs-duo::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border-light)}
+.cs-duo-ph{position:relative;z-index:1;width:max-content;margin:0 auto;padding:10px 18px;background:var(--bg);border:1px solid var(--border);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.cs-duo-row{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:30px 0 54px}
+.cs-duo-row::before{content:'';position:absolute;left:0;right:0;top:96px;height:1px;background:var(--border-light)}
+.cs-duo-card{position:relative;z-index:1;background:#141414;border:1px solid var(--border-light);padding:24px 26px}
+.cs-duo-k{display:block;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A8A88}
+.cs-duo-t{display:block;margin-top:8px;font-weight:600;font-size:16.5px;letter-spacing:-.01em;color:var(--ink)}
+.cs-duo-items{margin-top:14px}
+.cs-duo-item{font-size:13.5px;color:var(--text2);line-height:1.65;padding:8px 0;border-top:1px solid var(--border-light)}
+@media(max-width:720px){
+  .cs-duo::before{display:none}
+  .cs-duo-row{grid-template-columns:1fr;gap:14px;padding:16px 0 34px}
+  .cs-duo-row::before{display:none}
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimistic: the design system I built to prove a point · The Optimistic Designer</title>
+<meta name="description" content="Optimistic is a headless, token-driven design system built solo with AI, free and open. The concept, the why, the how, and what it proves about design at AI speed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav class="wy-nav">
+  <a href="index.html" class="n-logo" aria-label="The Optimistic Designer"><svg class="glyph-o" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Optimistic mark" overflow="visible"><rect x="4.43" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/></svg></a>
+  <div class="n-links">
+    <a href="index.html">The Me</a>
+    <a href="journey.html">My Journey</a>
+    <a href="stories.html">My Stories</a>
+    <a href="optimistic.html" class="on">Design System</a>
+    <a href="contact.html" class="wy-pill">Let's Connect</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="st-hero">
+  <div class="wy-eyebrow hero-rv">Optimistic Design System · Built solo · Live</div>
+  <h1 class="hw-stack" aria-label="Build interfaces, optimistically.">
+    <span class="hw"><span class="hw-in">Build interfaces,</span></span>
+    <span class="hw"><span class="hw-in">optimistically.</span></span>
+  </h1>
+  <p class="wy-sub hero-rv">Optimistic is a headless, token-driven design system: 58 components, three token tiers, at home in any stack and legible to machines. I built it alone, with AI, to prove a claim I make out loud. It is live, it is free, and the source is public.</p>
+  <a class="st-cta hero-rv" href="https://design.theoptimisticdesigner.com/" target="_blank" rel="noopener">Open the design system <svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  <span class="st-cta-note hero-rv">design.theoptimisticdesigner.com</span>
+</header>
+
+<section class="cs-sec">
+  <div class="cs-facts">
+    <div class="cs-fact rv" style="--d:0"><span class="cs-fk">What it is</span><span class="cs-fv">Headless multi-brand design system</span></div>
+    <div class="cs-fact rv" style="--d:1"><span class="cs-fk">Built by</span><span class="cs-fv">One designer, with AI</span></div>
+    <div class="cs-fact rv" style="--d:2"><span class="cs-fk">Scale</span><span class="cs-fv">58 components · 67 documented pages</span></div>
+    <div class="cs-fact rv" style="--d:3"><span class="cs-fk">Stacks</span><span class="cs-fv">React · Angular · plain HTML</span></div>
+    <div class="cs-fact rv" style="--d:4"><span class="cs-fk">Price</span><span class="cs-fv">Free, and the source is public</span></div>
+    <div class="cs-fact rv" style="--d:5"><span class="cs-fk">Status</span><span class="cs-fv">Live and in active build</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">01 · The concept</div>
+  <div class="wy-state rv">Every interface has a moment of faith.</div>
+  <div class="cs-quote rv">Assume the best outcome. Then ship it.</div>
+  <div class="wy-copy rv">
+    <p>Tap a heart and it fills before the server has agreed. Engineers call that an optimistic update: render the finished thing first, let the proof catch up. It is a small technical trick that happens to be a belief system, so I named the whole thing after it.</p>
+    <p>The name carries three layers from the Latin optimus. The optimist, which is the belief. The optimistic update, which is the method. The optimum, which is the result. A design system is the same bet at a larger scale: you decide what good looks like once, render it everywhere, and let every future screen catch up to it.</p>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">02 · Why it exists</div>
+  <div class="wy-state rv">I claim design orgs can run two to three times faster with AI. This is the evidence.</div>
+  <div class="wy-copy rv">
+    <p>I have spent years watching fragmentation quietly bill companies: the same table rebuilt in four products, the same button drawn five ways, engineers maintaining interfaces instead of building them. I have costed it, invoiced it to a leadership team, and rebuilt an ecosystem around fixing it. That work is <a href="yds.html">the Y.Design story</a>.</p>
+    <p>So when I say design organisations can move two to three times faster with AI, I know how that sounds: another opinion at a conference. I could have written a think piece. Instead I built the thing a team of engineers and designers would normally be funded to build, alone, in the open, and put it online where anyone can check my work.</p>
+  </div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">1</span><span class="cs-nl">Designer, no engineering team</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">58</span><span class="cs-nl">Production components</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">67</span><span class="cs-nl">Documented pages, live</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">0</span><span class="cs-nl">Think pieces written</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">03 · How it works</div>
+  <div class="wy-state rv">A headless core, and one warm light.<span class="od-pixel" aria-hidden="true"></span></div>
+  <div class="cs-moves">
+    <div class="cs-move rv" style="--d:0"><span class="cs-mnum">01</span><span class="cs-mbody"><span class="cs-mtitle">Headless at the core</span><span class="cs-mdesc">Structure, behaviour, and accessibility live in the core with no brand baked in. Skins plug in on top, so one system can serve many brands without ever splitting into many systems.</span></span></div>
+    <div class="cs-move rv" style="--d:1"><span class="cs-mnum">02</span><span class="cs-mbody"><span class="cs-mtitle">Three token tiers</span><span class="cs-mdesc">Core, semantic, theme. A component never names a hex. It asks for a role, the role points at a ramp, the ramp points at one value. Re-point the ramp and everything re-skins at once.</span></span></div>
+    <div class="cs-move rv" style="--d:2"><span class="cs-mnum">03</span><span class="cs-mbody"><span class="cs-mtitle">Atomic, and honest about it</span><span class="cs-mdesc">Atoms compose into molecules into organisms, the way optimism compounds in small units: pixels into a city, tokens into a system.</span></span></div>
+    <div class="cs-move rv" style="--d:3"><span class="cs-mnum">04</span><span class="cs-mbody"><span class="cs-mtitle">At home in any stack</span><span class="cs-mdesc">React, Angular, or plain HTML. The tokens are the contract, so the system does not care which framework a team happens to be married to this year.</span></span></div>
+    <div class="cs-move rv" style="--d:4"><span class="cs-mnum">05</span><span class="cs-mbody"><span class="cs-mtitle">Legible to humans and machines</span><span class="cs-mdesc">Documentation, tokens, and code are structured so an AI can read the system as well as a designer can. That is what makes building at this speed possible in the first place.</span></span></div>
+    <div class="cs-move rv" style="--d:5"><span class="cs-mnum">06</span><span class="cs-mbody"><span class="cs-mtitle">One light is enough</span><span class="cs-mdesc">A monochrome near-black field and exactly one warm accent. Restraint is not a style choice here, it is the thing that keeps a system coherent as it grows.</span></span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">04 · What is in it</div>
+  <div class="wy-state rv">Foundations, components, and the documentation to use them.</div>
+  <div class="wy-copy rv">
+    <p>Nine foundations set the ground rules: colour, typography, spacing, grid, elevation, radius, breakpoints, and the principles that hold them together. On top of those sit 58 components, from a button to a full data grid with filtering, grouping, pinning, inline editing, and master detail rows.</p>
+    <p>Every component gets the same documentation treatment: a live demo you can configure, anatomy, behaviour, do's and don'ts, the tokens it consumes, and the code. Not a component gallery, a manual.</p>
+  </div>
+  <figure class="cs-fig rv"><img src="assets/ods-table-grid.jpg" alt="The Optimistic data grid component: dark theme, density and shape controls, column filters, an attention chip flagging rows that need review, and pagination" loading="lazy"></figure>
+  <div class="cs-figcap rv">The flagship: a data grid where every feature is opt-in, and columns and data alone are enough.</div>
+  <figure class="cs-fig rv"><img src="assets/ods-token-chain.jpg" alt="How a token resolves in Optimistic: a core value passes through two semantic tiers into a component button, unchanged" loading="lazy"></figure>
+  <div class="cs-figcap rv">The token chain: core value to semantic role to component. No component ever names a hex.</div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">05 · Free, and open</div>
+  <div class="wy-state rv">You own the code. That is the whole licence philosophy.</div>
+  <div class="wy-copy rv">
+    <p>Optimistic is free to use, and the source is public. It installs the way I wish every system did: the components are copied into your repository rather than hidden behind a dependency, so you can read them, change them, and keep them when I am no longer in the picture. No lock-in, no black box, no version of this that quietly becomes a subscription.</p>
+    <p>Take the whole thing, take one component, or take only the token architecture and throw the rest away. All three are correct uses.</p>
+  </div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">Free</span><span class="cs-nl">No tiers, no subscription</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">Public</span><span class="cs-nl">Source on GitHub</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">Yours</span><span class="cs-nl">Components copied into your repo</span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>Read the source at <a href="https://github.com/subinsab/Optimistic" target="_blank" rel="noopener">github.com/subinsab/Optimistic</a>, or start with the documentation and see whether it earns your trust first.</p>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">06 · What it proves</div>
+  <div class="wy-state rv">Philosophy is cheap. Ours compiles.</div>
+  <div class="wy-copy rv">
+    <p>Optimistic is not a portfolio piece pretending to be a product. It is the argument I make to executives, rendered in code: that design is infrastructure, that a system pays for itself, and that the ceiling on what a small team can build has moved and most organisations have not noticed yet.</p>
+    <p>If you lead a design organisation and you are trying to work out what your team could be doing at this speed, that conversation is the one I most want to have.</p>
+  </div>
+</section>
+
+<section class="cs-sec cs-nextwrap">
+  <div class="wy-label rv">See it live</div>
+  <a class="cs-next rv" href="https://design.theoptimisticdesigner.com/" target="_blank" rel="noopener">Open the design system. <svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-giant">The Optimistic Designer</div>
+  <div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
+  </div>
+  <div class="foot-links">
+    <a href="journey.html">My Journey</a>
+    <a href="stories.html">My Stories</a>
+    <a href="blog.html">Blogs</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div></footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(function () { document.body.classList.add('loaded'); }, 200);
+  var rvEls = [].slice.call(document.querySelectorAll('.rv'));
+  function sweep() {
+    var vh = window.innerHeight;
+    rvEls = rvEls.filter(function (el) {
+      if (el.getBoundingClientRect().top < vh * 0.88) { el.classList.add('vis'); return false; }
+      return true;
+    });
+  }
+  if (reduced) { rvEls.forEach(function (el) { el.classList.add('vis'); }); rvEls = []; }
+  window.addEventListener('scroll', sweep, { passive: true });
+  window.addEventListener('resize', sweep);
+  sweep();
+  setTimeout(sweep, 350);
+
+  // same depth cycle as home: hero zooms in on exit, sections zoom out into place
+  var zoomEls = [].slice.call(document.querySelectorAll('.cs-sec'));
+  var heroEl = document.querySelector('.st-hero');
+  function sectionZoom() {
+    if (reduced) return;
+    var vh = window.innerHeight;
+    if (heroEl) {
+      var hp = Math.max(0, Math.min(1, window.scrollY / (heroEl.offsetHeight * 1.4)));
+      heroEl.style.transform = 'scale(' + (1 + 0.5 * hp * hp).toFixed(4) + ')';
+      heroEl.style.opacity = (1 - 0.78 * hp).toFixed(3);
+    }
+    zoomEls.forEach(function (el) {
+      var top = el.offsetTop - window.scrollY;
+      var h = el.offsetHeight;
+      if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
+      if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
+      var p = Math.max(0, Math.min(1, (vh - top) / (vh + h)));
+      var e1 = 1 - Math.pow(1 - Math.min(1, p / 0.24), 3);
+      var s = 2 - e1;
+      if (p > 0.24) {
+        var e2 = 1 - Math.pow(1 - Math.min(1, (p - 0.24) / 0.54), 3);
+        s -= 0.2 * e2;
+      }
+      el.style.transform = 'scale(' + s.toFixed(4) + ')';
+      el.style.opacity = (0.3 + 0.7 * e1).toFixed(3);
+    });
+  }
+  window.addEventListener('scroll', sectionZoom, { passive: true });
+  window.addEventListener('resize', sectionZoom);
+  sectionZoom();
+
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  if (fine && !reduced) {
+    var dot = document.createElement('div'); dot.className = 'cursor-dot';
+    var ring = document.createElement('div'); ring.className = 'cursor-ring';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    document.body.classList.add('cursor-on');
+    var cx = -100, cy = -100, rx = -100, ry = -100;
+    document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; });
+    (function loop() {
+      rx += (cx - rx) * 0.16; ry += (cy - ry) * 0.16;
+      dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('grow'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('grow'); });
+    });
+  }
+})();
+</script>
+<script src="nav.js"></script>
+<script src="footer.js"></script>
+</body>
+</html>
