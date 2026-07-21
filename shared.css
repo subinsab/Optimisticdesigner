@@ -758,3 +758,13 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .cs-num:nth-child(even){padding-left:24px}
   .cs-sec{padding:70px 36px}
 }
+
+/* Case study: before/after matrix */
+.cs-mx{margin:40px 0 10px;border-top:1px solid var(--border-light)}
+.cs-mx-row{display:grid;grid-template-columns:1.6fr .7fr .7fr .7fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--border-light);font-size:15px;color:#C9C9C6}
+.cs-mx-row span:first-child{color:#EDEDEB}
+.cs-mx-row span:nth-child(n+2){font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.04em}
+.cs-mx-row span:last-child{color:#FFF}
+.cs-mx-head{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#5A5A58}
+.cs-mx-head span{color:#5A5A58!important;font-size:10.5px!important}
+@media(max-width:720px){.cs-mx-row{grid-template-columns:1.4fr .6fr .6fr .6fr;gap:10px;font-size:13px}}
