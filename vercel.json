@@ -1,9 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "theoptimisticdesigner.in" }],
+      "destination": "https://theoptimisticdesigner.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "theoptimisticdesigner.in" }],
       "destination": "https://theoptimisticdesigner.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.theoptimisticdesigner.in" }],
+      "destination": "https://theoptimisticdesigner.com/",
       "permanent": true
     },
     {
