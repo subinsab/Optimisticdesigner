@@ -827,6 +827,51 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .cs-prog-fill{height:100%;background:var(--ink);width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
 .cs-prog-row.vis .cs-prog-fill{width:var(--p)}
 
+/* Case study: radar chart (interactive) */
+.cs-radar{margin:36px 0 0;border:1px solid var(--border-light);background:#101010;padding:20px 18px 22px}
+.cs-radar svg{width:100%;max-width:620px;height:auto;display:block;margin:0 auto}
+.cs-radar .rdr-mod{opacity:.28;transition:opacity .3s cubic-bezier(.2,.7,.2,1);cursor:pointer}
+.cs-radar .rdr-mod .rdr-dot{fill:#F4F4F5}
+.cs-radar.hot .rdr-mod{opacity:.10}
+.cs-radar.hot .rdr-mod.on{opacity:1}
+.cs-radar .rdr-mod.on .rdr-fill{fill:rgba(244,244,245,.10);stroke-width:2.2}
+.cs-radar .rdr-subs{opacity:0;pointer-events:none;transition:opacity .3s cubic-bezier(.2,.7,.2,1)}
+.cs-radar .rdr-mod.on .rdr-subs{opacity:1;pointer-events:auto}
+.cs-radar .rdr-spoke{stroke:rgba(255,255,255,.22);stroke-width:1}
+.cs-radar .rdr-sub{fill:#0B0B0B;stroke:#F4F4F5;stroke-width:1.6;cursor:pointer;transition:r .18s,fill .18s}
+.cs-radar .rdr-sub:hover{fill:#FF7A00;stroke:#FF7A00;r:7}
+.rdr-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px auto 0;max-width:620px}
+.rdr-leg{background:none;border:1px solid var(--border-light);color:#8A8A88;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;cursor:pointer;transition:color .25s,border-color .25s,background .25s}
+.rdr-leg:hover,.rdr-leg.on{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.cs-radar .rdr-mod{transition:none}}
+
+/* Case study: dot-matrix scorecard */
+.cs-matrix{margin:40px 0 0;border:1px solid var(--border-light);background:#101010;padding:26px 22px 20px}
+.cs-matrix svg{width:100%;height:auto;display:block}
+@media(max-width:720px){.cs-matrix{padding:14px 8px}}
+
+/* Case study: sub-flow cluster graph */
+.cs-cluster{margin:36px 0 0;border:1px solid var(--border-light);background:#101010;padding:22px 20px}
+.cs-cluster svg{width:100%;height:auto;display:block}
+@media(max-width:720px){.cs-cluster{padding:14px 10px}}
+
+/* Case study: sub-flow breakdown per module */
+.cs-flows{margin:40px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cs-flowcard{background:#141414;border:1px solid var(--border-light);padding:20px 22px}
+.cs-flow-head{display:flex;align-items:center;gap:9px;padding-bottom:13px;margin-bottom:4px;border-bottom:1px solid var(--border-light)}
+.cs-flow-dot{width:9px;height:9px;flex:0 0 auto}
+.cs-flow-name{font-weight:600;font-size:15.5px;letter-spacing:-.01em;color:var(--ink)}
+.cs-flow-pri{margin-left:auto;font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88}
+.cs-flowcard[data-pri="High"] .cs-flow-dot{background:#F4F4F5}
+.cs-flowcard[data-pri="High"] .cs-flow-pri{color:#F4F4F5}
+.cs-flowcard[data-pri="Medium"] .cs-flow-dot{background:#6E6E6C}
+.cs-flowcard[data-pri="Low"] .cs-flow-dot{background:transparent;box-shadow:inset 0 0 0 1.5px #6E6E6C}
+.cs-flow-items{display:flex;flex-direction:column}
+.cs-flow-items span{font-size:13.5px;color:var(--text2);line-height:1.55;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.045)}
+.cs-flow-items span:last-child{border-bottom:0}
+@media(max-width:860px){.cs-flows{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.cs-flows{grid-template-columns:1fr}}
+
 /* Case study: quarterly chart */
 .cs-chart{margin:44px 0 0}
 .cs-chart svg{width:100%;height:auto;display:block}
