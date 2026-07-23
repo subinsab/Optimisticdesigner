@@ -268,13 +268,13 @@
   var heroCue = document.querySelector('.wy-hero .wy-scroll');
   var heroSub = document.querySelector('.hero-br .wy-sub');
   var heroWatch = document.querySelector('.hero-br .watch');
-  function sectionZoom() {
+  function applyZoom(sy) {
     if (reduced) return;
     var vh = window.innerHeight;
     // the hero zooms IN and fades as you leave it, the counterpart of the sections
     // zooming out, so the whole page reads as one continuous depth cycle
     if (heroEl) {
-      var hp = Math.max(0, Math.min(1, window.scrollY / (heroEl.offsetHeight * 0.9)));
+      var hp = Math.max(0, Math.min(1, sy / (heroEl.offsetHeight * 0.9)));
       heroEl.style.transform = 'scale(' + (1 + 0.5 * hp * hp).toFixed(4) + ')';
       heroEl.style.opacity = (1 - 0.78 * hp).toFixed(3);
       // the scroll cue and tagline get out of the way much sooner
@@ -294,7 +294,7 @@
     }
     zoomEls.forEach(function (el) {
       // layout position, not the transformed rect, else the scale feeds back into itself
-      var top = el.offsetTop - window.scrollY;
+      var top = el.offsetTop - sy;
       var h = el.offsetHeight;
       if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
       if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
@@ -311,9 +311,19 @@
       el.style.opacity = (0.3 + 0.7 * e1).toFixed(3);
     });
   }
-  window.addEventListener('scroll', sectionZoom, { passive: true });
-  window.addEventListener('resize', sectionZoom);
-  sectionZoom();
+  // rAF-driven smoothing: the zoom follows an eased scroll value, so the
+  // section and text motion glides and settles instead of tracking raw scroll
+  var zTarget = window.scrollY, zSmooth = zTarget, zRAF = 0;
+  function zoomLoop() {
+    zSmooth += (zTarget - zSmooth) * 0.08;
+    if (Math.abs(zTarget - zSmooth) < 0.25) zSmooth = zTarget;
+    applyZoom(zSmooth);
+    zRAF = (zSmooth !== zTarget) ? requestAnimationFrame(zoomLoop) : 0;
+  }
+  function zoomWake() { zTarget = window.scrollY; if (!zRAF) zRAF = requestAnimationFrame(zoomLoop); }
+  window.addEventListener('scroll', zoomWake, { passive: true });
+  window.addEventListener('resize', function () { zTarget = window.scrollY; applyZoom(zSmooth); });
+  applyZoom(zSmooth);
 
   var band = document.querySelector('.wy-band');
   var bandImg = band ? band.querySelector('img') : null;

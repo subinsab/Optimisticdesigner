@@ -295,16 +295,16 @@
   // same depth cycle as home: hero zooms in on exit, sections zoom out into place
   var zoomEls = [].slice.call(document.querySelectorAll('.jn-ch'));
   var heroEl = document.querySelector('.jn-hero');
-  function sectionZoom() {
+  function applyZoom(sy) {
     if (reduced) return;
     var vh = window.innerHeight;
     if (heroEl) {
-      var hp = Math.max(0, Math.min(1, window.scrollY / (heroEl.offsetHeight * 1.4)));
+      var hp = Math.max(0, Math.min(1, sy / (heroEl.offsetHeight * 1.4)));
       heroEl.style.transform = 'scale(' + (1 + 0.5 * hp * hp).toFixed(4) + ')';
       heroEl.style.opacity = (1 - 0.78 * hp).toFixed(3);
     }
     zoomEls.forEach(function (el) {
-      var top = el.offsetTop - window.scrollY;
+      var top = el.offsetTop - sy;
       var h = el.offsetHeight;
       if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
       if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
@@ -319,9 +319,18 @@
       el.style.opacity = (0.3 + 0.7 * e1).toFixed(3);
     });
   }
-  window.addEventListener('scroll', sectionZoom, { passive: true });
-  window.addEventListener('resize', sectionZoom);
-  sectionZoom();
+  // rAF-driven smoothing: the zoom follows an eased scroll value for buttery motion
+  var zTarget = window.scrollY, zSmooth = zTarget, zRAF = 0;
+  function zoomLoop() {
+    zSmooth += (zTarget - zSmooth) * 0.08;
+    if (Math.abs(zTarget - zSmooth) < 0.25) zSmooth = zTarget;
+    applyZoom(zSmooth);
+    zRAF = (zSmooth !== zTarget) ? requestAnimationFrame(zoomLoop) : 0;
+  }
+  function zoomWake() { zTarget = window.scrollY; if (!zRAF) zRAF = requestAnimationFrame(zoomLoop); }
+  window.addEventListener('scroll', zoomWake, { passive: true });
+  window.addEventListener('resize', function () { zTarget = window.scrollY; applyZoom(zSmooth); });
+  applyZoom(zSmooth);
 
   var fine = window.matchMedia('(pointer: fine)').matches;
   if (fine && !reduced) {
