@@ -1,3 +1,16 @@
+// Vercel Web Analytics: inject once per page load, independent of the footer engine below.
+// Static-site pattern (no npm package): queue shim + the insights script Vercel serves once
+// Web Analytics is enabled for the project. https://vercel.com/docs/analytics
+(function () {
+  if (window.__vaInjected) return;
+  window.__vaInjected = true;
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = '/_vercel/insights/script.js';
+  document.head.appendChild(s);
+})();
+
 // Shared footer wordmark: ghost dot-matrix with a flashlight hover and one breathing pixel
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
