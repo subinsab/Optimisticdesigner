@@ -75,6 +75,40 @@
 </section>
 
 <section class="cs-sec">
+  <div class="wy-label rv">The problem, on screen</div>
+  <div class="wy-state rv">Thirteen products, and no two of them agreed on anything.</div>
+  <div class="wy-copy rv">
+    <p>The audit made the chaos undeniable. Navigation flipped between top bars and left rails, sometimes within the same product, and the app switcher lived in a different place on every platform. Filters fought layouts for the same screen real estate. Backgrounds ran light blue, grey, or white with no logic, and cards disagreed on radius, shadow, stroke, and padding. None of this was any team's fault. It was the natural result of 13+ products shipping fast with no shared language.</p>
+  </div>
+  <div class="cs-mx rv">
+    <div class="cs-mx-row cs-mx-head"><span>Problem area</span><span>What the audit found</span><span>What it cost users</span></div>
+    <div class="cs-mx-row"><span>Navigation</span><span>Top bars in some products, left rails in others; icon-only versus icon-and-label; the app switcher living in a different place per product</span><span>Relearning the interface at every product switch</span></div>
+    <div class="cs-mx-row"><span>Filters and layout</span><span>Filters in the left panel in some products, that same space taken by navigation in others; overlapping claims on screen real estate</span><span>No stable information hierarchy anywhere</span></div>
+    <div class="cs-mx-row"><span>Visual style</span><span>Backgrounds ran light blue, grey, or white with no logic; cards disagreed on radius, shadow, stroke, and padding</span><span>Thirteen products that read as thirteen companies</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">Stakeholders, challenges, and governance</div>
+  <div class="wy-state rv">The hard part was never the components. It was the org.</div>
+  <div class="wy-copy rv">
+    <p>Building YDS was a cultural shift wearing a design project's clothes. Thirteen-plus product leaders each had their own roadmap, so alignment ran on negotiation, workshops, and standing advocacy rather than mandate. Designers and developers were understandably reluctant to give up custom solutions they felt were unique to their product. The audit itself spanned 44 designers and hundreds of screens. And adoption had a real cost: developers refactoring old code sometimes slowed short-term delivery, a trade I had to defend in every quarterly conversation.</p>
+    <p>Two structures made it stick. Governance: every new design and build passes YDS review, so the system stays current instead of rotting. And a contribution model that balances central ownership with open contribution, so product designers extend the system without breaking it. That pair is also the budgeting story: a dedicated system team is an upfront cost that repays itself in reduced duplication, faster delivery, and the &#8377;186Cr the outcome section counts.</p>
+  </div>
+  <div class="csb-cohorts">
+    <div class="csb-cohort rv" style="--d:0"><span class="csb-co-tag">Challenge</span><span class="csb-co-name">Alignment across products</span><span class="csb-co-desc">Each of the 13+ products had its own leaders and roadmaps. One design language required negotiation, workshops, and ongoing advocacy, never mandate.</span></div>
+    <div class="csb-cohort rv" style="--d:1"><span class="csb-co-tag">Challenge</span><span class="csb-co-name">Resistance to change</span><span class="csb-co-desc">Designers and developers were reluctant to give up custom solutions they felt were unique to their product's needs.</span></div>
+    <div class="csb-cohort rv" style="--d:2"><span class="csb-co-tag">Challenge</span><span class="csb-co-name">Scale of the audit</span><span class="csb-co-desc">With 44 designers and hundreds of screens, a comprehensive inconsistency audit was a massive effort in its own right.</span></div>
+    <div class="csb-cohort rv" style="--d:3"><span class="csb-co-tag">Challenge</span><span class="csb-co-name">Integration with development</span><span class="csb-co-desc">Adopting standardised components meant refactoring old code, which sometimes slowed short-term deliveries, a trade defended in every quarterly conversation.</span></div>
+    <div class="csb-cohort rv" style="--d:4"><span class="csb-co-tag">Challenge</span><span class="csb-co-name">Governance</span><span class="csb-co-desc">Keeping the system updated, and ensuring every new design and build complied with YDS, required strong governance and review processes.</span></div>
+    <div class="csb-cohort rv" style="--d:5"><span class="csb-co-tag">Challenge</span><span class="csb-co-name">The contribution model</span><span class="csb-co-desc">Balancing central ownership with open contribution, letting designers extend the system without breaking its consistency, was an ongoing act.</span></div>
+  </div>
+  <div class="wy-copy rv" style="margin-top:36px">
+    <p>The answer to all six was a dedicated design system team, argued on six grounds: a single source of truth across every Yubi product, reduced duplication of components and flows, faster delivery through reuse, a unified experience that builds user trust, a bridge team keeping design and engineering speaking one language, and continuous improvement, governance, audits, and documentation that keep the system alive rather than archived.</p>
+  </div>
+</section>
+
+<section class="cs-sec">
   <div class="wy-label rv">02 · The strategy · The Invoice</div>
   <div class="wy-state rv">I didn’t ask for a budget. I showed the invoice.</div>
   <div class="cs-quote rv">Design systems are business systems. Tokens are just how they’re spelled.</div>
@@ -131,6 +165,13 @@
     <div class="cs-num rv" style="--d:2"><span class="cs-nv">688</span><span class="cs-nl">CSS variables, one source</span></div>
     <div class="cs-num rv" style="--d:3"><span class="cs-nv">20</span><span class="cs-nl">Type styles, display to code</span></div>
   </div>
+  <div class="wy-copy rv" style="margin-top:36px"><p>The library, as it stands: 38 production-ready components in Figma and code, organised in three tiers.</p></div>
+  <div class="cs-figcap rv" style="margin-top:24px">ATOMS · THE V1 EIGHT</div>
+  <div class="csb-modrow rv"><span class="csb-mod">Buttons</span><span class="csb-mod">Inputs</span><span class="csb-mod">Checkboxes</span><span class="csb-mod">Dropdowns</span><span class="csb-mod">Toggles</span><span class="csb-mod">Alerts</span><span class="csb-mod">Modals</span><span class="csb-mod">Tabs</span></div>
+  <div class="cs-figcap rv">MOLECULES · THE V2 EXPANSION</div>
+  <div class="csb-modrow rv"><span class="csb-mod">Navigation bars</span><span class="csb-mod">Side panels</span><span class="csb-mod">Tables</span><span class="csb-mod">Pagination</span><span class="csb-mod">Tooltips</span><span class="csb-mod">Cards</span><span class="csb-mod">Dashboard layout</span><span class="csb-mod">List view</span><span class="csb-mod">Detail view</span></div>
+  <div class="cs-figcap rv">WORKFLOWS · THE V3 STANDARD FLOWS</div>
+  <div class="csb-modrow rv"><span class="csb-mod">Onboarding</span><span class="csb-mod">Filters and search</span><span class="csb-mod">Creation flows</span><span class="csb-mod">Navigation and hierarchy</span><span class="csb-mod">Cards and list views</span><span class="csb-mod">Charts and data viz</span></div>
 </section>
 
 <section class="cs-sec">
@@ -168,6 +209,33 @@
     <div class="cs-move rv" style="--d:2"><span class="cs-mnum">03</span><span class="cs-mbody"><span class="cs-mtitle">Ship adoption, not a library</span><span class="cs-mdesc">Migration sprints, playbooks, and office hours took adoption from 30% to 85%. A system nobody uses is a cost, not an asset.</span></span></div>
     <div class="cs-move rv" style="--d:3"><span class="cs-mnum">04</span><span class="cs-mbody"><span class="cs-mtitle">Automate the boring</span><span class="cs-mdesc">Token pipelines, variant generation, and AI-assisted review, so the platform pod scales without headcount.</span></span></div>
   </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">V1 · V2 · V3 · The adoption plan</div>
+  <div class="wy-state rv">The system grew in staged versions, each one earning the next.</div>
+  <div class="cs-moves">
+    <div class="cs-move rv" style="--d:0"><span class="cs-mnum">V1</span><span class="cs-mbody"><span class="cs-mtitle">Launch · foundations and 8 components</span><span class="cs-mdesc">Core principles first: typography, colour, spacing, grids, and accessibility tokens, plus the 8 basic components every screen needs, buttons, inputs, checkboxes, dropdowns, toggles, alerts, modals, tabs. Adoption stayed deliberately small, new features and minor tasks, but the base layer of consistency and the idea of a shared language were established.</span></span></div>
+    <div class="cs-move rv" style="--d:1"><span class="cs-mnum">V2</span><span class="cs-mbody"><span class="cs-mtitle">Expansion · 24 components and standard layouts</span><span class="cs-mdesc">The molecule level: navigation bars, side panels, tables, pagination, tooltips, cards, and standardized page layouts for dashboard, list, and detail views. Twenty-four components total, broad enough that teams began replacing older UI patterns instead of just decorating new ones.</span></span></div>
+    <div class="cs-move rv" style="--d:2"><span class="cs-mnum">V3</span><span class="cs-mbody"><span class="cs-mtitle">Current · 38 components, 6 flows, 80% of screens</span><span class="cs-mdesc">Standardised workflows, onboarding, filters and search, creation flows, navigation, cards and lists, charts, mean 6 standard flows now account for roughly 80% of product screens across 13+ products. Thirty-eight production-ready components in Figma and code, extensive documentation, and the design-system website as the single source of truth. Inconsistency down 80%, custom development minimised.</span></span></div>
+    <div class="cs-move rv" style="--d:3"><span class="cs-mnum">V4</span><span class="cs-mbody"><span class="cs-mtitle">Next · the AI layer</span><span class="cs-mdesc">YDS components become the vocabulary of an AI-driven workflow engine: agent and chat templates, inline summaries and insight panels, dynamic experiences assembled from YDS-defined parts. The vision: from static UI to intelligent, adaptive workflows, still grounded in one system's consistency.</span></span></div>
+  </div>
+  <figure class="cs-fig rv" style="max-width:720px">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Component growth across versions: 8 components at launch, 24 at expansion, 38 in the current version, with 6 standard flows covering about 80 percent of product screens" xmlns="http://www.w3.org/2000/svg">
+      <text x="10" y="24" font-family="Geist Mono,monospace" font-size="11" letter-spacing="1.6" fill="#8A8A88">PRODUCTION-READY COMPONENTS, BY VERSION</text>
+      <line x1="10" y1="250" x2="710" y2="250" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+      <rect x="80" y="210" width="120" height="40" fill="#2A2A28"/>
+      <rect x="300" y="130" width="120" height="120" fill="#4A4A48"/>
+      <rect x="520" y="60" width="120" height="190" fill="#FF7A00"/>
+      <text x="140" y="200" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="22" fill="#F4F4F5">8</text>
+      <text x="360" y="120" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="22" fill="#F4F4F5">24</text>
+      <text x="580" y="50" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="22" fill="#F4F4F5">38</text>
+      <text x="140" y="272" text-anchor="middle" font-family="Geist Mono,monospace" font-size="10" letter-spacing="1.2" fill="#8A8A88">V1 LAUNCH</text>
+      <text x="360" y="272" text-anchor="middle" font-family="Geist Mono,monospace" font-size="10" letter-spacing="1.2" fill="#8A8A88">V2 EXPANSION</text>
+      <text x="580" y="272" text-anchor="middle" font-family="Geist Mono,monospace" font-size="10" letter-spacing="1.2" fill="#8A8A88">V3 CURRENT</text>
+      <text x="580" y="292" text-anchor="middle" font-family="Geist Mono,monospace" font-size="9.5" letter-spacing="1" fill="#FF7A00">6 FLOWS &#183; ~80% OF SCREENS</text>
+    </svg>
+  </figure>
 </section>
 
 <section class="cs-sec">
@@ -359,5 +427,6 @@
 </script>
 <script src="nav.js"></script>
 <script src="footer.js"></script>
+<script src="nda.js"></script>
 </body>
 </html>

@@ -805,6 +805,81 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
 .cs-fig{margin:44px 0 0;border:1px solid var(--border-light)}
 .cs-fig img{width:100%;display:block}
 .cs-figcap{margin-top:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88;line-height:1.8;max-width:70ch}
+.cs-sec .wy-fine,.wy-fine{margin-top:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6E6E6C;line-height:1.7}
+
+/* Case study big: sidebar long-form layout (yucollect) */
+.csb-wrap{padding:0 clamp(24px,6vw,96px)}
+.csb-shell{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(32px,5vw,88px);align-items:start}
+.csb-side{position:sticky;top:96px;padding-top:8px}
+.csb-side-k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6E6E6C;margin-bottom:18px}
+.csb-nav{display:flex;flex-direction:column;gap:2px}
+.csb-nav a{display:block;padding:8px 0 8px 16px;border-left:1px solid #262624;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A88;text-decoration:none;transition:color .25s,border-color .25s}
+.csb-nav a:hover{color:#F4F4F5}
+.csb-nav a.on{color:#F4F4F5;border-left-color:#FF7A00}
+.csb-main{min-width:0}
+.csb-main>section{padding:clamp(56px,8vh,110px) 0;border-bottom:1px solid #1C1C1A}
+.csb-main>section:first-child{padding-top:0}
+.csb-main>section:last-child{border-bottom:0}
+.csb-main .cs-nums{margin-top:44px}
+.csb-cohorts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+.csb-cohort{display:flex;flex-direction:column;gap:10px;padding:26px;border:1px solid #262624;border-radius:14px;background:#111}
+.csb-co-tag{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#FF7A00}
+.csb-co-name{font-weight:600;font-size:18px;color:#F4F4F5}
+.csb-co-desc{font-size:14.5px;line-height:1.65;color:#B3B3B1}
+.csb-modrow{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0}
+.csb-mod{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#D4D4D2;border:1px solid #3A3A38;border-radius:999px;padding:9px 16px}
+.csb-diagram svg{width:100%;height:auto;display:block}
+.csb-journey{margin-top:36px;overflow-x:auto;padding-bottom:10px}
+.csb-journey svg{width:1380px;height:auto;display:block}
+.csb-emp{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+.csb-emp-card{border:1px solid #262624;border-radius:14px;background:#111;padding:24px 24px 14px}
+.csb-emp-role{font-weight:600;font-size:17px;color:#F4F4F5}
+.csb-emp-sub{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#6E6E6C;margin:4px 0 14px}
+.csb-emp-row{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:10px 0;border-top:1px solid #1C1C1A}
+.csb-emp-k{font-family:'Geist Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A88;padding-top:3px}
+.csb-emp-v{font-size:13.5px;line-height:1.6;color:#B3B3B1}
+.csb-emp-row.pain .csb-emp-k{color:#FF7A00}
+@media (max-width:820px){.csb-emp{grid-template-columns:1fr}}
+@media (max-width:960px){
+  .csb-shell{grid-template-columns:1fr}
+  .csb-side{position:static;padding-top:0;margin-bottom:8px}
+  .csb-nav{flex-direction:row;flex-wrap:wrap;gap:8px}
+  .csb-nav a{border-left:0;border:1px solid #262624;border-radius:999px;padding:7px 13px}
+  .csb-nav a.on{border-color:#FF7A00}
+  .csb-cohorts{grid-template-columns:1fr}
+}
+
+/* NDA gate: product screenshots blurred until the shared password unlocks them */
+.nda-wrap{position:relative;overflow:hidden;border-radius:8px}
+body:not(.nda-open) .nda-wrap>img,body:not(.nda-open) .nda-wrap>video{filter:blur(26px) saturate(.8);transform:scale(1.08)}
+.nda-cover{position:absolute;inset:0;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;background:rgba(8,8,8,.42);border:0;cursor:pointer;padding:20px}
+body.nda-open .nda-cover{display:none}
+.nda-t{font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;color:#FFF}
+.nda-s{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#E4E4E2}
+.nda-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;background:rgba(5,5,5,.72);padding:24px}
+.nda-modal.on{display:flex}
+.nda-box{background:#141414;border:1px solid #3A3A38;border-radius:16px;padding:32px;width:100%;max-width:380px}
+.nda-box-t{font-family:'Switzer',sans-serif;font-weight:600;font-size:19px;color:#F4F4F5}
+.nda-box-s{font-size:13.5px;line-height:1.6;color:#8A8A88;margin:8px 0 20px}
+.nda-input{width:100%;background:#0B0B0B;border:1px solid #3A3A38;border-radius:10px;padding:12px 14px;color:#F4F4F5;font-family:'Geist Mono',monospace;font-size:14px;letter-spacing:.12em;outline:none}
+.nda-input:focus{border-color:#FF7A00}
+.nda-err{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#EA525E;margin-top:10px}
+.nda-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+.nda-actions button{border-radius:999px;padding:10px 20px;font-family:'Switzer',sans-serif;font-weight:500;font-size:14px;cursor:pointer}
+.nda-cancel{background:none;border:1px solid #3A3A38;color:#D4D4D2}
+.nda-go{background:#F4F4F5;border:1px solid #F4F4F5;color:#0B0B0B}
+.nda-go:hover{background:#FF7A00;border-color:#FF7A00;color:#0B0B0B}
+
+/* Case study: light UI mockups framed on the dark page */
+.cs-shot{margin:28px 0 0;background:#fff;border-radius:18px;padding:clamp(12px,2vw,26px);box-shadow:0 24px 70px rgba(0,0,0,.45)}
+.cs-shot img,.cs-shot video{display:block;width:100%;height:auto;border-radius:8px}
+.cs-suite{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:28px}
+.cs-suite.two{grid-template-columns:repeat(2,1fr)}
+.cs-suite-item{margin:0}
+.cs-suite-shot{background:#fff;border-radius:14px;padding:14px;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.cs-suite-shot img{display:block;width:100%;height:auto;border-radius:6px}
+.cs-suite-item .cs-figcap{margin-top:14px}
+@media (max-width:820px){.cs-suite{grid-template-columns:1fr;gap:26px}}
 
 /* Case study: full-bleed brand break */
 .cs-sec.cs-break{max-width:none;padding:0}

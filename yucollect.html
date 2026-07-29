@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YuCollect: collections, rebuilt as infrastructure · The Optimistic Designer</title>
+<meta name="description" content="A deep case study on designing YuCollect, India's unified collections infrastructure: from a two-sided MVP marketplace to a compliance-grade operating system to an intelligence layer, across lenders, agencies, agents, and 19,000+ pincodes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="canonical" href="https://theoptimisticdesigner.com/yucollect.html">
+<meta name="author" content="Subin Sundaresan">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Optimistic Designer">
+<meta property="og:title" content="YuCollect: collections, rebuilt as infrastructure · The Optimistic Designer">
+<meta property="og:description" content="From a two-sided MVP marketplace to a compliance-grade operating system to an intelligence layer: designing India's unified collections infrastructure.">
+<meta property="og:url" content="https://theoptimisticdesigner.com/yucollect.html">
+<meta property="og:image" content="https://theoptimisticdesigner.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YuCollect: collections, rebuilt as infrastructure · The Optimistic Designer">
+<meta name="twitter:description" content="Designing India's unified collections infrastructure, from MVP marketplace to operating system to intelligence layer.">
+</head>
+<body>
+
+<nav class="wy-nav">
+  <a href="index.html" class="n-logo" aria-label="The Optimistic Designer"><svg class="glyph-o" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Optimistic mark" overflow="visible"><rect x="4.43" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/></svg></a>
+  <div class="n-links">
+    <a href="index.html">The Me</a>
+    <a href="journey.html">My Journey</a>
+    <a href="stories.html" class="on">My Stories</a>
+    <a href="optimistic.html">Design System</a>
+    <a href="contact.html" class="wy-pill">Let's Connect</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="st-hero">
+  <div class="wy-eyebrow hero-rv">Case study · YuCollect · Yubi · Two-sided marketplace and infrastructure</div>
+  <h1 class="hw-stack" aria-label="Collections, rebuilt as infrastructure.">
+    <span class="hw"><span class="hw-in">Collections, rebuilt</span></span>
+    <span class="hw"><span class="hw-in">as infrastructure.</span></span>
+  </h1>
+  <p class="wy-sub hero-rv">India runs on credit, but getting it back was offline, opaque, and scattered across thousands of collection agencies no lender could see, rank, or trust. YuCollect turned that into a single transparent marketplace, then an operating system, then an intelligence layer. This is the full build, from an MVP that just had to prove two sides would show up, to infrastructure spanning 19,000+ pincodes and cutting collection costs by more than half.</p>
+</header>
+
+<div class="csb-wrap">
+<div class="csb-shell">
+
+<aside class="csb-side">
+  <div class="csb-side-k">On this page</div>
+  <nav class="csb-nav">
+    <a href="#overview">Overview</a>
+    <a href="#background">Background</a>
+    <a href="#problem">The problem</a>
+    <a href="#cohorts">Users and cohorts</a>
+    <a href="#journey">The system journey</a>
+    <a href="#empathy">Empathy and pain points</a>
+    <a href="#mvp">MVP · The marketplace</a>
+    <a href="#reward">Onboarding by reward</a>
+    <a href="#v1">Version 1 · The OS</a>
+    <a href="#compliance">Compliance Plus</a>
+    <a href="#crm">The agent CRM</a>
+    <a href="#v2">Version 2 · Intelligence</a>
+    <a href="#model">The operating model</a>
+    <a href="#outcomes">Outcomes</a>
+    <a href="#reflections">Reflections</a>
+  </nav>
+</aside>
+
+<div class="csb-main">
+
+<section id="overview">
+  <div class="cs-facts">
+    <div class="cs-fact rv" style="--d:0"><span class="cs-fk">My role</span><span class="cs-fv">Director of Design · Product and UX</span></div>
+    <div class="cs-fact rv" style="--d:1"><span class="cs-fk">Product</span><span class="cs-fv">YuCollect · Unified collections infrastructure</span></div>
+    <div class="cs-fact rv" style="--d:2"><span class="cs-fk">Parent</span><span class="cs-fv">Yubi · India's debt marketplace</span></div>
+    <div class="cs-fact rv" style="--d:3"><span class="cs-fk">Users</span><span class="cs-fv">Lenders · Agencies · Agents · Borrowers · Regulators</span></div>
+    <div class="cs-fact rv" style="--d:4"><span class="cs-fk">Arc</span><span class="cs-fv">MVP to Version 2 · 2022 onward</span></div>
+    <div class="cs-fact rv" style="--d:5"><span class="cs-fk">Outcome</span><span class="cs-fv">57% lower collection cost · 19,000+ pincodes</span></div>
+  </div>
+  <div class="wy-label rv" style="margin-top:8px">Overview</div>
+  <div class="wy-state rv">One of the largest, least-designed corners of Indian finance, rebuilt as a product.</div>
+  <div class="wy-copy rv">
+    <p>Every rupee a bank lends is a rupee it eventually has to collect. In India that recovery happens through a sprawling, offline network of collection agencies, field agents, and tele-callers that no lender can fully see and no regulator can easily audit. YuCollect set out to turn that network into infrastructure: one place where lenders discover and rank compliant agencies, allocate accounts, and watch performance down to the agent, and where agencies get the tools to be discovered, stay compliant, and collect digitally.</p>
+    <p>I led design across the arc. The hard part was never a screen. It was sequencing an enormous, multi-sided system into versions that each earned the next: an MVP that only had to prove both sides would show up, a Version 1 that made the marketplace trustworthy enough to run real money through, and a Version 2 that made it intelligent. This is that story, in order.</p>
+  </div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">₹1.4L Cr</span><span class="cs-nl">Debt volume on the parent marketplace</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">19,000+</span><span class="cs-nl">Pincodes with agency coverage</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">57%</span><span class="cs-nl">Reduction in collection cost</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">5</span><span class="cs-nl">Stakeholder types on one platform</span></div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wy-label rv">01 · Background</div>
+  <div class="wy-state rv">Collections was the last part of lending nobody had productised.</div>
+  <div class="wy-copy rv">
+    <p>India's credit market exploded over the last decade, but the machinery for recovering that credit stayed stuck in the analog era. When a loan goes overdue, a lender hands the account to a debt collection agency, of which there are thousands, most small, regional, and unrated. The agency hires field agents and tele-callers, dispatches them, and reports back on paper or over the phone. The lender has almost no live view of who is calling their customer, what is being said, whether the agent is DRA certified, or whether a complaint is brewing that could turn into a regulatory problem.</p>
+    <p>This opacity is expensive on every axis. Lenders overpay because they cannot compare agencies on price or performance. Recovery suffers because allocations go to whoever is familiar, not whoever is best in that pincode. And compliance risk sits unmanaged, in an industry the regulator watches closely because it touches vulnerable borrowers. YuCollect, built inside Yubi, the debt marketplace founded in 2020 by Gaurav Kumar and backed by Peak XV, Lightspeed, and Dragoneer, was the attempt to give this whole layer a nervous system.</p>
+  </div>
+  <div class="cs-quote rv">Lending had been digitised end to end. Then it reached collections, and fell off a cliff back into paper.</div>
+</section>
+
+<section id="problem">
+  <div class="wy-label rv">02 · The problem</div>
+  <div class="wy-state rv">Not one problem. A different broken thing for every party.</div>
+  <div class="wy-copy rv">
+    <p>The reason collections had resisted productisation is that it is not a single workflow. It is a marketplace with five parties who each experience a different failure, and any product has to fix all of them at once or none of them adopt it. That is the core design complexity of YuCollect, and it shaped every version decision that followed.</p>
+  </div>
+  <div class="cs-mx rv">
+    <div class="cs-mx-row cs-mx-head"><span>Party</span><span>What was broken for them</span><span>What they needed</span></div>
+    <div class="cs-mx-row"><span>Lenders / allocators</span><span>No way to find, rank, or trust agencies; blind after allocation</span><span>Discovery, comparison, live performance, audit</span></div>
+    <div class="cs-mx-row"><span>Collection agencies</span><span>New business is relationship-gated; compliance is manual</span><span>To be discovered on merit, and tooling to run</span></div>
+    <div class="cs-mx-row"><span>Field / tele agents</span><span>Untracked work, manual dispatch, no certification path</span><span>Clear allocations, digital workflow, DRA training</span></div>
+    <div class="cs-mx-row"><span>Borrowers</span><span>Inconsistent, sometimes aggressive, contact</span><span>Fair, traceable, multi-channel outreach</span></div>
+    <div class="cs-mx-row"><span>Regulators</span><span>No auditable trail across a sensitive industry</span><span>Transparency and enforceable compliance</span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>A two-sided marketplace already has a cold-start problem: neither side joins until the other is there. YuCollect had a five-sided version of it, wrapped in regulation, on top of an industry that had never used software. That is why it could not launch as the finished eight-module platform it is today. It had to be sequenced.</p>
+  </div>
+</section>
+
+<section id="cohorts">
+  <div class="wy-label rv">03 · Users and cohorts</div>
+  <div class="wy-state rv">The same platform, read completely differently by each person on it.</div>
+  <div class="wy-copy rv">
+    <p>Designing for a marketplace means designing for cohorts whose incentives point in different directions. A large private bank and a two-person regional agency both live on YuCollect, but almost nothing about their needs, literacy, or trust threshold is the same. These are the cohorts that drove the interface decisions.</p>
+  </div>
+  <div class="csb-cohorts">
+    <div class="csb-cohort rv" style="--d:0"><span class="csb-co-tag">Supply side</span><span class="csb-co-name">Large national agencies</span><span class="csb-co-desc">Multi-city, multi-lender, hundreds of agents. Care about volume of allocations and channel-wise dashboards. High software literacy, so the ask was depth and bulk operations.</span></div>
+    <div class="csb-cohort rv" style="--d:1"><span class="csb-co-tag">Supply side</span><span class="csb-co-name">Small regional agencies</span><span class="csb-co-desc">A handful of agents in a few pincodes. Their entire growth used to depend on who they knew. Low software literacy, so onboarding and discovery had to be almost self-explanatory.</span></div>
+    <div class="csb-cohort rv" style="--d:2"><span class="csb-co-tag">Demand side</span><span class="csb-co-name">Banks and large NBFCs</span><span class="csb-co-desc">Risk and compliance teams with zero tolerance for a data leak or a regulatory miss. Needed governance, audit trails, and price discovery before they would allocate a single account.</span></div>
+    <div class="csb-cohort rv" style="--d:3"><span class="csb-co-tag">Demand side</span><span class="csb-co-name">Fintech lenders</span><span class="csb-co-desc">Fast, API-first, high-volume small-ticket books. Wanted bulk allocation, propensity scoring, and digital-first recovery over feet on the street.</span></div>
+    <div class="csb-cohort rv" style="--d:4"><span class="csb-co-tag">Field</span><span class="csb-co-name">Agents and tele-callers</span><span class="csb-co-desc">The people who actually make the calls and knock on doors. Needed clear allocations, a DRA certification path, and a workflow that worked on a low-end phone.</span></div>
+    <div class="csb-cohort rv" style="--d:5"><span class="csb-co-tag">Oversight</span><span class="csb-co-name">Borrowers and regulators</span><span class="csb-co-desc">Never log in, but every design decision answers to them. Fair contact for the borrower, an auditable trail for the regulator. The platform's licence to operate depends on both.</span></div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wy-label rv">04 · The system journey</div>
+  <div class="wy-state rv">Seven roles, one lifecycle. Work flows down. Truth flows up.</div>
+  <div class="wy-copy rv">
+    <p>Put every role on one map and the system's shape appears. Allocation flows downward, from the lender's search to the owner's acceptance to the manager's plan to the agents' calls and visits. And the truth flows back up the same rails: a borrower's payment rolls up through the manager's reconciliation, the owner's compliance submissions, the reviewers' approvals, into the score the lender reads before allocating again. The flywheel at the top is the whole business: a good score earns the next allocation.</p>
+  </div>
+  <figure class="cs-fig rv csb-journey">
+    <svg viewBox="0 0 1380 1010" role="img" aria-label="YuCollect system journey map: seven role swimlanes, lender, compliance manager, agency owner, agency manager, collection agent, field agent, and borrower, across seven lifecycle stages from onboarding to growth, with allocation flowing down and results flowing up into a flywheel" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="ja" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5A5A58"/></marker>
+        <marker id="jo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#FF7A00"/></marker>
+      </defs>
+      <g font-family="Geist Mono,monospace" font-size="9.5" letter-spacing="2" fill="#8A8A88" text-anchor="middle">
+        <text x="256" y="40">01 ONBOARD</text>
+        <text x="429" y="40">02 DISCOVER</text>
+        <text x="602" y="40">03 ALLOCATE</text>
+        <text x="775" y="40">04 PLAN · ASSIGN</text>
+        <text x="948" y="40">05 EXECUTE</text>
+        <text x="1121" y="40">06 UPDATE · COMPLY</text>
+        <text x="1294" y="40">07 GROW</text>
+      </g>
+      <g stroke="#1C1C1A" stroke-width="1">
+        <line x1="0" y1="70" x2="1380" y2="70"/><line x1="0" y1="198" x2="1380" y2="198"/><line x1="0" y1="326" x2="1380" y2="326"/><line x1="0" y1="454" x2="1380" y2="454"/><line x1="0" y1="582" x2="1380" y2="582"/><line x1="0" y1="710" x2="1380" y2="710"/><line x1="0" y1="838" x2="1380" y2="838"/><line x1="0" y1="966" x2="1380" y2="966"/>
+      </g>
+      <g stroke="rgba(255,255,255,.05)" stroke-width="1" stroke-dasharray="3 6">
+        <line x1="343" y1="70" x2="343" y2="966"/><line x1="516" y1="70" x2="516" y2="966"/><line x1="689" y1="70" x2="689" y2="966"/><line x1="862" y1="70" x2="862" y2="966"/><line x1="1035" y1="70" x2="1035" y2="966"/><line x1="1208" y1="70" x2="1208" y2="966"/>
+      </g>
+      <line x1="170" y1="70" x2="170" y2="966" stroke="#1C1C1A" stroke-width="1"/>
+      <g>
+        <text x="16" y="130" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Lender</text>
+        <text x="16" y="147" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">ALLOCATOR · BANK / NBFC</text>
+        <text x="16" y="258" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Compliance manager</text>
+        <text x="16" y="275" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">LENDER SIDE · CM + PM</text>
+        <text x="16" y="386" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Agency owner</text>
+        <text x="16" y="403" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">RUNS THE AGENCY</text>
+        <text x="16" y="514" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Agency manager</text>
+        <text x="16" y="531" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">MANAGER VIEW · OPS</text>
+        <text x="16" y="642" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Collection agent</text>
+        <text x="16" y="659" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">AGENT APP · TELE CRM</text>
+        <text x="16" y="770" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Field agent</text>
+        <text x="16" y="787" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">COLLECT APP · ON GROUND</text>
+        <text x="16" y="898" font-family="Switzer,sans-serif" font-weight="600" font-size="13" fill="#F4F4F5">Borrower</text>
+        <text x="16" y="915" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.2" fill="#6E6E6C">THE CUSTOMER</text>
+      </g>
+      <path d="M1294,105 C1294,55 429,55 429,105" fill="none" stroke="#FF7A00" stroke-width="1.3" stroke-dasharray="5 5" marker-end="url(#jo)"/>
+      <text x="861" y="92" font-family="Geist Mono,monospace" font-size="9" letter-spacing="1.6" fill="#FF7A00" text-anchor="middle">SCORE EARNS THE NEXT ALLOCATION</text>
+      <g stroke="#2A2A28" stroke-width="1.2" stroke-dasharray="4 5">
+        <line x1="681" y1="134" x2="1042" y2="134"/>
+        <line x1="335" y1="262" x2="1042" y2="262"/>
+        <line x1="681" y1="390" x2="1042" y2="390"/>
+      </g>
+      <g stroke="#5A5A58" stroke-width="1.3">
+        <line x1="508" y1="134" x2="521" y2="134" marker-end="url(#ja)"/>
+        <line x1="1200" y1="134" x2="1213" y2="134" marker-end="url(#ja)"/>
+        <line x1="335" y1="390" x2="348" y2="390" marker-end="url(#ja)"/>
+        <line x1="508" y1="390" x2="521" y2="390" marker-end="url(#ja)"/>
+        <line x1="1200" y1="390" x2="1213" y2="390" marker-end="url(#ja)"/>
+        <line x1="854" y1="518" x2="867" y2="518" marker-end="url(#ja)"/>
+        <line x1="1027" y1="518" x2="1040" y2="518" marker-end="url(#ja)"/>
+        <line x1="854" y1="646" x2="867" y2="646" marker-end="url(#ja)"/>
+        <line x1="854" y1="774" x2="867" y2="774" marker-end="url(#ja)"/>
+        <line x1="1027" y1="902" x2="1040" y2="902" marker-end="url(#ja)"/>
+        <line x1="1200" y1="262" x2="1213" y2="262" marker-end="url(#ja)"/>
+      </g>
+      <g stroke="#5A5A58" stroke-width="1.4" fill="none">
+        <line x1="602" y1="163" x2="602" y2="358" marker-end="url(#ja)"/>
+        <path d="M602,419 C602,458 775,452 775,486" marker-end="url(#ja)"/>
+        <line x1="775" y1="547" x2="775" y2="614" marker-end="url(#ja)"/>
+        <path d="M696,518 L664,518 L664,774 L688,774" marker-end="url(#ja)"/>
+        <line x1="948" y1="803" x2="948" y2="870" marker-end="url(#ja)"/>
+        <path d="M1027,646 L1055,646 L1055,902 L1032,902" marker-end="url(#ja)"/>
+        <line x1="1121" y1="870" x2="1121" y2="550" marker-end="url(#ja)"/>
+        <line x1="1121" y1="489" x2="1121" y2="422" marker-end="url(#ja)"/>
+        <line x1="1121" y1="361" x2="1121" y2="294" marker-end="url(#ja)"/>
+        <line x1="1294" y1="233" x2="1294" y2="166" marker-end="url(#ja)"/>
+      </g>
+      <text x="612" y="250" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.4" fill="#6E6E6C">WORK FLOWS DOWN</text>
+      <text x="1131" y="700" font-family="Geist Mono,monospace" font-size="8" letter-spacing="1.4" fill="#6E6E6C">TRUTH FLOWS UP</text>
+      <g>
+        <rect x="350" y="105" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="429" y="130" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Search and rank</text>
+        <text x="429" y="148" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">19,000+ PINCODES · PRICING</text>
+        <rect x="523" y="105" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="602" y="130" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Allocate</text>
+        <text x="602" y="148" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">BULK · ZERO DATA SHARED</text>
+        <rect x="1042" y="105" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1121" y="130" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Watch dashboards</text>
+        <text x="1121" y="148" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">CHANNEL-WISE · PENALTIES</text>
+        <rect x="1215" y="105" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1294" y="130" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Reallocate to the best</text>
+        <text x="1294" y="148" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">MERIT, NOT RELATIONSHIPS</text>
+        <rect x="177" y="233" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="256" y="258" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Set guidelines</text>
+        <text x="256" y="276" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">BOX FILES PER LENDER</text>
+        <rect x="1042" y="233" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1121" y="258" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Two-tier review</text>
+        <text x="1121" y="276" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">CM THEN PM · PRIVATE THREAD</text>
+        <rect x="1215" y="233" width="158" height="58" rx="10" fill="#141414" stroke="#FF7A00" stroke-width="1.5"/>
+        <text x="1294" y="258" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Score and audit</text>
+        <text x="1294" y="276" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">EVERY DOC · EVERY DECISION</text>
+        <rect x="177" y="361" width="158" height="58" rx="10" fill="#141414" stroke="#FF7A00" stroke-width="1.5"/>
+        <text x="256" y="386" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Register</text>
+        <text x="256" y="404" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">OFFICE BUILDS AS YOU TYPE</text>
+        <rect x="350" y="361" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="429" y="386" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Profile card live</text>
+        <text x="429" y="404" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">LENDERS IN ORBIT</text>
+        <rect x="523" y="361" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="602" y="386" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Accept allocation</text>
+        <text x="602" y="404" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">AGREEMENT · UPLOAD</text>
+        <rect x="1042" y="361" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1121" y="386" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Submit box files</text>
+        <text x="1121" y="404" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">ACTION FLAGS DO THE CHASING</text>
+        <rect x="1215" y="361" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1294" y="386" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">More allocations</text>
+        <text x="1294" y="404" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">THE FLYWHEEL TURNS</text>
+        <rect x="696" y="489" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="775" y="514" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Plan and assign</text>
+        <text x="775" y="532" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">CALL · FIELD · DIGITAL</text>
+        <rect x="869" y="489" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="948" y="514" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Monitor and reassign</text>
+        <text x="948" y="532" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">LIVE, MID-CAMPAIGN</text>
+        <rect x="1042" y="489" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1121" y="514" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Collections roll up</text>
+        <text x="1121" y="532" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">UPDATES · RECONCILIATION</text>
+        <rect x="696" y="617" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="775" y="642" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Pre-triaged worklist</text>
+        <text x="775" y="660" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">BUCKETS WITH VALUE</text>
+        <rect x="869" y="617" width="158" height="58" rx="10" fill="#141414" stroke="#FF7A00" stroke-width="1.5"/>
+        <text x="948" y="642" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Call and dispose</text>
+        <text x="948" y="660" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">CODED OUTCOME · NO FREE TEXT</text>
+        <rect x="696" y="745" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="775" y="770" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Route planned</text>
+        <text x="775" y="788" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">COLLECT APP</text>
+        <rect x="869" y="745" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="948" y="770" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Visit and collect</text>
+        <text x="948" y="788" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">PHOTO AND LOCATION PROOF</text>
+        <rect x="869" y="873" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="948" y="898" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Gets fair contact</text>
+        <text x="948" y="916" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">CALL · WHATSAPP · VISIT</text>
+        <rect x="1042" y="873" width="158" height="58" rx="10" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="1121" y="898" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="12.5" fill="#F4F4F5">Pays via link</text>
+        <text x="1121" y="916" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7.5" letter-spacing="0.8" fill="#8A8A88">STATUS CLEARS EVERYWHERE</text>
+      </g>
+      <text x="690" y="994" text-anchor="middle" font-family="Geist Mono,monospace" font-size="9" letter-spacing="1.8" fill="#6E6E6C">ONE SHARED RECORD · EVERY EVENT ABOVE WRITES THE SAME TRUTH</text>
+    </svg>
+  </figure>
+  <div class="cs-figcap rv">The full system on one map. Scroll sideways to walk the lifecycle: allocation moves down the left spine, results climb the right one, and the orange loop at the top is the business model.</div>
+</section>
+
+<section id="empathy">
+  <div class="wy-label rv">05 · Empathy and pain points</div>
+  <div class="wy-state rv">The same map, felt from inside each seat.</div>
+  <div class="wy-copy rv">
+    <p>A journey map shows what each role does. It does not show what the work feels like, and in collections the feelings are the product constraints: fear of audits, fear of harassment accusations, the fatigue of dialing blind. These maps, drawn from the interviews behind the compliance and CRM work, are what each role thinks, feels, does, and suffers, and the last row of each is what the design answered with.</p>
+  </div>
+  <div class="csb-emp">
+    <div class="csb-emp-card rv" style="--d:0">
+      <div class="csb-emp-role">Agency owner</div>
+      <div class="csb-emp-sub">Small regional agency · supply side</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"Growth depends on who I know, not how well I collect."</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">Invisible to large lenders. Anxious that a penalty or a held allocation will arrive without warning.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Runs the firm on phone calls, notebooks, and WhatsApp. Chases agents for updates and lenders for dues.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">No way to be discovered on merit. Never knows what document is due, when, or in what format. Penalties land as surprises.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">Discovery Hub ranking, the reward-built profile card, Box Files with action flags, a score that turns performance into business.</span></div>
+    </div>
+    <div class="csb-emp-card rv" style="--d:1">
+      <div class="csb-emp-role">Lender · allocator</div>
+      <div class="csb-emp-sub">Bank / NBFC · demand side</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"I cannot see who is actually good in this pincode."</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">Blind after allocation. Nervous that a data leak or a rogue agent becomes tomorrow's headline.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Allocates to familiar agencies by habit. Reconciles performance from twenty vendors' spreadsheets.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">No comparison on price or performance. Borrower data is too sensitive to hand to a marketplace. No live view of recovery.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">Pincode-level ranking with price discovery, the zero-data-sharing allocation engine, channel-wise dashboards down to the agent.</span></div>
+    </div>
+    <div class="csb-emp-card rv" style="--d:2">
+      <div class="csb-emp-role">Agency manager</div>
+      <div class="csb-emp-sub">Manager view · operations</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"Which accounts should move from calls to the field today?"</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">Always a day behind, making decisions on stale, self-reported numbers.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Assigns agents from memory, chases updates over WhatsApp, rebuilds the same Excel every Monday.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">No live view of the campaign. Reassignment is guesswork. Updates arrive as hearsay, hours or days late.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">The manager view: live campaign monitoring, channel planning, one-tap agent and channel reassignment logged to the timeline.</span></div>
+    </div>
+    <div class="csb-emp-card rv" style="--d:3">
+      <div class="csb-emp-role">Collection agent</div>
+      <div class="csb-emp-sub">Tele · agent app / CRM</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"Who do I call next, and what happened before with this account?"</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">The pressure of a monthly target, and the fatigue of dialing blind into conversations that start with an accusation.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Dials down a list, scribbles outcomes on paper, retells the whole story every time a case escalates.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">No context mid-call. Outcomes written as free text disappear. Good work is invisible, so credit never lands.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">A pre-triaged worklist, the one-screen borrower workspace, and coded dispositions that make every call count somewhere visible.</span></div>
+    </div>
+    <div class="csb-emp-card rv" style="--d:4">
+      <div class="csb-emp-role">Field agent</div>
+      <div class="csb-emp-sub">Collect app · on the ground</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"Long route today. Will anyone be home, and can I prove I was there?"</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">Alone and exposed at the doorstep, where any dispute becomes their word against the borrower's.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Travels pincode to pincode, collects payments, photographs receipts, reports everything at day's end.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">Unplanned routes burn hours. Visits get disputed without proof. Collections reconcile late, so trust in them is low.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">Planned routes in the collect app, photo and location proof captured at the door, and collections that sync to the record instantly.</span></div>
+    </div>
+    <div class="csb-emp-card rv" style="--d:5">
+      <div class="csb-emp-role">Compliance manager</div>
+      <div class="csb-emp-sub">Lender side · CM and PM</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"Which of my twenty agencies fails the next audit?"</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">Personally exposed: accountable to auditors for documents that live in other people's inboxes.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Chases documents over email and WhatsApp, maintains master spreadsheets, spot-checks whatever there is time for.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">No single source of truth. Feedback meant for reviewers leaks to agencies. Submissions arrive late or in the wrong format.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">One review queue with statuses, the two-tier CM-then-PM chain with a private thread, and a score that ranks the portfolio at a glance.</span></div>
+    </div>
+    <div class="csb-emp-card rv" style="--d:6">
+      <div class="csb-emp-role">Borrower</div>
+      <div class="csb-emp-sub">The customer at the edge</div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Thinks</span><span class="csb-emp-v">"Who is this calling me, and can I trust this payment link?"</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Feels</span><span class="csb-emp-v">Harassed by repeated unknown numbers, and ashamed. Wants to settle the debt with dignity intact.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Does</span><span class="csb-emp-v">Ignores calls it cannot place. Pays when the contact is legitimate, clear, and consistent about what was agreed.</span></div>
+      <div class="csb-emp-row pain"><span class="csb-emp-k">Pains</span><span class="csb-emp-v">Aggressive or repeated contact. Suspicious links. No record of promises, so every call restarts from zero.</span></div>
+      <div class="csb-emp-row"><span class="csb-emp-k">Design</span><span class="csb-emp-v">Traceable, recorded contact on legitimate channels, payment links tied to the account, and a timeline that remembers what was agreed.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="mvp">
+  <div class="wy-label rv">06 · MVP · The marketplace</div>
+  <div class="wy-state rv">Prove that both sides will show up. Nothing else.</div>
+  <div class="wy-copy rv">
+    <p>The MVP had exactly one job: prove that lenders would look for agencies here, and agencies would want to be found here. Everything else was deliberately cut. The bet was the <strong>Discovery Hub</strong>: a pincode-level directory where a lender could search 19,000+ pincodes and see agencies ranked, rated, and reviewed on real performance rather than reputation, then allocate accounts in bulk.</p>
+    <p>The single hardest design constraint showed up immediately. Lenders will not upload a portfolio of overdue customers, some of the most sensitive data a bank holds, into a marketplace where agencies might see it. So the MVP was built around a <strong>zero-data-sharing allocation engine</strong>: agencies are matched and ranked, and accounts are allocated, without exposing borrower data across the marketplace. Solving that trust problem first is what made everything after it possible.</p>
+  </div>
+  <div class="csb-modrow rv">
+    <span class="csb-mod">Discovery Hub</span>
+    <span class="csb-mod">Pincode-level search</span>
+    <span class="csb-mod">Agency ranking, rating, review</span>
+    <span class="csb-mod">Zero-data-sharing allocation</span>
+    <span class="csb-mod">Bulk allocation</span>
+  </div>
+  <div class="wy-copy rv">
+    <p>Design-wise, the MVP lived or died on two moments: a lender's first search feeling instantly more legible than the spreadsheets and phone calls it replaced, and an agency's onboarding being simple enough that a small regional shop could get listed without hand-holding. Discovery had to look less like a database and more like a decision. Get an agency ranked, priced, and allocated in one sitting, and both sides had a reason to come back.</p>
+  </div>
+</section>
+
+<section id="reward">
+  <div class="wy-label rv">07 · Onboarding by visual reward</div>
+  <div class="wy-state rv">The form asks for data. The screen gives back an identity.</div>
+  <div class="wy-copy rv">
+    <p>The most dangerous moment in the whole marketplace was a registration form. Supply-side growth depended on thousands of small agencies, many of which had never used business software, filling out company details, owner details, coverage, languages, and compliance documents. A plain form here is where two-sided platforms quietly die. I had seen this exact failure before, at Khatabook, where a KYU form converted under 2% until we replaced the form-feeling with a visual reward, and <a href="reward.html">17,000 merchants signed up in two weeks</a>. YuCollect's onboarding was designed on the same theory, rebuilt for a B2B audience.</p>
+    <p>The theory: <strong>every unit of effort a user gives must return a visible unit of identity.</strong> People abandon forms because effort flows one way, field after field with nothing coming back. So in YuCollect's signup, nothing is asked without something appearing. Type your company name, and your agency's office materialises beside the form with your name painted on the signboard. Declare yourself the owner, and the owner steps out in front of the building while a business card forms with your name on it. Add your pincode, and the street sign plants your agency in its city. By the time the form is done, you have not filled in a database. You have built your firm's presence, and it is standing there looking back at you.</p>
+  </div>
+  <div class="cs-suite">
+    <figure class="cs-suite-item rv" style="--d:0"><div class="cs-suite-shot"><img class="nda" src="assets/yc-reward-name.jpg" alt="YuCollect agency registration: as the company name is typed into the form, the agency's office building materialises beside it with the name appearing on the signboard" loading="lazy"></div><figcaption class="cs-figcap">Type your name, and your building rises, signboard first.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:1"><div class="cs-suite-shot"><img class="nda" src="assets/yc-reward-owner.jpg" alt="Declaring yourself the owner makes the owner character appear in front of the building while a business card materialises with your name, role, and email" loading="lazy"></div><figcaption class="cs-figcap">Declare yourself the owner, and you appear at the door, card in hand.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:2"><div class="cs-suite-shot"><img class="nda" src="assets/yc-reward-done.jpg" alt="Registration complete: confetti falls over the finished scene, the agency building with its signboard, owner, and city street sign" loading="lazy"></div><figcaption class="cs-figcap">Register, and the finished scene celebrates with you.</figcaption></figure>
+  </div>
+  <div class="wy-copy rv">
+    <p>The mechanic runs on four principles, each doing a specific job. Together they turn the highest-drop-off moment of the funnel into the moment the product first proves its promise.</p>
+  </div>
+  <div class="cs-moves">
+    <div class="cs-move rv" style="--d:0"><span class="cs-mnum">01</span><span class="cs-mbody"><span class="cs-mtitle">Reflection, not fields · the instant feedback loop</span><span class="cs-mdesc">Every keystroke changes the scene, so the gap between effort and reward is close to zero. That is a live operant loop: input, visible consequence, next input. The form stops being a corridor you walk down blind and becomes a world that responds.</span></span></div>
+    <div class="cs-move rv" style="--d:1"><span class="cs-mnum">02</span><span class="cs-mbody"><span class="cs-mtitle">Identity endowment · it is your building now</span><span class="cs-mdesc">The endowment and IKEA effects say people overvalue what they have made. Once your name is on the signboard and your figure stands at the door, abandoning the flow means abandoning something that is already yours. Loss aversion starts working for completion instead of against it.</span></span></div>
+    <div class="cs-move rv" style="--d:2"><span class="cs-mnum">03</span><span class="cs-mbody"><span class="cs-mtitle">Progress as construction · the unfinished scene</span><span class="cs-mdesc">Goal-gradient and the Zeigarnik effect: an incomplete picture nags to be completed, and people accelerate as the end nears. A half-built profile card with empty chips is a far stronger pull than a progress bar, because what is missing is visible, and it is yours.</span></span></div>
+    <div class="cs-move rv" style="--d:3"><span class="cs-mnum">04</span><span class="cs-mbody"><span class="cs-mtitle">The reward previews the promise</span><span class="cs-mdesc">The payoff is not confetti. It is your finished profile card orbited by the logos of India's biggest lenders, which is literally the product's value proposition, being discovered, shown before a single allocation exists. The reward and the reason you came are the same image.</span></span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>The same theory then carries into the deeper onboarding, where the stakes rise from a signup to compliance documents. There the artifact under construction is the marketplace profile card itself: every section completed adds a real, lender-facing attribute to the card beside the form, cities, agents, years, languages. You are not doing paperwork. You are watching the thing lenders will judge you by get stronger with every field.</p>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yc-reward-card.jpg" alt="The three-step agency onboarding: as each section of the form is completed, the agency's blue marketplace profile card builds live beside it, gaining chips for cities, agents, years, address, and languages" loading="lazy"></figure>
+  <div class="cs-figcap rv">Deeper onboarding, same theory: the profile card builds live, one completed section at a time.</div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yc-reward-orbit.jpg" alt="The onboarding payoff: the agency's completed profile card at the centre of an orbit of lender logos, with the message that the profile card has been created on YuCollect" loading="lazy"></figure>
+  <div class="cs-figcap rv">The payoff frame: your card at the centre, lenders in orbit. The reward is the promise, made visible.</div>
+  <div class="cs-mx rv">
+    <div class="cs-mx-row cs-mx-head"><span>Hypothesis</span><span>If we</span><span>Then we expect</span></div>
+    <div class="cs-mx-row"><span>H1 · Completion</span><span>Return a visible reward for every field</span><span>Signup completion rises, because effort has instant visible return</span></div>
+    <div class="cs-mx-row"><span>H2 · Data quality</span><span>Make each field a visible, lender-facing card attribute</span><span>Richer, more accurate profiles, because the card is being judged, not filed</span></div>
+    <div class="cs-mx-row"><span>H3 · Sensitive steps</span><span>Build identity ownership before the document ask</span><span>Lower drop-off at uploads, because leaving now means losing something owned</span></div>
+    <div class="cs-mx-row"><span>H4 · Activation</span><span>Preview discovery as the final reward</span><span>Faster progression to a first allocation, because the goal was seen, not told</span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p class="wy-fine">Screens from the YuCollect onboarding revamp design files. Hypotheses are stated as designed, with the Khatabook reward programme as the precedent evidence.</p>
+  </div>
+</section>
+
+<section id="v1">
+  <div class="wy-label rv">08 · Version 1 · The operating system</div>
+  <div class="wy-state rv">A marketplace people trust with real money, and tools to actually run.</div>
+  <div class="wy-copy rv">
+    <p>The MVP proved liquidity. Version 1 had to make the marketplace safe to run at scale, because a bank will not move a real portfolio through a platform it cannot govern, and an agency cannot grow on allocations alone if it has no way to operate them. So V1 added the two things a regulated marketplace needs most, trust and tooling, through three product lines.</p>
+  </div>
+  <div class="cs-moves">
+    <div class="cs-move rv" style="--d:0"><span class="cs-mnum">01</span><span class="cs-mbody"><span class="cs-mtitle">Compliance Plus · trust, made auditable</span><span class="cs-mdesc">Digitised agency compliance, a compliance control dashboard, per-agency compliance ratings, document approval with full audit trails, and customer-complaint management. This is what let a bank's risk team say yes. It turns compliance from a quarterly paper scramble into a live, visible state, which in a regulated industry is the whole ballgame.</span></span></div>
+    <div class="cs-move rv" style="--d:1"><span class="cs-mnum">02</span><span class="cs-mbody"><span class="cs-mtitle">Portfolio Master · performance, made visible</span><span class="cs-mdesc">Line-of-business and channel-wise dashboards, allocation upload, document trails, and hardened data security. Lenders stopped being blind after allocation: they could now watch recovery by agency, by channel, down to the agent. The design job was turning a firehose of collections data into a few decisions a portfolio manager makes on a Monday morning.</span></span></div>
+    <div class="cs-move rv" style="--d:2"><span class="cs-mnum">03</span><span class="cs-mbody"><span class="cs-mtitle">Agent Plus · supply, made real</span><span class="cs-mdesc">In-platform agent hiring with DRA training built in. The bottleneck on the supply side was never desire, it was certified people. Bringing hiring and the regulatory training path into the product meant an agency could scale capacity to meet the allocations the marketplace was now sending it, without leaving the platform.</span></span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>V1 is where the product stopped being a directory and became an operating system. The design challenge shifted from persuasion to density: how to give a large agency the depth and bulk controls it needs, and a small one a path through the same screens without drowning. Progressive disclosure, role-aware defaults, and one consistent system across every module were what held it together.</p>
+  </div>
+</section>
+
+<section id="compliance">
+  <div class="wy-label rv">09 · Deep dive · Compliance Plus</div>
+  <div class="wy-state rv">A paper and WhatsApp ritual, turned into one workflow with a score attached.</div>
+  <div class="wy-copy rv">
+    <p>One module from Version 1 deserves the full story, because it shows how the platform actually got built: small team, hard constraint, research-led. Compliance Plus was designed by a team of one product manager, one designer, and three engineers, on a three-week clock, with a launch lender already waiting. Lenders had started asking for exactly this during sales demos, so the feature was not just a usability fix. It was the thing standing between the platform and its next signed bank.</p>
+    <p>The ritual it replaced ran on Excel, email, and WhatsApp. Every lender requires its agencies to keep dozens of compliance documents current, police verifications, DRA certifications, service agreements, purging letters, and the chain of custody for those documents was three people forwarding files at each other with no shared state.</p>
+  </div>
+  <div class="csb-cohorts">
+    <div class="csb-cohort rv" style="--d:0"><span class="csb-co-tag">Submits</span><span class="csb-co-name">The agency owner</span><span class="csb-co-desc">Runs the agency, submits the documents. Did not know what was due, when it was due, or in what format. Found out something was missing only when a penalty arrived or an allocation was held back.</span></div>
+    <div class="csb-cohort rv" style="--d:1"><span class="csb-co-tag">First review</span><span class="csb-co-name">The collections manager</span><span class="csb-co-desc">The lender's first line of verification. Tracked twenty-plus agencies across Excel sheets, email threads, and WhatsApp forwards. Their whole job was reconciling versions of the truth that never matched.</span></div>
+    <div class="csb-cohort rv" style="--d:2"><span class="csb-co-tag">Final review</span><span class="csb-co-name">The process manager</span><span class="csb-co-desc">The final verification before the lender's auditors. Tracked multiple collections managers across the same scattered channels, and needed to give feedback to CMs that agencies must never see.</span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>Three weeks did not allow for guesswork, so the design ran on four research insights from interviews with lenders and agency owners, and each one became a specific product decision.</p>
+  </div>
+  <div class="cs-mx rv">
+    <div class="cs-mx-row cs-mx-head"><span>What research found</span><span>Why it matters</span><span>What it became</span></div>
+    <div class="cs-mx-row"><span>Agencies think in folders</span><span>Owners described their physical filing system, labelled box files per guideline</span><span>The UI is literally Box Files: documents grouped the way agencies already think</span></div>
+    <div class="cs-mx-row"><span>Document load is uneven</span><span>Some agencies submit 8 documents a cycle, others 40+. A flat list crushes the large ones</span><span>Grouped, status-tagged boxes that scale from 8 documents to 40 without changing shape</span></div>
+    <div class="cs-mx-row"><span>CMs and PMs need a private channel</span><span>PM feedback to a CM must stay invisible to the agency, as the offline ritual already worked</span><span>A two-tier review chain with an internal thread the agency never sees</span></div>
+    <div class="cs-mx-row"><span>Agencies needed motivation</span><span>Reminders alone rarely change submission behaviour</span><span>A compliance score, a single number that moves with every approved or delayed document</span></div>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yc-comp-flow.jpg" alt="The Compliance Plus user flow: the agency owner opens Box Files, picks a box, uploads a document, and submits; the collections manager approves or rejects with comments; rejections restart the cycle in a thread; the process manager gives final approval and the compliance score updates" loading="lazy"></figure>
+  <div class="cs-figcap rv">One loop, three roles: submit, first review, final review. A rejection restarts the cycle in a thread instead of a lost WhatsApp forward, and an approval moves the score.</div>
+  <div class="cs-suite">
+    <figure class="cs-suite-item rv" style="--d:0"><div class="cs-suite-shot"><img class="nda" src="assets/yc-comp-boxfiles.jpg" alt="The agency's Box Files dashboard: compliance documents grouped into labelled boxes such as common documents, declaration documents, and pending invoices, each with action-needed flags and awaiting-approval counts" loading="lazy"></div><figcaption class="cs-figcap">The agency sees Box Files, its own mental model, with action flags doing the chasing.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:1"><div class="cs-suite-shot"><img class="nda" src="assets/yc-comp-agency.jpg" alt="The agency compliance dashboard: a 732 compliance score gauge, adherence at 92 percent across 202 documents, document and guideline level compliance lists, penalty summaries, and a comments thread" loading="lazy"></div><figcaption class="cs-figcap">The agency's score, 732, with exactly which documents are dragging it down, and what each delay costs in penalties.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:2"><div class="cs-suite-shot"><img class="nda" src="assets/yc-comp-pm.jpg" alt="The lender-side compliance dashboard: adherence across 22 agencies split into risky, needs attention, and good, per-agency compliance scores, quarterly trends, and agency-wise penalty details" loading="lazy"></div><figcaption class="cs-figcap">The lender's view: a whole portfolio of agencies ranked risky to good, one screen replacing twenty spreadsheets.</figcaption></figure>
+  </div>
+  <div class="wy-copy rv">
+    <p>It shipped in the three weeks, and it landed: the launch bank partnership closed, compliance work moved out of Excel, email, and WhatsApp into one place, and even in-person agency visits now log into the same timeline as digital submissions, one auditable record for the regulator.</p>
+    <p>And one honest result, because real case studies have one: the assumption that a visible compliance score would motivate agencies through lender visibility did not work as expected. The score made compliance legible, and lenders use it daily to rank their agencies, but it did not on its own change agency submission behaviour. Motivation needed a stronger loop than a number, which is exactly the lesson the visual-reward onboarding was built on.</p>
+  </div>
+</section>
+
+<section id="crm">
+  <div class="wy-label rv">10 · Deep dive · The agent CRM</div>
+  <div class="wy-state rv">Where the marketplace becomes a phone call: the agent's working day, designed.</div>
+  <div class="wy-copy rv">
+    <p>Everything above is infrastructure. This is where it lands: a tele-caller with a headset, a campaign of twenty-four thousand overdue accounts, and a target for the month. The CRM is the screen that agent lives in all day, and it was designed around one conviction: the agent should never have to decide who to call next, hunt for context mid-call, or describe what happened in free text. The system triages, briefs, and records. The agent talks.</p>
+    <p>The worklist opens pre-triaged into outcome buckets, paid, promise-to-pay, follow-ups, not contactable, each carrying its record count and outstanding value, with the campaign's collected-versus-remaining total always in view. The queue is the strategy: the agent works down a list that is already ordered by what matters, one tap from row to live call.</p>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yc-crm-worklist.jpg" alt="The agent CRM worklist: a campaign header with total outstanding and collected versus to-be-collected, outcome buckets for paid, PTP, follow-ups, and not contactable with record counts and outstanding value, and an account table with one-tap call buttons on every row" loading="lazy"></figure>
+  <div class="cs-figcap rv">The agent's day, pre-triaged: outcome buckets with counts and value on top, and a call button on every row.</div>
+  <div class="wy-copy rv">
+    <p>Tap a row and the borrower workspace assembles the entire relationship on one screen. The live-call header keeps in-call actions, WhatsApp, SMS, disposition, end, one reach away. Account financials, payment history, the last captured field location, and the best and last dispositions sit beside a full activity timeline: every call with its recording, every field visit with photo proof, every payment link sent, every supervisor reassignment of channel or agent. It is the platform's one-shared-record idea, zoomed all the way in to a single borrower.</p>
+    <p>The most consequential design decision is the smallest-looking one: no call ends without a structured disposition. The right rail offers a coded taxonomy, callback, not contactable, promise-to-pay, refuse-to-pay, with sub-dispositions, labels, and comments. That closing tap is what feeds everything upstream, the lender's channel-wise dashboards, the compliance trail, and eventually the propensity models of Version 2. The agent thinks they are wrapping up a call. They are actually writing the marketplace's ground truth.</p>
+  </div>
+  <div class="cs-suite">
+    <figure class="cs-suite-item rv" style="--d:0"><div class="cs-suite-shot"><img class="nda" src="assets/yc-crm-borrower.jpg" alt="The borrower workspace during a live call: an ongoing-call header with WhatsApp, SMS, disposition, and end-call actions, account details with outstanding, overdue, EMI and days past due, payment history, last captured location on a map, a structured add-disposition rail, and a full activity timeline with call recordings, field visits with photos, messages, and supervisor reassignments" loading="lazy"></div><figcaption class="cs-figcap">The live-call workspace: the whole relationship on one screen, timeline included, while the call runs.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:1"><div class="cs-suite-shot"><img class="nda" src="assets/yc-crm-whatsapp.jpg" alt="The send-message modal during an ongoing call: a WhatsApp payment reminder with a templated message and payment link, the borrower's number confirmed with a change-number option, while the add-disposition rail waits on the right" loading="lazy"></div><figcaption class="cs-figcap">Multichannel without leaving the call: a templated WhatsApp payment link, sent mid-conversation.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:2"><div class="cs-suite-shot"><img class="nda" src="assets/yc-crm-disp.jpg" alt="The disposition buckets expanded over the worklist, each bucket showing its account count and outstanding amount, with a view-accounts action" loading="lazy"></div><figcaption class="cs-figcap">Dispositions are buckets with value attached, so outcomes roll straight up into the numbers lenders see.</figcaption></figure>
+  </div>
+  <div class="wy-copy rv">
+    <p>The same discipline serves every cohort from section 03 at once. The agent gets a day that runs itself. The agency owner gets channel planning and reassignment, moving an account from call to field when the phone stops working. The lender gets dashboards built from coded outcomes instead of hearsay. And the borrower gets contact that is logged, recorded, and reviewable, which in this industry is the difference between recovery and harassment. One screen, four constituencies, no free text.</p>
+  </div>
+</section>
+
+<section id="v2">
+  <div class="wy-label rv">11 · Version 2 · The intelligence layer</div>
+  <div class="wy-state rv">Stop just routing collections. Start making them smarter and cheaper.</div>
+  <div class="wy-copy rv">
+    <p>By Version 2 the marketplace worked and was trusted. The frontier moved from infrastructure to intelligence: recover more, from the right people, on the cheapest channel that works, and give agencies the fuel to grow. Four product lines pushed YuCollect from a place you run collections to a place that makes collections better.</p>
+  </div>
+  <div class="cs-moves">
+    <div class="cs-move rv" style="--d:0"><span class="cs-mnum">01</span><span class="cs-mbody"><span class="cs-mtitle">Predict Plus · propensity to pay</span><span class="cs-mdesc">Scoring that ranks who is most likely to pay, and routes each borrower into a risk-appropriate journey. This is the shift from calling everyone to calling the right person first, which is the single biggest lever on both recovery rate and cost.</span></span></div>
+    <div class="cs-move rv" style="--d:1"><span class="cs-mnum">02</span><span class="cs-mbody"><span class="cs-mtitle">Digital Plus · the cheapest channel that works</span><span class="cs-mdesc">Multi-channel outreach across SMS, IVR, WhatsApp, and email, so a self-curing borrower never needs a costly field visit. Designing the orchestration, which channel, in what order, with what fallback to a human, is where most of the 57% cost reduction is won.</span></span></div>
+    <div class="cs-move rv" style="--d:2"><span class="cs-mnum">03</span><span class="cs-mbody"><span class="cs-mtitle">Contact Plus · reach, restored</span><span class="cs-mdesc">Alternative contact discovery for borrowers who have gone dark. A large share of collection cost is simply the effort of reaching someone; surfacing a working number turns a dead account back into a conversation.</span></span></div>
+    <div class="cs-move rv" style="--d:3"><span class="cs-mnum">04</span><span class="cs-mbody"><span class="cs-mtitle">Capital Plus · embedded finance</span><span class="cs-mdesc">Short-term working capital for agencies, inside the platform. Agencies are cash-flow constrained; financing their operations against the allocations they already hold lets them take on more, which deepens supply for the whole marketplace. Design as a growth flywheel, not just a feature.</span></span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>The through-line across all three versions is that YuCollect grew the way infrastructure has to: liquidity first, then trust, then intelligence. Each layer was only buildable because the one under it existed. You cannot sell propensity scoring to a lender who does not trust the marketplace, and they will not trust a marketplace with no liquidity to trust.</p>
+  </div>
+</section>
+
+<section id="model">
+  <div class="wy-label rv">12 · The operating model</div>
+  <div class="wy-state rv">Five parties, one transparent view of every transaction.</div>
+  <div class="wy-copy rv">
+    <p>Underneath the versions is a single idea: put every party around one shared, transparent record of each allocation. The lender, the agency, the agent, and the compliance trail all read the same truth, so nobody has to reconcile five versions of what happened.</p>
+  </div>
+  <figure class="cs-fig rv csb-diagram">
+    <svg viewBox="0 0 960 500" role="img" aria-label="YuCollect operating model: a central platform connecting lenders, agencies, agents, borrowers, and regulators around one shared transaction record" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="yc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5A5A58"/></marker>
+      </defs>
+      <line x1="480" y1="250" x2="480" y2="120" stroke="#3A3A38" stroke-width="1.4" marker-end="url(#yc-arrow)"/>
+      <line x1="480" y1="250" x2="790" y2="185" stroke="#3A3A38" stroke-width="1.4" marker-end="url(#yc-arrow)"/>
+      <line x1="480" y1="250" x2="700" y2="410" stroke="#3A3A38" stroke-width="1.4" marker-end="url(#yc-arrow)"/>
+      <line x1="480" y1="250" x2="260" y2="410" stroke="#3A3A38" stroke-width="1.4" marker-end="url(#yc-arrow)"/>
+      <line x1="480" y1="250" x2="170" y2="185" stroke="#3A3A38" stroke-width="1.4" marker-end="url(#yc-arrow)"/>
+      <rect x="386" y="212" width="188" height="76" rx="14" fill="#141414" stroke="#FF7A00" stroke-width="1.6"/>
+      <text x="480" y="245" text-anchor="middle" font-family="Switzer,sans-serif" font-weight="600" font-size="19" fill="#F4F4F5">YuCollect</text>
+      <text x="480" y="267" text-anchor="middle" font-family="Geist Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A88">ONE SHARED RECORD</text>
+      <g font-family="Switzer,sans-serif" font-weight="600" font-size="15" fill="#F4F4F5">
+        <rect x="392" y="70" width="176" height="56" rx="12" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="480" y="94" text-anchor="middle">Regulators</text>
+        <text x="480" y="113" text-anchor="middle" font-family="Geist Mono,monospace" font-weight="400" font-size="9.5" letter-spacing="1.2" fill="#8A8A88">AUDIT · TRUST</text>
+        <rect x="716" y="150" width="176" height="56" rx="12" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="804" y="174" text-anchor="middle">Lenders</text>
+        <text x="804" y="193" text-anchor="middle" font-family="Geist Mono,monospace" font-weight="400" font-size="9.5" letter-spacing="1.2" fill="#8A8A88">ALLOCATE · TRACK</text>
+        <rect x="628" y="392" width="176" height="56" rx="12" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="716" y="416" text-anchor="middle">Borrowers</text>
+        <text x="716" y="435" text-anchor="middle" font-family="Geist Mono,monospace" font-weight="400" font-size="9.5" letter-spacing="1.2" fill="#8A8A88">FAIR CONTACT</text>
+        <rect x="172" y="392" width="176" height="56" rx="12" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="260" y="416" text-anchor="middle">Agents</text>
+        <text x="260" y="435" text-anchor="middle" font-family="Geist Mono,monospace" font-weight="400" font-size="9.5" letter-spacing="1.2" fill="#8A8A88">EXECUTE · CERTIFY</text>
+        <rect x="68" y="150" width="176" height="56" rx="12" fill="#111" stroke="#3A3A38" stroke-width="1.3"/>
+        <text x="156" y="174" text-anchor="middle">Agencies</text>
+        <text x="156" y="193" text-anchor="middle" font-family="Geist Mono,monospace" font-weight="400" font-size="9.5" letter-spacing="1.2" fill="#8A8A88">DISCOVERED · RUN</text>
+      </g>
+    </svg>
+  </figure>
+  <div class="cs-figcap rv">One transaction, one record, five parties reading the same truth. Transparency was not a feature bolted on. It was the product.</div>
+</section>
+
+
+
+<section id="outcomes">
+  <div class="wy-label rv">13 · Outcomes</div>
+  <div class="wy-state rv">A paper industry, now running on rails.</div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">57%</span><span class="cs-nl">Reduction in collection cost</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">19,000+</span><span class="cs-nl">Pincodes with agency coverage</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">₹1.4L Cr</span><span class="cs-nl">Debt volume on the parent marketplace</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">8</span><span class="cs-nl">Product lines shipped across three versions</span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>The compounding is the point. Discovery created liquidity. Compliance and portfolio tooling turned that liquidity into trust, which is what unlocked large regulated lenders. Intelligence and digital channels then drove the cost of a recovery down by more than half. Each version was a different design problem, persuasion, then governance, then orchestration, but they add up to one thing: the collections layer of Indian credit, finally legible.</p>
+    <p class="wy-fine">Headline figures are YuCollect and Yubi published results. Version-level sequencing reflects the product build as I led it.</p>
+  </div>
+</section>
+
+<section id="reflections">
+  <div class="wy-label rv">14 · Reflections</div>
+  <div class="wy-state rv">You cannot design a marketplace. You can only sequence one.</div>
+  <div class="cs-quote rv">The temptation is to draw the finished platform on day one. The craft is knowing what to refuse to build until the layer beneath it is real.</div>
+  <div class="wy-copy rv">
+    <p>The lesson I carry from YuCollect is that in a multi-sided, regulated system, sequencing is the design. The eight-module platform was always visible on the roadmap, but shipping it in one go would have collapsed under its own cold-start. What worked was ruthless order: prove liquidity with the smallest possible marketplace, earn trust with compliance and visibility, then, and only then, layer on intelligence. Every screen mattered, but the decision that mattered most was what not to design yet.</p>
+  </div>
+</section>
+
+</div>
+</div>
+</div>
+
+<section class="cs-sec cs-nextwrap">
+  <div class="wy-label rv">Next story</div>
+  <a class="cs-next rv" href="yuverse.html">YuVerse: AI a bank will put its name on. <svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-giant">The Optimistic Designer</div>
+  <div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
+  </div>
+  <div class="foot-links">
+    <a href="journey.html">My Journey</a>
+    <a href="stories.html">My Stories</a>
+    <a href="blog.html">Blogs</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div></footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(function () { document.body.classList.add('loaded'); }, 200);
+  var rvEls = [].slice.call(document.querySelectorAll('.rv'));
+  function sweep() {
+    var vh = window.innerHeight;
+    rvEls = rvEls.filter(function (el) {
+      if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add('vis'); return false; }
+      return true;
+    });
+  }
+  if (reduced) { rvEls.forEach(function (el) { el.classList.add('vis'); }); rvEls = []; }
+  window.addEventListener('scroll', sweep, { passive: true });
+  window.addEventListener('resize', sweep);
+  sweep();
+  setTimeout(sweep, 350);
+
+  // same depth cycle as home: hero zooms in on exit, sections zoom out into place
+  var zoomEls = [].slice.call(document.querySelectorAll('.csb-main > section, .cs-nextwrap'));
+  var heroEl = document.querySelector('.st-hero');
+  function applyZoom(sy) {
+    if (reduced) return;
+    var vh = window.innerHeight;
+    if (heroEl) {
+      var hp = Math.max(0, Math.min(1, sy / (heroEl.offsetHeight * 1.4)));
+      heroEl.style.transform = 'scale(' + (1 + 0.28 * hp * hp).toFixed(4) + ')';
+      heroEl.style.opacity = (1 - 0.8 * hp).toFixed(3);
+    }
+    zoomEls.forEach(function (el) {
+      var top = el.offsetTop - sy;
+      var h = el.offsetHeight;
+      if (top > vh) { el.style.transform = 'scale(1.16)'; el.style.opacity = '0.45'; return; }
+      if (top + h < 0) { el.style.transform = 'scale(0.97)'; el.style.opacity = '1'; return; }
+      var p = Math.max(0, Math.min(1, (vh - top) / (vh + h)));
+      var e1 = 1 - Math.pow(1 - Math.min(1, p / 0.26), 3);
+      var s = 1.16 - 0.16 * e1;
+      if (p > 0.26) {
+        var e2 = 1 - Math.pow(1 - Math.min(1, (p - 0.26) / 0.54), 3);
+        s -= 0.03 * e2;
+      }
+      el.style.transform = 'scale(' + s.toFixed(4) + ')';
+      el.style.opacity = (0.45 + 0.55 * e1).toFixed(3);
+    });
+  }
+  // rAF-driven smoothing: the zoom follows an eased scroll value for buttery motion
+  var zTarget = window.scrollY, zSmooth = zTarget, zRAF = 0;
+  function zoomLoop() {
+    zSmooth += (zTarget - zSmooth) * 0.08;
+    if (Math.abs(zTarget - zSmooth) < 0.25) zSmooth = zTarget;
+    applyZoom(zSmooth);
+    zRAF = (zSmooth !== zTarget) ? requestAnimationFrame(zoomLoop) : 0;
+  }
+  function zoomWake() { zTarget = window.scrollY; if (!zRAF) zRAF = requestAnimationFrame(zoomLoop); }
+  window.addEventListener('scroll', zoomWake, { passive: true });
+  window.addEventListener('resize', function () { zTarget = window.scrollY; applyZoom(zSmooth); });
+  applyZoom(zSmooth);
+
+  // sidebar scroll-spy + smooth anchor scroll
+  var secs = [].slice.call(document.querySelectorAll('.csb-main > section[id]'));
+  var links = {};
+  [].slice.call(document.querySelectorAll('.csb-nav a')).forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    links[id] = a;
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById(id);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 92, behavior: 'smooth' });
+    });
+  });
+  function spy() {
+    var y = window.scrollY + 150;
+    var cur = secs.length ? secs[0].id : null;
+    secs.forEach(function (s) { if (s.offsetTop <= y) cur = s.id; });
+    Object.keys(links).forEach(function (id) { links[id].classList.toggle('on', id === cur); });
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  window.addEventListener('resize', spy);
+  spy();
+
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  if (fine && !reduced) {
+    var dot = document.createElement('div'); dot.className = 'cursor-dot';
+    var ring = document.createElement('div'); ring.className = 'cursor-ring';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    document.body.classList.add('cursor-on');
+    var cx = -100, cy = -100, rx = -100, ry = -100;
+    document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; });
+    (function loop() {
+      rx += (cx - rx) * 0.16; ry += (cy - ry) * 0.16;
+      dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('grow'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('grow'); });
+    });
+  }
+})();
+</script>
+<script src="nav.js"></script>
+<script src="footer.js"></script>
+<script src="nda.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YuVerse: designing AI a bank will trust · The Optimistic Designer</title>
+<meta name="description" content="Enterprise AI for banking only ships if people trust it. How the YuVerse suite, voice, documents, credit, and compliance, was designed to make AI legible, correctable, and accountable, across 25M+ calls and 20M+ documents a month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="canonical" href="https://theoptimisticdesigner.com/yuverse.html">
+<meta name="author" content="Subin Sundaresan">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Optimistic Designer">
+<meta property="og:title" content="YuVerse: designing AI a bank will trust · The Optimistic Designer">
+<meta property="og:description" content="Enterprise AI for banking only ships if people trust it. How the YuVerse suite, voice, documents, credit, and compliance, was designed to make AI legible, correctable, and accountable.">
+<meta property="og:url" content="https://theoptimisticdesigner.com/yuverse.html">
+<meta property="og:image" content="https://theoptimisticdesigner.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YuVerse: designing AI a bank will trust · The Optimistic Designer">
+<meta name="twitter:description" content="Enterprise AI for banking only ships if people trust it. How the YuVerse suite was designed to make AI legible, correctable, and accountable.">
+</head>
+<body>
+
+<nav class="wy-nav">
+  <a href="index.html" class="n-logo" aria-label="The Optimistic Designer"><svg class="glyph-o" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Optimistic mark" overflow="visible"><rect x="4.43" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="4.43" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="9.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="15.09" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="20.43" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="25.76" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="31.09" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="4.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="36.43" y="47.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="9.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="41.76" y="41.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="15.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="20.43" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="25.76" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="31.09" width="4.48" height="4.48" fill="#f4f4f5"/><rect x="47.09" y="36.43" width="4.48" height="4.48" fill="#f4f4f5"/></svg></a>
+  <div class="n-links">
+    <a href="index.html">The Me</a>
+    <a href="journey.html">My Journey</a>
+    <a href="stories.html" class="on">My Stories</a>
+    <a href="optimistic.html">Design System</a>
+    <a href="contact.html" class="wy-pill">Let's Connect</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="st-hero">
+  <div class="wy-eyebrow hero-rv">Case study · YuVerse · Enterprise AI · Product and UX</div>
+  <h1 class="hw-stack" aria-label="AI a bank will put its name on.">
+    <span class="hw"><span class="hw-in">AI a bank will</span></span>
+    <span class="hw"><span class="hw-in">put its name on.</span></span>
+  </h1>
+  <p class="wy-sub hero-rv">YuVerse is a last-mile AI company for banking, the place where a call is answered, a document is read, and a loan is decided. A model can do all three. A bank still cannot deploy an answer its officers cannot check, its supervisors cannot correct, and its regulators cannot audit. My work across the suite was to design that trust in, so the AI became something a bank would sign its name to. Today it runs 25M+ calls and 20M+ documents a month.</p>
+</header>
+
+<section class="cs-sec">
+  <div class="cs-facts">
+    <div class="cs-fact rv" style="--d:0"><span class="cs-fk">My role</span><span class="cs-fv">Product and UX design · YuVerse AI suite</span></div>
+    <div class="cs-fact rv" style="--d:1"><span class="cs-fk">Company</span><span class="cs-fv">YuVerse · Last-mile AI for BFSI · India and UAE</span></div>
+    <div class="cs-fact rv" style="--d:2"><span class="cs-fk">Domains</span><span class="cs-fv">Voice · Documents · Credit · Compliance</span></div>
+    <div class="cs-fact rv" style="--d:3"><span class="cs-fk">Users</span><span class="cs-fv">Credit analysts · KYC reviewers · Collections agents · Supervisors</span></div>
+    <div class="cs-fact rv" style="--d:4"><span class="cs-fk">Method</span><span class="cs-fv">Design for the human in the loop</span></div>
+    <div class="cs-fact rv" style="--d:5"><span class="cs-fk">Scale</span><span class="cs-fv">25M+ calls · 20M+ pages · 6M+ applications scored</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">01 · The situation</div>
+  <div class="wy-state rv">The hard part of enterprise AI is never the model. It is trust.</div>
+  <div class="wy-copy rv">
+    <p>The last mile of a bank is where the accountability lives. A collections call can promise something the bank has to honour. A misread field on a KYC document can onboard the wrong person. A number in a credit memo decides whether a business gets funded. AI can now do all of this at a speed no team can match. But speed is not the thing a bank buys. It buys defensibility. An officer has to be able to question the answer, a supervisor has to be able to correct it, and an auditor has to be able to trace it, or the answer never leaves the lab.</p>
+    <p>So the design brief across YuVerse was not to make the AI look intelligent. It was to make it accountable. Every product had to show its work, wear its own doubt, and hand control back to a person the moment judgment was needed. The measure of success was not how much the AI did on its own. It was how confidently a regulated institution would put its name on the output.</p>
+  </div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">25M+</span><span class="cs-nl">Voice calls handled a month</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">20M+</span><span class="cs-nl">Document pages processed a month</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">6M+</span><span class="cs-nl">Applications scored a year</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">40+</span><span class="cs-nl">BFSI institutions across India and the UAE</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">02 · The strategy · Trust is the product</div>
+  <div class="wy-state rv">Design for the person who signs, not the model that suggests.</div>
+  <div class="cs-quote rv">A bank will not deploy an answer it cannot question.</div>
+  <div class="wy-copy rv">
+    <p>Four design primitives run through every product in the suite. Confidence, not certainty: every AI output carries a visible measure of its own doubt, so a person knows where to look. Citation, not assertion: every claim links back to the exact source it came from. Exception, not everything: a human sees only the cases that actually need judgment, never the thousands that do not. And the human always keeps the pen: people can override, edit, and correct, and the AI defers to them.</p>
+    <p>Those four ideas are what make the same platform legible to a KYC reviewer, a credit analyst, a collections agent, and a compliance supervisor at once. The products look different because the work is different. Underneath, they are the same promise, made four ways.</p>
+  </div>
+  <div class="cs-mx rv">
+    <div class="cs-mx-row cs-mx-head"><span>Capability</span><span>The last-mile job</span><span>What it publishes</span></div>
+    <div class="cs-mx-row"><span>Document intelligence</span><span>Read and verify KYC documents</span><span>99.9% extraction, KYC in 4s</span></div>
+    <div class="cs-mx-row"><span>Credit decisioning</span><span>Draft the credit assessment memo</span><span>30-min draft, 5&#215; throughput</span></div>
+    <div class="cs-mx-row"><span>Conversational voice</span><span>Hold the customer conversation</span><span>25M calls, sub-200ms</span></div>
+    <div class="cs-mx-row"><span>Conversation intelligence</span><span>Score and police every call</span><span>30+ parameters, alerts &lt;2s</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">03 · Document intelligence</div>
+  <div class="wy-state rv">Show a reviewer only the document that needs them.</div>
+  <div class="wy-copy rv">
+    <p>KYC review is the classic trap of enterprise AI. Automate it fully and one bad extraction slips a fraudulent identity through. Keep a human on every document and you have automated nothing. The design answer was to make the interface exception-based. Every extracted field carries a confidence score, and the pipeline, upload and extract, dynamic triangulations, run the checks, summary, only ever surfaces the items that are flagged, tampered, or missing. Thousands of clean documents pass silently. A reviewer opens their queue and sees only the handful that genuinely need a human eye.</p>
+    <p>The principle underneath is that the system reads the field, not just the text. It knows that D.O.B., Date of Birth, and its regional equivalents are the same thing, builds the validation checklist at runtime for the document type it detects, and cross-checks name, date, and address across documents. The reviewer is never asked to trust a black box. They are shown exactly what passed, what failed, and how sure the system is.</p>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yv-doc.jpg" alt="The document-intelligence output: an ID document with each region detected, and a structured result showing document_type national_id at 0.99 confidence, per-field confidence scores for name, DOB, ID number, and address, and an 847ms processing time" loading="lazy"></figure>
+  <div class="cs-figcap rv">Every field comes back wearing its own confidence score, so only the low-confidence or failed items are ever routed to a human.</div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">4s</span><span class="cs-nl">KYC turnaround, from 5 days</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">99.9%</span><span class="cs-nl">Extraction accuracy on clean scans</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">97.5%</span><span class="cs-nl">Tamper detection rate</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">150+</span><span class="cs-nl">Document types, zero setup</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">04 · Credit decisioning</div>
+  <div class="wy-state rv">Draft the memo in minutes. Let the analyst keep the pen.</div>
+  <div class="wy-copy rv">
+    <p>A credit assessment memo is a document a bank stakes real money on, and until now it took an analyst five to twenty days to write by hand, with no audit trail and a real error rate. The system reads the borrower's statements, spreads the financials, calculates DSCR, leverage, and liquidity, and assembles a full draft memo in about thirty minutes. The risk with any tool like this is that people either rubber-stamp it or refuse to trust it. The design had to earn the middle path.</p>
+    <p>Every figure in the memo traces to the exact source page it came from, and one click opens that page. The analyst can edit any section and the AI revises around the change, with full version history and every keystroke signed. Handoffs, reviews, and approvals happen in one place, so the audit trail writes itself. The analyst is faster because the drudgery is gone, and more confident because nothing in the memo is unsourced. The AI drafts. The human decides, and can prove why.</p>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yv-credit.jpg" alt="The credit-decisioning output: 25+ data sources aggregated into an eight-dimension analysis with per-dimension scores, a bureau credit score of 742, and a drafted CAM report generated in 28 minutes with 15 checks, awaiting an analyst's approval" loading="lazy"></figure>
+  <div class="cs-figcap rv">Twenty-five-plus sources become an eight-dimension read and a drafted memo in minutes, with every figure traceable and the approve decision still the analyst's.</div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">30 min</span><span class="cs-nl">To a drafted memo, from 5 to 20 days</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">5&#215;</span><span class="cs-nl">Underwriting throughput, same headcount</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">100%</span><span class="cs-nl">Figures cited to source</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">&gt;50%</span><span class="cs-nl">Reduction in credit-assessment TAT</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">05 · Conversational voice</div>
+  <div class="wy-state rv">A voice agent people can interrupt, and a human can take over.</div>
+  <div class="wy-copy rv">
+    <p>A voice agent loses trust in the first second it feels like a machine. The design targets were about control and latency. A caller can interrupt at any point, barge-in that cuts the agent off mid-sentence the way a real conversation works, and the round trip stays under 200 milliseconds so it never has the tell-tale pause of a bot. It speaks English and ten Indic languages, and switches between them mid-sentence the way people in India actually talk.</p>
+    <p>The trust move that matters most is the handoff. When a conversation needs a specialist or a human, the agent escalates inside the same call with full context carried over and zero re-authentication, so the customer never repeats themselves and never starts again. Audio is processed in the stream and discarded, sessions are isolated, which is what lets a bank run it on regulated conversations at all. At the scale of tens of millions of calls a month, those are not features. They are the conditions of deployment.</p>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yv-voice.jpg" alt="The voice product: an outbound call queue running a recovery batch with live and completed rows, and a live AI voice-agent panel showing a call in progress with a step checklist, call initiated, customer identified, repayment intent captured, and payment link still pending" loading="lazy"></figure>
+  <div class="cs-figcap rv">A live agent panel that shows exactly where a conversation has reached, so a supervisor can follow it or step in at any point.</div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">25M</span><span class="cs-nl">Calls handled in 30 days</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">&lt;200ms</span><span class="cs-nl">Audio round-trip latency</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">11</span><span class="cs-nl">Languages, with mid-sentence switching</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">80%</span><span class="cs-nl">Up to, connection rate</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">06 · Conversation intelligence</div>
+  <div class="wy-state rv">Every call scored, every violation caught at the sentence.</div>
+  <div class="wy-copy rv">
+    <p>Compliance in a call centre used to mean sampling a few percent of calls after the fact and hoping the rest were fine. The system scores every call on more than thirty parameters, greeting, discovery, empathy, negotiation, compliance, resolution, and flags mis-selling, false promises, and abusive language at the level of the individual sentence, not the whole call. A supervisor gets an alert in under two seconds, while there is still time to act, and dispositions write themselves into the CRM the moment a call ends.</p>
+    <p>Designing this meant turning a wall of transcripts into something a supervisor can actually act on: a live view where emotion transitions are visible, a composite quality score they can defend, and a flag that points to the exact moment a rule was broken. Accountability stops being a monthly report and becomes a real-time surface. That is what lets a bank run outbound AI at scale without taking on unbounded risk.</p>
+  </div>
+  <figure class="cs-shot rv"><img class="nda" src="assets/yv-ci.jpg" alt="The conversation-intelligence panel: a raw live transcript on the left, and on the right a QA score of 87 out of 100, a sentiment arc from negative to positive, detected signals such as escalation and refund intent, per-dimension agent performance, and a compliance checklist" loading="lazy"></figure>
+  <div class="cs-figcap rv">A raw transcript becomes a scored, defensible read: quality, sentiment, compliance, and the exact moment a rule was met or broken.</div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">30+</span><span class="cs-nl">Quality parameters scored per call</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">&lt;2s</span><span class="cs-nl">To a supervisor compliance alert</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">+18%</span><span class="cs-nl">Collection efficiency</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">97%</span><span class="cs-nl">Transcription accuracy, Indian languages</span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">The rest of the suite</div>
+  <div class="wy-state rv">The same trust model, carried across the rest of the platform.</div>
+  <div class="cs-suite">
+    <figure class="cs-suite-item rv" style="--d:0"><div class="cs-suite-shot"><img class="nda" src="assets/yv-model.jpg" alt="A no-code model studio: a drag-and-drop pipeline from data sources through transforms to an XGBoost model and score API, with live metrics including AUC-ROC 0.91 and a confusion matrix" loading="lazy"></div><figcaption class="cs-figcap">Model studio · a no-code pipeline to build, validate, and deploy a credit model in days, with the metrics in plain sight.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:1"><div class="cs-suite-shot"><img class="nda" src="assets/yv-statement.jpg" alt="Bank-statement analysis: many document formats ingested, two suspicious transactions flagged at 99% accuracy, and results pushed out to WhatsApp, email, and call channels" loading="lazy"></div><figcaption class="cs-figcap">Statement analysis · many formats in, flagged transactions out, delivered to whichever channel the customer uses.</figcaption></figure>
+    <figure class="cs-suite-item rv" style="--d:2"><div class="cs-suite-shot"><img class="nda" src="assets/yv-video.jpg" alt="A personalised video engine: an AI avatar and frame-level lip sync generating thousands of personalised, multilingual videos per campaign" loading="lazy"></div><figcaption class="cs-figcap">Personalised video · one photo becomes a multilingual presenter, batch-rendered thousands at a time.</figcaption></figure>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">07 · One trust model, four products</div>
+  <div class="wy-state rv">The suite looks like four tools. It is one design principle, made four ways.</div>
+  <div class="cs-moves">
+    <div class="cs-move rv" style="--d:0"><span class="cs-mnum">01</span><span class="cs-mbody"><span class="cs-mtitle">Confidence, not certainty</span><span class="cs-mdesc">Every AI output wears its own doubt. The document engine scores each extracted field, the credit memo qualifies each figure, the call monitor rates each call. A person always knows where the model is sure and where to look harder, so trust is calibrated instead of assumed.</span></span></div>
+    <div class="cs-move rv" style="--d:1"><span class="cs-mnum">02</span><span class="cs-mbody"><span class="cs-mtitle">Citation, not assertion</span><span class="cs-mdesc">Nothing is stated without a source. Every figure in a credit memo links to the page it came from, every document check names the file it read. The output is not asking to be believed. It is showing its receipts.</span></span></div>
+    <div class="cs-move rv" style="--d:2"><span class="cs-mnum">03</span><span class="cs-mbody"><span class="cs-mtitle">Exception, not everything</span><span class="cs-mdesc">Humans see only what needs a human. The document reviewer surfaces the flagged file, the call monitor surfaces the broken rule. The thousands of clean cases pass silently, so attention lands exactly where judgment is actually required.</span></span></div>
+    <div class="cs-move rv" style="--d:3"><span class="cs-mnum">04</span><span class="cs-mbody"><span class="cs-mtitle">The human keeps the pen</span><span class="cs-mdesc">Control always returns to a person. A credit analyst edits and the AI revises, a voice agent hands a live call to a specialist with full context. The AI proposes at speed. A person decides, and can always prove why.</span></span></div>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">08 · The outcome</div>
+  <div class="wy-state rv">When AI is trusted, it gets deployed. When it is deployed, the numbers move.</div>
+  <figure class="cs-shot rv"><video class="nda" src="assets/yv-platform.mp4" poster="assets/yv-platform.jpg" autoplay muted loop playsinline></video></figure>
+  <div class="cs-figcap rv">The platform in one view: data and infrastructure at the back, the products in the middle, and the outcomes a bank actually buys at the front.</div>
+  <div class="cs-nums">
+    <div class="cs-num rv" style="--d:0"><span class="cs-nv">+26%</span><span class="cs-nl">Productivity across deployments</span></div>
+    <div class="cs-num rv" style="--d:1"><span class="cs-nv">&#8722;42%</span><span class="cs-nl">Operating cost</span></div>
+    <div class="cs-num rv" style="--d:2"><span class="cs-nv">3.2&#215;</span><span class="cs-nl">Return on investment</span></div>
+    <div class="cs-num rv" style="--d:3"><span class="cs-nv">99.9%</span><span class="cs-nl">Platform uptime</span></div>
+  </div>
+  <div class="wy-copy rv">
+    <p>The through-line from design to business is short. Confidence scores and exception queues let banks automate KYC and collections without giving up oversight. Citations and audit trails let compliance and credit teams put AI-drafted work into regulated processes. Real-time control let voice AI run on millions of live customer calls. Trust was the unlock, and once it was designed in, adoption and outcomes followed.</p>
+    <p class="wy-fine">Figures shown are YuVerse's published product and platform results.</p>
+  </div>
+</section>
+
+<section class="cs-sec">
+  <div class="wy-label rv">09 · What I carry forward</div>
+  <div class="wy-state rv">Enterprise AI is not a model problem. It is a trust problem.</div>
+  <div class="cs-quote rv">The job was never to make the AI look smart. It was to make it answerable.</div>
+  <div class="wy-copy rv">
+    <p>The teams shipping AI fastest are the ones whose design makes the AI accountable, because accountability is what lets a regulated business actually turn it on. Show the confidence, cite the source, surface only the exception, and always leave a human holding the pen. Do that, and a model in a lab becomes a system a bank will sign its name to. That is a design problem, and it is the one worth being great at.</p>
+  </div>
+</section>
+
+<section class="cs-sec cs-nextwrap">
+  <div class="wy-label rv">Next story</div>
+  <a class="cs-next rv" href="yubi2.html">Yubi 2.0: a loss-making suite, rebuilt into One Yubi. <svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-giant">The Optimistic Designer</div>
+  <div>
+    <div class="foot-copy">Subin Sundaresan · Bengaluru · Open globally · 2026</div>
+    <div class="foot-easter">Yes, this site was designed by the person it's about.</div>
+  </div>
+  <div class="foot-links">
+    <a href="journey.html">My Journey</a>
+    <a href="stories.html">My Stories</a>
+    <a href="blog.html">Blogs</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div></footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(function () { document.body.classList.add('loaded'); }, 200);
+  var rvEls = [].slice.call(document.querySelectorAll('.rv'));
+  function sweep() {
+    var vh = window.innerHeight;
+    rvEls = rvEls.filter(function (el) {
+      if (el.getBoundingClientRect().top < vh * 0.88) { el.classList.add('vis'); return false; }
+      return true;
+    });
+  }
+  if (reduced) { rvEls.forEach(function (el) { el.classList.add('vis'); }); rvEls = []; }
+  window.addEventListener('scroll', sweep, { passive: true });
+  window.addEventListener('resize', sweep);
+  sweep();
+  setTimeout(sweep, 350);
+
+  // same depth cycle as home: hero zooms in on exit, sections zoom out into place
+  var zoomEls = [].slice.call(document.querySelectorAll('.cs-sec'));
+  var heroEl = document.querySelector('.st-hero');
+  function applyZoom(sy) {
+    if (reduced) return;
+    var vh = window.innerHeight;
+    if (heroEl) {
+      var hp = Math.max(0, Math.min(1, sy / (heroEl.offsetHeight * 1.4)));
+      heroEl.style.transform = 'scale(' + (1 + 0.5 * hp * hp).toFixed(4) + ')';
+      heroEl.style.opacity = (1 - 0.78 * hp).toFixed(3);
+    }
+    zoomEls.forEach(function (el) {
+      var top = el.offsetTop - sy;
+      var h = el.offsetHeight;
+      if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
+      if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
+      var p = Math.max(0, Math.min(1, (vh - top) / (vh + h)));
+      var e1 = 1 - Math.pow(1 - Math.min(1, p / 0.24), 3);
+      var s = 2 - e1;
+      if (p > 0.24) {
+        var e2 = 1 - Math.pow(1 - Math.min(1, (p - 0.24) / 0.54), 3);
+        s -= 0.2 * e2;
+      }
+      el.style.transform = 'scale(' + s.toFixed(4) + ')';
+      el.style.opacity = (0.3 + 0.7 * e1).toFixed(3);
+    });
+  }
+  // rAF-driven smoothing: the zoom follows an eased scroll value for buttery motion
+  var zTarget = window.scrollY, zSmooth = zTarget, zRAF = 0;
+  function zoomLoop() {
+    zSmooth += (zTarget - zSmooth) * 0.08;
+    if (Math.abs(zTarget - zSmooth) < 0.25) zSmooth = zTarget;
+    applyZoom(zSmooth);
+    zRAF = (zSmooth !== zTarget) ? requestAnimationFrame(zoomLoop) : 0;
+  }
+  function zoomWake() { zTarget = window.scrollY; if (!zRAF) zRAF = requestAnimationFrame(zoomLoop); }
+  window.addEventListener('scroll', zoomWake, { passive: true });
+  window.addEventListener('resize', function () { zTarget = window.scrollY; applyZoom(zSmooth); });
+  applyZoom(zSmooth);
+
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  if (fine && !reduced) {
+    var dot = document.createElement('div'); dot.className = 'cursor-dot';
+    var ring = document.createElement('div'); ring.className = 'cursor-ring';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    document.body.classList.add('cursor-on');
+    var cx = -100, cy = -100, rx = -100, ry = -100;
+    document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; });
+    (function loop() {
+      rx += (cx - rx) * 0.16; ry += (cy - ry) * 0.16;
+      dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('grow'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('grow'); });
+    });
+  }
+})();
+</script>
+<script src="nav.js"></script>
+<script src="footer.js"></script>
+<script src="nda.js"></script>
+</body>
+</html>
