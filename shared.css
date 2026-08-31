@@ -849,9 +849,12 @@ body.bucketing .cursor-dot,body.bucketing .cursor-ring{opacity:0}
   .csb-cohorts{grid-template-columns:1fr}
 }
 
+/* Scroll performance: depth-cycle sections composite on the GPU instead of repainting */
+.cs-sec,.st-sec,.csb-main>section,.cs-nextwrap{will-change:transform,opacity;transform:translateZ(0);backface-visibility:hidden}
+
 /* NDA gate: product screenshots blurred until the shared password unlocks them */
 .nda-wrap{position:relative;overflow:hidden;border-radius:8px}
-body:not(.nda-open) .nda-wrap>img,body:not(.nda-open) .nda-wrap>video{filter:blur(26px) saturate(.8);transform:scale(1.08)}
+body:not(.nda-open) .nda-wrap>img,body:not(.nda-open) .nda-wrap>video{filter:blur(26px) saturate(.8);transform:scale(1.08) translateZ(0);will-change:filter}
 .nda-cover{position:absolute;inset:0;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;background:rgba(8,8,8,.42);border:0;cursor:pointer;padding:20px}
 body.nda-open .nda-cover{display:none}
 .nda-t{font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;color:#FFF}

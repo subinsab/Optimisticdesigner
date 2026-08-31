@@ -198,8 +198,9 @@
     zoomEls.forEach(function (el) {
       var top = el.offsetTop - sy;
       var h = el.offsetHeight;
-      if (top > vh) { el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; return; }
-      if (top + h < 0) { el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; return; }
+      if (top > vh) { if (el.__z !== 1) { el.__z = 1; el.style.transform = 'scale(2)'; el.style.opacity = '0.3'; } return; }
+      if (top + h < 0) { if (el.__z !== 2) { el.__z = 2; el.style.transform = 'scale(0.8)'; el.style.opacity = '1'; } return; }
+      el.__z = 0;
       var p = Math.max(0, Math.min(1, (vh - top) / (vh + h)));
       var e1 = 1 - Math.pow(1 - Math.min(1, p / 0.24), 3);
       var s = 2 - e1;
